@@ -8,9 +8,9 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         <div className="absolute inset-0">
           {/* Floating geometric shapes */}
-          <Star className="absolute top-1/4 left-1/4 w-32 h-32 text-purple-500/10 blur-xl animate-pulse" fill="currentColor" />
-          <Star className="absolute top-3/4 right-1/4 w-48 h-48 text-pink-500/10 blur-2xl animate-pulse delay-1000" fill="currentColor" />
-          <Star className="absolute top-1/2 left-3/4 w-24 h-24 text-blue-500/10 blur-lg animate-pulse delay-500" fill="currentColor" />
+          <Sparkles className="absolute top-1/4 left-1/4 w-32 h-32 text-purple-500/10 blur-xl animate-pulse" fill="currentColor" />
+          <Sparkles className="absolute top-3/4 right-1/4 w-48 h-48 text-pink-500/10 blur-2xl animate-pulse delay-1000" fill="currentColor" />
+          <Sparkles className="absolute top-1/2 left-3/4 w-24 h-24 text-blue-500/10 blur-lg animate-pulse delay-500" fill="currentColor" />
           
           {/* Animated grid overlay */}
           <div className="absolute inset-0 opacity-20">
@@ -26,7 +26,7 @@ export const Hero = () => {
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
             <div className="relative flex items-center space-x-3 bg-slate-900 border border-purple-400/30 rounded-full px-6 py-3">
-              <Star className="w-5 h-5 text-yellow-400 animate-pulse" />
+              <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" />
               <span className="text-purple-200 font-medium">Launching Mid-2025</span>
               <Sparkles className="w-5 h-5 text-purple-300 animate-pulse delay-300" />
             </div>
@@ -61,8 +61,8 @@ export const Hero = () => {
           </p>
           
           {/* Decorative elements */}
-          <Star className="absolute -top-4 left-1/4 w-2 h-2 text-purple-400 animate-ping" fill="currentColor" />
-          <Star className="absolute -bottom-4 right-1/3 w-3 h-3 text-pink-400 animate-ping delay-1000" fill="currentColor" />
+          <Sparkles className="absolute -top-4 left-1/4 w-2 h-2 text-purple-400 animate-ping" fill="currentColor" />
+          <Sparkles className="absolute -bottom-4 right-1/3 w-3 h-3 text-pink-400 animate-ping delay-1000" fill="currentColor" />
         </div>
         
         {/* Enhanced Call-to-Action Buttons */}
@@ -98,9 +98,9 @@ export const Hero = () => {
       </div>
 
       {/* Floating Elements */}
-      <Star className="absolute top-20 left-10 w-4 h-4 text-purple-400 animate-bounce" fill="currentColor" />
-      <Star className="absolute bottom-20 right-10 w-6 h-6 text-pink-400 animate-bounce delay-500" fill="currentColor" />
-      <Star className="absolute top-1/3 right-20 w-3 h-3 text-blue-400 animate-bounce delay-1000" fill="currentColor" />
+      <Sparkles className="absolute top-20 left-10 w-4 h-4 text-purple-400 animate-bounce" fill="currentColor" />
+      <Sparkles className="absolute bottom-20 right-10 w-6 h-6 text-pink-400 animate-bounce delay-500" fill="currentColor" />
+      <Sparkles className="absolute top-1/3 right-20 w-3 h-3 text-blue-400 animate-bounce delay-1000" fill="currentColor" />
     </section>
   );
 };
