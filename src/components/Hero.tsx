@@ -8,9 +8,9 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         <div className="absolute inset-0">
           {/* Floating geometric shapes */}
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-48 h-48 bg-pink-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-3/4 w-24 h-24 bg-blue-500/10 rounded-full blur-lg animate-pulse delay-500"></div>
+          <Star className="absolute top-1/4 left-1/4 w-32 h-32 text-purple-500/10 blur-xl animate-pulse" fill="currentColor" />
+          <Star className="absolute top-3/4 right-1/4 w-48 h-48 text-pink-500/10 blur-2xl animate-pulse delay-1000" fill="currentColor" />
+          <Star className="absolute top-1/2 left-3/4 w-24 h-24 text-blue-500/10 blur-lg animate-pulse delay-500" fill="currentColor" />
           
           {/* Animated grid overlay */}
           <div className="absolute inset-0 opacity-20">
@@ -61,8 +61,8 @@ export const Hero = () => {
           </p>
           
           {/* Decorative elements */}
-          <div className="absolute -top-4 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
-          <div className="absolute -bottom-4 right-1/3 w-3 h-3 bg-pink-400 rounded-full animate-ping delay-1000"></div>
+          <Star className="absolute -top-4 left-1/4 w-2 h-2 text-purple-400 animate-ping" fill="currentColor" />
+          <Star className="absolute -bottom-4 right-1/3 w-3 h-3 text-pink-400 animate-ping delay-1000" fill="currentColor" />
         </div>
         
         {/* Enhanced Call-to-Action Buttons */}
@@ -98,9 +98,9 @@ export const Hero = () => {
       </div>
 
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-4 h-4 bg-purple-400 rounded-full animate-bounce"></div>
-      <div className="absolute bottom-20 right-10 w-6 h-6 bg-pink-400 rounded-full animate-bounce delay-500"></div>
-      <div className="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce delay-1000"></div>
+      <Star className="absolute top-20 left-10 w-4 h-4 text-purple-400 animate-bounce" fill="currentColor" />
+      <Star className="absolute bottom-20 right-10 w-6 h-6 text-pink-400 animate-bounce delay-500" fill="currentColor" />
+      <Star className="absolute top-1/3 right-20 w-3 h-3 text-blue-400 animate-bounce delay-1000" fill="currentColor" />
     </section>
   );
 };
