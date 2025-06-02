@@ -1,14 +1,14 @@
 
-import { Calendar, Users, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
+import { Calendar, Users, TrendingUp, ArrowRight, Sparkles, Star } from "lucide-react";
 
 export const Services = () => {
   return (
     <section id="services" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Artistic Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-0 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <Star className="absolute top-1/4 left-0 w-72 h-72 text-purple-500/10 blur-3xl animate-pulse" fill="currentColor" />
+        <Star className="absolute bottom-1/4 right-0 w-72 h-72 text-pink-500/10 blur-3xl animate-pulse delay-1000" fill="currentColor" />
+        <Star className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 text-blue-500/5 blur-3xl" fill="currentColor" />
       </div>
 
       <div className="relative max-w-7xl mx-auto">
@@ -65,7 +65,7 @@ export const Services = () => {
               <div className="space-y-4">
                 {['Interactive community features', 'Real-time engagement tools', 'Personalized experience curation'].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <Star className="w-3 h-3 text-purple-400 group-hover:scale-125 transition-transform duration-300" fill="currentColor" />
                     <span className="text-gray-300 text-lg">{feature}</span>
                   </div>
                 ))}
@@ -114,7 +114,7 @@ export const Services = () => {
               <div className="space-y-4">
                 {['End-to-end event lifecycle management', 'Integrated vendor and resource coordination', 'Real-time analytics and optimization'].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-3 h-3 bg-blue-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <Star className="w-3 h-3 text-blue-400 group-hover:scale-125 transition-transform duration-300" fill="currentColor" />
                     <span className="text-gray-300 text-lg">{feature}</span>
                   </div>
                 ))}
@@ -163,7 +163,7 @@ export const Services = () => {
               <div className="space-y-4">
                 {['Deep audience analytics and insights', 'Strategic consulting and implementation', 'Custom research and market intelligence'].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-3 h-3 bg-pink-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <Star className="w-3 h-3 text-pink-400 group-hover:scale-125 transition-transform duration-300" fill="currentColor" />
                     <span className="text-gray-300 text-lg">{feature}</span>
                   </div>
                 ))}
