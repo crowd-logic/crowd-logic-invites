@@ -1,7 +1,6 @@
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Star } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +11,7 @@ export const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <Star className="w-6 h-6 text-white" fill="currentColor" />
+              <Sparkles className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl md:text-3xl font-black text-white">
               Crowd Logic
