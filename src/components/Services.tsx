@@ -1,5 +1,6 @@
 
-import { Calendar, Users, TrendingUp, ArrowRight, Sparkles, Star } from "lucide-react";
+import { Calendar, Users, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
+import { Star } from "lucide-react";
 
 export const Services = () => {
   return (
@@ -11,13 +12,31 @@ export const Services = () => {
         <Star className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 text-blue-500/5 blur-3xl" fill="currentColor" />
       </div>
 
+      {/* Reference Images Integration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-32 left-10 w-24 h-24 opacity-5">
+          <img 
+            src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
+            alt="Event Features" 
+            className="w-full h-full object-cover rounded-xl blur-sm"
+          />
+        </div>
+        <div className="absolute bottom-32 right-10 w-32 h-32 opacity-5">
+          <img 
+            src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
+            alt="Brand Ambassador" 
+            className="w-full h-full object-cover rounded-xl blur-sm"
+          />
+        </div>
+      </div>
+
       <div className="relative max-w-7xl mx-auto">
         {/* Dramatic Section Header */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-3 mb-8">
-            <Sparkles className="w-6 h-6 text-purple-400 animate-spin" />
+            <Sparkles className="w-6 h-6 text-purple-400 animate-pulse" />
             <span className="text-purple-400 font-semibold text-xl">OUR ECOSYSTEM</span>
-            <Sparkles className="w-6 h-6 text-purple-400 animate-spin" />
+            <Sparkles className="w-6 h-6 text-purple-400 animate-pulse" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">

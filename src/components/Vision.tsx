@@ -1,5 +1,6 @@
 
 import { Brain, Network, Zap, ChevronDown } from "lucide-react";
+import { Star } from "lucide-react";
 
 export const Vision = () => {
   return (
@@ -15,7 +16,7 @@ export const Vision = () => {
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
             <div className="w-12 h-px bg-gradient-to-r from-transparent to-purple-500"></div>
-            <ChevronDown className="w-6 h-6 text-purple-400 animate-bounce" />
+            <ChevronDown className="w-6 h-6 text-purple-400 animate-pulse" />
             <div className="w-12 h-px bg-gradient-to-l from-transparent to-purple-500"></div>
           </div>
           
@@ -53,7 +54,7 @@ export const Vision = () => {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Event organizers juggle multiple platforms, losing efficiency and creating disconnected experiences for attendees.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+              <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
             </div>
           </div>
 
@@ -69,7 +70,7 @@ export const Vision = () => {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Brands lack deep understanding of their audience engagement and struggle to create meaningful connections.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-ping delay-500"></div>
+              <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-500"></div>
             </div>
           </div>
 
@@ -85,7 +86,7 @@ export const Vision = () => {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Communities can't capitalize on the power of collective engagement and shared experiences.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-pink-400 rounded-full animate-ping delay-1000"></div>
+              <div className="absolute top-4 right-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-1000"></div>
             </div>
           </div>
         </div>
@@ -117,11 +118,11 @@ export const Vision = () => {
               {/* Decorative connecting lines */}
               <div className="mt-16 flex justify-center">
                 <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-green-400 rounded-full animate-pulse"></div>
+                  <Star className="w-8 h-8 text-green-400 animate-pulse" fill="currentColor" />
                   <div className="w-16 h-px bg-gradient-to-r from-green-400 to-blue-400"></div>
-                  <div className="w-8 h-8 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+                  <Star className="w-8 h-8 text-blue-400 animate-pulse delay-300" fill="currentColor" />
                   <div className="w-16 h-px bg-gradient-to-r from-blue-400 to-purple-400"></div>
-                  <div className="w-8 h-8 bg-purple-400 rounded-full animate-pulse delay-700"></div>
+                  <Star className="w-8 h-8 text-purple-400 animate-pulse delay-700" fill="currentColor" />
                 </div>
               </div>
             </div>

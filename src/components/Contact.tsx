@@ -1,5 +1,6 @@
 
-import { Mail, MessageSquare, ArrowRight, Sparkles, Star, Heart } from "lucide-react";
+import { Mail, MessageSquare, ArrowRight, Sparkles, Heart } from "lucide-react";
+import { Star } from "lucide-react";
 
 export const Contact = () => {
   return (
@@ -11,13 +12,31 @@ export const Contact = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-blue-500/5 rounded-full blur-3xl"></div>
       </div>
 
+      {/* Reference Images Integration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-40 left-10 w-32 h-32 opacity-5">
+          <img 
+            src="/lovable-uploads/767d6bcb-f922-48ed-9dd9-e9478694321f.png" 
+            alt="Exclusive Opportunity" 
+            className="w-full h-full object-cover rounded-2xl blur-sm"
+          />
+        </div>
+        <div className="absolute bottom-40 right-10 w-36 h-36 opacity-5">
+          <img 
+            src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
+            alt="Strategic Connection" 
+            className="w-full h-full object-cover rounded-2xl blur-sm"
+          />
+        </div>
+      </div>
+
       <div className="relative max-w-7xl mx-auto">
         {/* Dramatic Header */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
-            <Star className="w-6 h-6 text-yellow-400 animate-spin" />
+            <Star className="w-6 h-6 text-yellow-400 animate-pulse" fill="currentColor" />
             <span className="text-purple-400 font-semibold text-xl">JOIN THE REVOLUTION</span>
-            <Star className="w-6 h-6 text-yellow-400 animate-spin" />
+            <Star className="w-6 h-6 text-yellow-400 animate-pulse" fill="currentColor" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
@@ -59,7 +78,7 @@ export const Contact = () => {
                 <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform duration-300" />
               </a>
 
-              <div className="absolute top-6 right-6 w-4 h-4 bg-purple-400 rounded-full animate-ping"></div>
+              <div className="absolute top-6 right-6 w-4 h-4 bg-purple-400 rounded-full animate-pulse"></div>
             </div>
           </div>
 
@@ -85,7 +104,7 @@ export const Contact = () => {
                 <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform duration-300" />
               </a>
 
-              <div className="absolute top-6 right-6 w-4 h-4 bg-blue-400 rounded-full animate-ping delay-500"></div>
+              <div className="absolute top-6 right-6 w-4 h-4 bg-blue-400 rounded-full animate-pulse delay-500"></div>
             </div>
           </div>
         </div>
@@ -114,17 +133,17 @@ export const Contact = () => {
             {/* Artistic Progress Indicator */}
             <div className="flex justify-center items-center space-x-4 mb-8">
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                <Star className="w-4 h-4 text-green-400 animate-pulse" fill="currentColor" />
                 <span className="text-green-400 font-semibold">Active Development</span>
               </div>
               <div className="w-16 h-px bg-gradient-to-r from-green-400 to-yellow-400"></div>
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-yellow-400 rounded-full animate-pulse delay-300"></div>
+                <Star className="w-4 h-4 text-yellow-400 animate-pulse delay-300" fill="currentColor" />
                 <span className="text-yellow-400 font-semibold">Demo Ready</span>
               </div>
               <div className="w-16 h-px bg-gradient-to-r from-yellow-400 to-blue-400"></div>
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 bg-blue-400 rounded-full animate-pulse delay-700"></div>
+                <Star className="w-4 h-4 text-blue-400 animate-pulse delay-700" fill="currentColor" />
                 <span className="text-blue-400 font-semibold">Mid-2025 Launch</span>
               </div>
             </div>

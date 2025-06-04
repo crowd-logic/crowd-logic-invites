@@ -1,5 +1,6 @@
 
-import { Linkedin, Mail, Star, Crown, Zap } from "lucide-react";
+import { Linkedin, Mail, Crown, Zap } from "lucide-react";
+import { Star } from "lucide-react";
 
 export const Founder = () => {
   return (
@@ -8,6 +9,17 @@ export const Founder = () => {
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
+      {/* Reference Image Integration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-20 w-40 h-40 opacity-5">
+          <img 
+            src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
+            alt="Leadership Vision" 
+            className="w-full h-full object-cover rounded-3xl blur-sm"
+          />
+        </div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
@@ -20,8 +32,8 @@ export const Founder = () => {
               <div className="relative w-48 h-48 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 rounded-full flex items-center justify-center group hover:scale-105 transition-transform duration-500">
                 <Crown className="w-24 h-24 text-white group-hover:rotate-12 transition-transform duration-500" />
               </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-bounce">
-                <Star className="w-4 h-4 text-slate-900" />
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-pulse">
+                <Star className="w-4 h-4 text-slate-900" fill="currentColor" />
               </div>
             </div>
 
@@ -95,7 +107,7 @@ export const Founder = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-green-600/50 to-blue-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <Star className="w-3 h-3 text-green-400 animate-pulse" fill="currentColor" />
                     <h3 className="text-xl font-bold text-white">Building for Scale</h3>
                   </div>
                   <p className="text-gray-300">
@@ -108,7 +120,7 @@ export const Founder = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/50 to-pink-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-300"></div>
+                    <Star className="w-3 h-3 text-purple-400 animate-pulse delay-300" fill="currentColor" />
                     <h3 className="text-xl font-bold text-white">Strategic Partnerships</h3>
                   </div>
                   <p className="text-gray-300">
@@ -121,7 +133,7 @@ export const Founder = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-pink-600/50 to-orange-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse delay-700"></div>
+                    <Star className="w-3 h-3 text-pink-400 animate-pulse delay-700" fill="currentColor" />
                     <h3 className="text-xl font-bold text-white">Industry Innovation</h3>
                   </div>
                   <p className="text-gray-300">
