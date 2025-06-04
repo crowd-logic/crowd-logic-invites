@@ -11,6 +11,27 @@ export const Vision = () => {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
       </div>
 
+      {/* Uploaded Images as Design Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-40 right-20 w-32 h-32 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
+            alt="Event Innovation" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl"></div>
+        </div>
+        
+        <div className="absolute bottom-40 left-16 w-28 h-28 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
+            alt="Strategic Vision" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl"></div>
+        </div>
+      </div>
+
       <div className="relative max-w-7xl mx-auto">
         {/* Section Header with Artistic Elements */}
         <div className="text-center mb-24">
@@ -54,7 +75,9 @@ export const Vision = () => {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Event organizers juggle multiple platforms, losing efficiency and creating disconnected experiences for attendees.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+              <div className="absolute top-4 right-4">
+                <Star className="w-2 h-2 text-purple-400 animate-pulse" fill="currentColor" />
+              </div>
             </div>
           </div>
 
@@ -70,7 +93,9 @@ export const Vision = () => {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Brands lack deep understanding of their audience engagement and struggle to create meaningful connections.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-500"></div>
+              <div className="absolute top-4 right-4">
+                <Star className="w-2 h-2 text-blue-400 animate-pulse delay-500" fill="currentColor" />
+              </div>
             </div>
           </div>
 
@@ -86,7 +111,9 @@ export const Vision = () => {
               <p className="text-gray-300 text-lg leading-relaxed">
                 Communities can't capitalize on the power of collective engagement and shared experiences.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-1000"></div>
+              <div className="absolute top-4 right-4">
+                <Star className="w-2 h-2 text-pink-400 animate-pulse delay-1000" fill="currentColor" />
+              </div>
             </div>
           </div>
         </div>
@@ -115,7 +142,7 @@ export const Vision = () => {
                 that scales with your ambitions.
               </p>
 
-              {/* Decorative connecting lines */}
+              {/* Decorative connecting lines with logo stars */}
               <div className="mt-16 flex justify-center">
                 <div className="flex items-center space-x-4">
                   <Star className="w-8 h-8 text-green-400 animate-pulse" fill="currentColor" />

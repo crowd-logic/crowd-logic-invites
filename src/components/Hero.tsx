@@ -8,7 +8,7 @@ export const Hero = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
         <div className="absolute inset-0">
-          {/* Floating geometric shapes - now using consistent stars */}
+          {/* Floating stars matching logo style */}
           <Star className="absolute top-1/4 left-1/4 w-32 h-32 text-purple-500/10 blur-xl animate-pulse" fill="currentColor" />
           <Star className="absolute top-3/4 right-1/4 w-48 h-48 text-pink-500/10 blur-2xl animate-pulse delay-1000" fill="currentColor" />
           <Star className="absolute top-1/2 left-3/4 w-24 h-24 text-blue-500/10 blur-lg animate-pulse delay-500" fill="currentColor" />
@@ -20,24 +20,46 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Style Reference Images */}
+      {/* Uploaded Images as Design Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Strategic Partnership Visual */}
-        <div className="absolute top-20 right-20 w-32 h-32 opacity-10">
+        <div className="absolute top-20 right-20 w-40 h-40 opacity-20 hover:opacity-30 transition-opacity duration-500">
           <img 
             src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
             alt="Strategic Partnership" 
-            className="w-full h-full object-cover rounded-2xl blur-sm"
+            className="w-full h-full object-cover rounded-3xl shadow-2xl"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl"></div>
         </div>
         
+        {/* Brand Ambassador Visual */}
+        <div className="absolute bottom-20 left-20 w-36 h-36 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
+            alt="Leadership Vision" 
+            className="w-full h-full object-cover rounded-3xl shadow-2xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl"></div>
+        </div>
+
+        {/* Event Features Visual */}
+        <div className="absolute top-1/2 right-10 w-28 h-28 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
+            alt="Event Features" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-2xl"></div>
+        </div>
+
         {/* Exclusive Access Visual */}
-        <div className="absolute bottom-20 left-20 w-28 h-28 opacity-10">
+        <div className="absolute top-32 left-10 w-32 h-32 opacity-15 hover:opacity-25 transition-opacity duration-500">
           <img 
             src="/lovable-uploads/767d6bcb-f922-48ed-9dd9-e9478694321f.png" 
             alt="Exclusive Access" 
-            className="w-full h-full object-cover rounded-2xl blur-sm"
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-2xl"></div>
         </div>
       </div>
 
@@ -82,7 +104,7 @@ export const Hero = () => {
             that transforms how communities connect, brands engage, and experiences come to life in the digital age.
           </p>
           
-          {/* Decorative elements - now using consistent stars */}
+          {/* Decorative stars matching logo */}
           <Star className="absolute -top-4 left-1/4 w-2 h-2 text-purple-400 animate-pulse" fill="currentColor" />
           <Star className="absolute -bottom-4 right-1/3 w-3 h-3 text-pink-400 animate-pulse delay-1000" fill="currentColor" />
         </div>
@@ -119,7 +141,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Floating Elements - now using consistent stars */}
+      {/* Floating Stars matching logo style */}
       <Star className="absolute top-20 left-10 w-4 h-4 text-purple-400 animate-pulse" fill="currentColor" />
       <Star className="absolute bottom-20 right-10 w-6 h-6 text-pink-400 animate-pulse delay-500" fill="currentColor" />
       <Star className="absolute top-1/3 right-20 w-3 h-3 text-blue-400 animate-pulse delay-1000" fill="currentColor" />

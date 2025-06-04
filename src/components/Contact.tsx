@@ -12,21 +12,42 @@ export const Contact = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-blue-500/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Reference Images Integration */}
+      {/* Uploaded Images as Design Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-40 left-10 w-32 h-32 opacity-5">
+        <div className="absolute top-40 left-10 w-44 h-44 opacity-25 hover:opacity-35 transition-opacity duration-500">
           <img 
             src="/lovable-uploads/767d6bcb-f922-48ed-9dd9-e9478694321f.png" 
             alt="Exclusive Opportunity" 
-            className="w-full h-full object-cover rounded-2xl blur-sm"
+            className="w-full h-full object-cover rounded-3xl shadow-2xl"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-3xl"></div>
         </div>
-        <div className="absolute bottom-40 right-10 w-36 h-36 opacity-5">
+        
+        <div className="absolute bottom-40 right-10 w-48 h-48 opacity-25 hover:opacity-35 transition-opacity duration-500">
           <img 
             src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
             alt="Strategic Connection" 
-            className="w-full h-full object-cover rounded-2xl blur-sm"
+            className="w-full h-full object-cover rounded-3xl shadow-2xl"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-3xl"></div>
+        </div>
+
+        <div className="absolute top-20 right-1/4 w-32 h-32 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
+            alt="Event Innovation" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-2xl"></div>
+        </div>
+
+        <div className="absolute bottom-20 left-1/4 w-36 h-36 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
+            alt="Brand Ambassador" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-orange-500/30 rounded-2xl"></div>
         </div>
       </div>
 
@@ -78,7 +99,9 @@ export const Contact = () => {
                 <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform duration-300" />
               </a>
 
-              <div className="absolute top-6 right-6 w-4 h-4 bg-purple-400 rounded-full animate-pulse"></div>
+              <div className="absolute top-6 right-6">
+                <Star className="w-4 h-4 text-purple-400 animate-pulse" fill="currentColor" />
+              </div>
             </div>
           </div>
 
@@ -104,7 +127,9 @@ export const Contact = () => {
                 <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform duration-300" />
               </a>
 
-              <div className="absolute top-6 right-6 w-4 h-4 bg-blue-400 rounded-full animate-pulse delay-500"></div>
+              <div className="absolute top-6 right-6">
+                <Star className="w-4 h-4 text-blue-400 animate-pulse delay-500" fill="currentColor" />
+              </div>
             </div>
           </div>
         </div>

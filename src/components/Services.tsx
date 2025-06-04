@@ -5,28 +5,49 @@ import { Star } from "lucide-react";
 export const Services = () => {
   return (
     <section id="services" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Artistic Background Elements */}
+      {/* Artistic Background Elements with logo stars */}
       <div className="absolute inset-0">
         <Star className="absolute top-1/4 left-0 w-72 h-72 text-purple-500/10 blur-3xl animate-pulse" fill="currentColor" />
         <Star className="absolute bottom-1/4 right-0 w-72 h-72 text-pink-500/10 blur-3xl animate-pulse delay-1000" fill="currentColor" />
         <Star className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 text-blue-500/5 blur-3xl" fill="currentColor" />
       </div>
 
-      {/* Reference Images Integration */}
+      {/* Uploaded Images as Design Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-32 left-10 w-24 h-24 opacity-5">
+        <div className="absolute top-32 left-10 w-36 h-36 opacity-20 hover:opacity-30 transition-opacity duration-500">
           <img 
             src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
             alt="Event Features" 
-            className="w-full h-full object-cover rounded-xl blur-sm"
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-2xl"></div>
         </div>
-        <div className="absolute bottom-32 right-10 w-32 h-32 opacity-5">
+        
+        <div className="absolute bottom-32 right-10 w-40 h-40 opacity-20 hover:opacity-30 transition-opacity duration-500">
           <img 
             src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
             alt="Brand Ambassador" 
-            className="w-full h-full object-cover rounded-xl blur-sm"
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-2xl"></div>
+        </div>
+
+        <div className="absolute top-1/2 right-20 w-32 h-32 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/767d6bcb-f922-48ed-9dd9-e9478694321f.png" 
+            alt="Exclusive Access" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-2xl"></div>
+        </div>
+
+        <div className="absolute bottom-20 left-20 w-28 h-28 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
+            alt="Strategic Partnership" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-orange-500/30 rounded-2xl"></div>
         </div>
       </div>
 
@@ -207,7 +228,7 @@ export const Services = () => {
           </div>
         </div>
 
-        {/* Connecting Element */}
+        {/* Connecting Element with logo stars */}
         <div className="mt-32 text-center">
           <div className="inline-flex items-center space-x-8">
             <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
