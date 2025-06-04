@@ -1,5 +1,8 @@
 
-import { Linkedin, Mail, Star, Crown, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { NeonMailIcon } from "./icons/NeonMailIcon";
+import { NeonCrownIcon } from "./icons/NeonCrownIcon";
+import { NeonStarIcon } from "./icons/NeonStarIcon";
 
 export const Founder = () => {
   return (
@@ -14,14 +17,18 @@ export const Founder = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Leadership Visual */}
           <div className="text-center lg:text-left space-y-8">
-            {/* Artistic CEO Avatar */}
-            <div className="relative inline-block">
-              <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 rounded-full blur opacity-75 animate-pulse"></div>
-              <div className="relative w-48 h-48 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 rounded-full flex items-center justify-center group hover:scale-105 transition-transform duration-500">
-                <Crown className="w-24 h-24 text-white group-hover:rotate-12 transition-transform duration-500" />
-              </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center animate-bounce">
-                <Star className="w-4 h-4 text-slate-900" />
+            {/* Strategic Partnership Image */}
+            <div className="relative inline-block mb-8">
+              <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 rounded-3xl blur opacity-75 animate-pulse"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1582562124811-c09040d0a901" 
+                alt="Strategic Partnership" 
+                className="relative w-64 h-48 object-cover rounded-3xl border-2 border-purple-400/30 hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white text-center">
+                <h4 className="text-lg font-bold">Strategic Partnerships</h4>
+                <p className="text-sm text-purple-200">Building the future together</p>
               </div>
             </div>
 
@@ -29,9 +36,9 @@ export const Founder = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-3 mb-4">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-purple-500"></div>
-                <Zap className="w-6 h-6 text-purple-400 animate-pulse" />
+                <NeonStarIcon size={24} className="animate-pulse" />
                 <span className="text-purple-400 font-semibold text-xl">VISIONARY LEADERSHIP</span>
-                <Zap className="w-6 h-6 text-purple-400 animate-pulse" />
+                <NeonStarIcon size={24} className="animate-pulse" />
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-purple-500"></div>
               </div>
               
@@ -52,7 +59,7 @@ export const Founder = () => {
                   href="#contact"
                   className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center space-x-3 group"
                 >
-                  <Mail className="w-5 h-5" />
+                  <NeonMailIcon size={20} />
                   <span>Connect</span>
                 </a>
               </div>
@@ -61,7 +68,6 @@ export const Founder = () => {
                 href="#"
                 className="group relative border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm flex items-center space-x-3"
               >
-                <Linkedin className="w-5 h-5" />
                 <span>LinkedIn</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>

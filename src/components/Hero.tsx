@@ -1,5 +1,6 @@
 
-import { ArrowRight, Sparkles, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { NeonStarIcon } from "./icons/NeonStarIcon";
 
 export const Hero = () => {
   return (
@@ -19,6 +20,22 @@ export const Hero = () => {
         </div>
       </div>
 
+      {/* Exclusive Key Image - Floating Element */}
+      <div className="absolute top-20 right-20 z-20 animate-bounce hidden lg:block">
+        <div className="relative group">
+          <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9" 
+            alt="Exclusive Access" 
+            className="relative w-32 h-32 object-cover rounded-2xl border-2 border-yellow-400/30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
+          <div className="absolute bottom-2 left-2 right-2 text-yellow-300 text-xs font-bold text-center">
+            EXCLUSIVE
+          </div>
+        </div>
+      </div>
+
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Status Badge with Glow Effect */}
@@ -26,9 +43,9 @@ export const Hero = () => {
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
             <div className="relative flex items-center space-x-3 bg-slate-900 border border-purple-400/30 rounded-full px-6 py-3">
-              <Star className="w-5 h-5 text-yellow-400 animate-pulse" />
+              <NeonStarIcon size={20} className="animate-pulse" />
               <span className="text-purple-200 font-medium">Launching Mid-2025</span>
-              <Sparkles className="w-5 h-5 text-purple-300 animate-pulse delay-300" />
+              <NeonStarIcon size={20} className="animate-pulse delay-300" />
             </div>
           </div>
         </div>
@@ -97,10 +114,16 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-4 h-4 bg-purple-400 rounded-full animate-bounce"></div>
-      <div className="absolute bottom-20 right-10 w-6 h-6 bg-pink-400 rounded-full animate-bounce delay-500"></div>
-      <div className="absolute top-1/3 right-20 w-3 h-3 bg-blue-400 rounded-full animate-bounce delay-1000"></div>
+      {/* Floating Neon Elements */}
+      <div className="absolute top-20 left-10 animate-bounce">
+        <NeonStarIcon size={16} className="text-purple-400" />
+      </div>
+      <div className="absolute bottom-20 right-10 animate-bounce delay-500">
+        <NeonStarIcon size={24} className="text-pink-400" />
+      </div>
+      <div className="absolute top-1/3 right-20 animate-bounce delay-1000">
+        <NeonStarIcon size={12} className="text-blue-400" />
+      </div>
     </section>
   );
 };

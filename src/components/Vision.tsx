@@ -1,5 +1,8 @@
 
-import { Brain, Network, Zap, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { NeonNetworkIcon } from "./icons/NeonNetworkIcon";
+import { NeonTrendingIcon } from "./icons/NeonTrendingIcon";
+import { NeonStarIcon } from "./icons/NeonStarIcon";
 
 export const Vision = () => {
   return (
@@ -46,14 +49,16 @@ export const Vision = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Network className="w-10 h-10 text-white" />
+                  <NeonNetworkIcon size={40} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Fragmented Ecosystem</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Event organizers juggle multiple platforms, losing efficiency and creating disconnected experiences for attendees.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+              <div className="absolute top-4 right-4">
+                <NeonStarIcon size={8} className="text-purple-400 animate-ping" />
+              </div>
             </div>
           </div>
 
@@ -62,14 +67,16 @@ export const Vision = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Brain className="w-10 h-10 text-white" />
+                  <NeonTrendingIcon size={40} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Limited Insights</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Brands lack deep understanding of their audience engagement and struggle to create meaningful connections.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-ping delay-500"></div>
+              <div className="absolute top-4 right-4">
+                <NeonStarIcon size={8} className="text-blue-400 animate-ping delay-500" />
+              </div>
             </div>
           </div>
 
@@ -78,14 +85,16 @@ export const Vision = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Zap className="w-10 h-10 text-white" />
+                  <NeonStarIcon size={40} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Missed Opportunities</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Communities can't capitalize on the power of collective engagement and shared experiences.
               </p>
-              <div className="absolute top-4 right-4 w-2 h-2 bg-pink-400 rounded-full animate-ping delay-1000"></div>
+              <div className="absolute top-4 right-4">
+                <NeonStarIcon size={8} className="text-pink-400 animate-ping delay-1000" />
+              </div>
             </div>
           </div>
         </div>
@@ -117,11 +126,17 @@ export const Vision = () => {
               {/* Decorative connecting lines */}
               <div className="mt-16 flex justify-center">
                 <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="w-8 h-8 bg-green-400 rounded-full animate-pulse flex items-center justify-center">
+                    <NeonStarIcon size={16} />
+                  </div>
                   <div className="w-16 h-px bg-gradient-to-r from-green-400 to-blue-400"></div>
-                  <div className="w-8 h-8 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+                  <div className="w-8 h-8 bg-blue-400 rounded-full animate-pulse delay-300 flex items-center justify-center">
+                    <NeonStarIcon size={16} />
+                  </div>
                   <div className="w-16 h-px bg-gradient-to-r from-blue-400 to-purple-400"></div>
-                  <div className="w-8 h-8 bg-purple-400 rounded-full animate-pulse delay-700"></div>
+                  <div className="w-8 h-8 bg-purple-400 rounded-full animate-pulse delay-700 flex items-center justify-center">
+                    <NeonStarIcon size={16} />
+                  </div>
                 </div>
               </div>
             </div>

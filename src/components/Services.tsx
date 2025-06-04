@@ -1,5 +1,9 @@
 
-import { Calendar, Users, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { NeonUsersIcon } from "./icons/NeonUsersIcon";
+import { NeonCalendarIcon } from "./icons/NeonCalendarIcon";
+import { NeonTrendingIcon } from "./icons/NeonTrendingIcon";
+import { NeonStarIcon } from "./icons/NeonStarIcon";
 
 export const Services = () => {
   return (
@@ -15,9 +19,9 @@ export const Services = () => {
         {/* Dramatic Section Header */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-3 mb-8">
-            <Sparkles className="w-6 h-6 text-purple-400 animate-spin" />
+            <NeonStarIcon size={24} className="animate-spin" />
             <span className="text-purple-400 font-semibold text-xl">OUR ECOSYSTEM</span>
-            <Sparkles className="w-6 h-6 text-purple-400 animate-spin" />
+            <NeonStarIcon size={24} className="animate-spin" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
@@ -47,7 +51,7 @@ export const Services = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
-                    <Users className="w-8 h-8 text-white" />
+                    <NeonUsersIcon size={32} />
                   </div>
                 </div>
                 <div>
@@ -80,8 +84,13 @@ export const Services = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <Users className="w-16 h-16 text-white" />
+                {/* Brand Ambassador Image */}
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb" 
+                    alt="Community Connection" 
+                    className="w-40 h-32 object-cover rounded-xl border-2 border-purple-400/30 group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
                 <h4 className="text-2xl font-bold text-purple-300 mb-4">Community at the Core</h4>
                 <p className="text-gray-400">Connecting hearts and minds</p>
@@ -96,7 +105,7 @@ export const Services = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
-                    <Calendar className="w-8 h-8 text-white" />
+                    <NeonCalendarIcon size={32} />
                   </div>
                 </div>
                 <div>
@@ -130,7 +139,7 @@ export const Services = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
                 <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <Calendar className="w-16 h-16 text-white" />
+                  <NeonCalendarIcon size={64} />
                 </div>
                 <h4 className="text-2xl font-bold text-blue-300 mb-4">Seamless Orchestration</h4>
                 <p className="text-gray-400">Every detail, perfectly synchronized</p>
@@ -145,7 +154,7 @@ export const Services = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center">
-                    <TrendingUp className="w-8 h-8 text-white" />
+                    <NeonTrendingIcon size={32} />
                   </div>
                 </div>
                 <div>
@@ -178,8 +187,13 @@ export const Services = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-pink-600 to-orange-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <TrendingUp className="w-16 h-16 text-white" />
+                {/* Service Icons Collection Image */}
+                <div className="mb-6">
+                  <img 
+                    src="https://images.unsplash.com/photo-1500673922987-e212871fec22" 
+                    alt="Strategic Intelligence" 
+                    className="w-40 h-32 object-cover rounded-xl border-2 border-pink-400/30 group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
                 <h4 className="text-2xl font-bold text-pink-300 mb-4">Intelligence-Driven Strategy</h4>
                 <p className="text-gray-400">Data that transforms decisions</p>
@@ -192,15 +206,15 @@ export const Services = () => {
         <div className="mt-32 text-center">
           <div className="inline-flex items-center space-x-8">
             <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
-              <Users className="w-6 h-6 text-white" />
+              <NeonUsersIcon size={24} />
             </div>
             <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500"></div>
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-              <Calendar className="w-6 h-6 text-white" />
+              <NeonCalendarIcon size={24} />
             </div>
             <div className="w-24 h-px bg-gradient-to-r from-blue-500 via-pink-500 to-orange-500"></div>
             <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-white" />
+              <NeonTrendingIcon size={24} />
             </div>
           </div>
           <p className="mt-8 text-xl text-gray-400">Three services, infinite possibilities</p>
