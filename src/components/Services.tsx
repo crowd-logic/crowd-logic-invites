@@ -48,7 +48,7 @@ export const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+                      src="/images/services/vibepass-icon.jpg" 
                       alt="Community Engagement" 
                       className="w-full h-full object-cover"
                     />
@@ -86,7 +86,7 @@ export const Services = () => {
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
                 <div className="mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb" 
+                    src="/images/services/vibepass-feature.jpg" 
                     alt="Community Connection" 
                     className="w-40 h-32 object-cover rounded-xl border-2 border-purple-400/30 group-hover:scale-110 transition-transform duration-500"
                   />
@@ -105,7 +105,7 @@ export const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952" 
+                      src="/images/services/eventaxis-icon.jpg" 
                       alt="Event Management" 
                       className="w-full h-full object-cover"
                     />
@@ -143,7 +143,7 @@ export const Services = () => {
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
                 <div className="w-32 h-32 rounded-full overflow-hidden mb-6 group-hover:scale-110 transition-transform duration-500">
                   <img 
-                    src="https://images.unsplash.com/photo-1493397212122-2b85dda8106b" 
+                    src="/images/services/eventaxis-feature.jpg" 
                     alt="Seamless Orchestration" 
                     className="w-full h-full object-cover"
                   />
@@ -162,7 +162,7 @@ export const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1500673922987-e212871fec22" 
+                      src="/images/services/kito-icon.jpg" 
                       alt="Strategic Intelligence" 
                       className="w-full h-full object-cover"
                     />
@@ -200,7 +200,7 @@ export const Services = () => {
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
                 <div className="mb-6">
                   <img 
-                    src="https://images.unsplash.com/photo-1517022812141-23620dba5c23" 
+                    src="/images/services/kito-feature.jpg" 
                     alt="Strategic Intelligence" 
                     className="w-40 h-32 object-cover rounded-xl border-2 border-pink-400/30 group-hover:scale-110 transition-transform duration-500"
                   />
@@ -217,7 +217,7 @@ export const Services = () => {
           <div className="inline-flex items-center space-x-8">
             <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+                src="/images/services/vibepass-icon.jpg" 
                 alt="Community" 
                 className="w-full h-full object-cover"
               />
@@ -225,7 +225,7 @@ export const Services = () => {
             <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500"></div>
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1493397212122-2b85dda8106b" 
+                src="/images/services/eventaxis-icon.jpg" 
                 alt="Events" 
                 className="w-full h-full object-cover"
               />
@@ -233,7 +233,7 @@ export const Services = () => {
             <div className="w-24 h-px bg-gradient-to-r from-blue-500 via-pink-500 to-orange-500"></div>
             <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1500673922987-e212871fec22" 
+                src="/images/services/kito-icon.jpg" 
                 alt="Intelligence" 
                 className="w-full h-full object-cover"
               />

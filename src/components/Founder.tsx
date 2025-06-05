@@ -19,7 +19,7 @@ export const Founder = () => {
             <div className="relative inline-block mb-8">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 rounded-3xl blur opacity-75 animate-pulse"></div>
               <img 
-                src="https://images.unsplash.com/photo-1582562124811-c09040d0a901" 
+                src="/images/founder/strategic-partnership.jpg" 
                 alt="Strategic Partnership" 
                 className="relative w-64 h-48 object-cover rounded-3xl border-2 border-purple-400/30 hover:scale-105 transition-transform duration-500"
               />

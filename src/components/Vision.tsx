@@ -48,7 +48,7 @@ export const Vision = () => {
               <div className="mb-8">
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" 
+                    src="/images/vision/fragmented-tech.jpg" 
                     alt="Fragmented Technology" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -68,7 +68,7 @@ export const Vision = () => {
               <div className="mb-8">
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+                    src="/images/vision/data-analytics.jpg" 
                     alt="Data Analytics" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -88,7 +88,7 @@ export const Vision = () => {
               <div className="mb-8">
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1501854140801-50d01698950b" 
+                    src="/images/vision/missed-opportunities.jpg" 
                     alt="Missed Opportunities" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />

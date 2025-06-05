@@ -23,7 +23,7 @@ export const Hero = () => {
         <div className="relative group">
           <div className="absolute -inset-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
           <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475" 
+            src="/images/hero/innovation-tech.jpg" 
             alt="Innovation & Technology" 
             className="relative w-32 h-32 object-cover rounded-2xl border-2 border-purple-400/30 hover:scale-105 transition-transform duration-300"
           />
