@@ -12,7 +12,7 @@ export const Vision = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Section Header with Intelligence Focus */}
+        {/* Section Header with Human Connection */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
             <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
@@ -21,24 +21,24 @@ export const Vision = () => {
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-            The Intelligence
+            When Events
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400">
-              Revolution
+              Come Alive
             </span>
           </h2>
           
           <div className="max-w-4xl mx-auto">
             <p className="text-2xl text-gray-300 leading-relaxed font-light">
-              While others collect data, we extract
-              <span className="text-emerald-400 font-semibold"> actionable intelligence </span>
-              from crowd behavior, transforming chaos into 
-              <span className="text-amber-400 font-semibold"> strategic advantage</span>.
+              Every organizer dreams of that perfect event where 
+              <span className="text-emerald-400 font-semibold"> everything flows seamlessly </span>
+              and guests leave with 
+              <span className="text-amber-400 font-semibold"> stories they'll tell forever</span>.
             </p>
           </div>
         </div>
 
-        {/* Intelligence Challenge Cards */}
+        {/* Real Event Challenges */}
         <div className="grid lg:grid-cols-3 gap-12 mb-32">
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
@@ -47,15 +47,15 @@ export const Vision = () => {
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
                     src="/images/vision/fragmented-tech.jpg" 
-                    alt="Fragmented Data Challenge" 
+                    alt="Event Organizer Stress" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Fragmented Intelligence</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">The Juggling Act</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Event data scattered across platforms, safety insights buried in reports, engagement metrics lost in silos—billions in potential intelligence remains untapped.
+                You're managing a thousand moving pieces—vendors, staff, security, guests—all while hoping nothing goes wrong. It feels impossible to stay ahead of problems.
               </p>
             </div>
           </div>
@@ -67,15 +67,15 @@ export const Vision = () => {
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
                     src="/images/vision/data-analytics.jpg" 
-                    alt="Predictive Analytics" 
+                    alt="Crowd Safety Concerns" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Predictive Blindness</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">The Guessing Game</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Without advanced analytics, crowd patterns remain invisible, safety risks go undetected, and engagement opportunities slip away before they can be leveraged.
+                Where will crowds gather? Which areas need more staff? What if someone needs help? You're making critical decisions based on gut feelings instead of real insights.
               </p>
             </div>
           </div>
@@ -87,21 +87,21 @@ export const Vision = () => {
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
                     src="/images/vision/missed-opportunities.jpg" 
-                    alt="Reactive Management" 
+                    alt="Missed Connections" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Reactive Management</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Missed Magic</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Traditional event management reacts to problems after they occur. True intelligence anticipates, prevents, and optimizes in real-time.
+                Great events create connections, but when you're fighting fires all day, there's no time to focus on the moments that make people's hearts sing.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Solution Section with Intelligence Positioning */}
+        {/* Solution Section with Heart-Centered Messaging */}
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-amber-900/20 to-cyan-900/20 rounded-3xl blur-xl"></div>
           <div className="relative bg-slate-900/60 backdrop-blur-2xl border border-white/20 rounded-3xl p-16">
@@ -109,20 +109,21 @@ export const Vision = () => {
               <div className="mb-12">
                 <div className="inline-flex items-center space-x-4 mb-8">
                   <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
-                  <span className="text-emerald-400 font-semibold text-xl">THE SOLUTION</span>
+                  <span className="text-emerald-400 font-semibold text-xl">IMAGINE THIS</span>
                   <div className="w-16 h-px bg-gradient-to-l from-transparent via-emerald-400 to-transparent"></div>
                 </div>
                 
                 <h3 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-                  Unified Crowd
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400"> Intelligence</span>
+                  Events That
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400"> Flow Like Magic</span>
                 </h3>
               </div>
               
               <p className="text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light">
-                CrowdLogic's AI-powered platform unifies 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> data analytics, safety navigation, engagement optimization, and predictive insights</span> 
-                into one intelligent ecosystem that transforms how events are managed and experienced.
+                What if you could 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> see around corners, </span> 
+                anticipate your guests' needs, and create those perfect moments where everything just clicks? 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> That's the CrowdLogic difference.</span>
               </p>
 
               {/* Circuit-inspired connecting lines */}
