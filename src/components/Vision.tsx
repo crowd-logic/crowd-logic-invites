@@ -12,7 +12,7 @@ export const Vision = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Section Header with Fortune Focus */}
+        {/* Section Header with Intelligence Focus */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
             <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
@@ -21,24 +21,24 @@ export const Vision = () => {
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-            The Rare
+            The Intelligence
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400">
-              Opportunity
+              Revolution
             </span>
           </h2>
           
           <div className="max-w-4xl mx-auto">
             <p className="text-2xl text-gray-300 leading-relaxed font-light">
-              While others chase common solutions, the 
-              <span className="text-emerald-400 font-semibold"> truly fortunate </span>
-              recognize when technology, timing, and vision align to create 
-              <span className="text-amber-400 font-semibold"> extraordinary value</span>.
+              While others collect data, we extract
+              <span className="text-emerald-400 font-semibold"> actionable intelligence </span>
+              from crowd behavior, transforming chaos into 
+              <span className="text-amber-400 font-semibold"> strategic advantage</span>.
             </p>
           </div>
         </div>
 
-        {/* Opportunity Cards with Success Focus */}
+        {/* Intelligence Challenge Cards */}
         <div className="grid lg:grid-cols-3 gap-12 mb-32">
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
@@ -47,15 +47,15 @@ export const Vision = () => {
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
                     src="/images/vision/fragmented-tech.jpg" 
-                    alt="Untapped Potential" 
+                    alt="Fragmented Data Challenge" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Untapped Fortune</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Fragmented Intelligence</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Billions in potential value remain locked within disconnected systems, waiting for the rare vision to unlock prosperity.
+                Event data scattered across platforms, safety insights buried in reports, engagement metrics lost in silos—billions in potential intelligence remains untapped.
               </p>
             </div>
           </div>
@@ -67,15 +67,15 @@ export const Vision = () => {
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
                     src="/images/vision/data-analytics.jpg" 
-                    alt="Hidden Patterns" 
+                    alt="Predictive Analytics" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Hidden Patterns</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Predictive Blindness</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Like the rare four-leaf clover, the most valuable insights hide in plain sight, waiting for the fortunate to discover them.
+                Without advanced analytics, crowd patterns remain invisible, safety risks go undetected, and engagement opportunities slip away before they can be leveraged.
               </p>
             </div>
           </div>
@@ -87,21 +87,21 @@ export const Vision = () => {
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
                     src="/images/vision/missed-opportunities.jpg" 
-                    alt="Seizing Moments" 
+                    alt="Reactive Management" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Seizing Moments</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Reactive Management</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Fortune favors those who act when technological stars align—creating exponential value from rare convergence.
+                Traditional event management reacts to problems after they occur. True intelligence anticipates, prevents, and optimizes in real-time.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Solution Section with Fortune Positioning */}
+        {/* Solution Section with Intelligence Positioning */}
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-amber-900/20 to-cyan-900/20 rounded-3xl blur-xl"></div>
           <div className="relative bg-slate-900/60 backdrop-blur-2xl border border-white/20 rounded-3xl p-16">
@@ -109,20 +109,20 @@ export const Vision = () => {
               <div className="mb-12">
                 <div className="inline-flex items-center space-x-4 mb-8">
                   <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
-                  <span className="text-emerald-400 font-semibold text-xl">THE FORTUNE</span>
+                  <span className="text-emerald-400 font-semibold text-xl">THE SOLUTION</span>
                   <div className="w-16 h-px bg-gradient-to-l from-transparent via-emerald-400 to-transparent"></div>
                 </div>
                 
                 <h3 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-                  Technological
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400"> Serendipity</span>
+                  Unified Crowd
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400"> Intelligence</span>
                 </h3>
               </div>
               
               <p className="text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light">
-                CrowdLogic represents that rare convergence where 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> advanced technology meets perfect timing</span>, 
-                creating unprecedented opportunities for exponential growth.
+                CrowdLogic's AI-powered platform unifies 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> data analytics, safety navigation, engagement optimization, and predictive insights</span> 
+                into one intelligent ecosystem that transforms how events are managed and experienced.
               </p>
 
               {/* Circuit-inspired connecting lines */}

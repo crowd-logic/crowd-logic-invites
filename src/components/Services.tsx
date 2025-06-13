@@ -12,35 +12,32 @@ export const Services = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Section Header with Fortune Focus */}
+        {/* Section Header with Intelligence Focus */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-3 mb-8">
             <div className="w-4 h-4 bg-emerald-400 rounded-full animate-pulse"></div>
-            <span className="text-emerald-400 font-semibold text-xl">FORTUNE'S ECOSYSTEM</span>
+            <span className="text-emerald-400 font-semibold text-xl">INTELLIGENT SOLUTIONS</span>
             <div className="w-4 h-4 bg-amber-400 rounded-full animate-pulse delay-300"></div>
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-            Three Pathways
+            Three Pillars of
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400">
-              to Fortune
+              Crowd Intelligence
             </span>
-            <br />
-            One Destiny
           </h2>
           
           <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
-            Each service unlocks a different aspect of technological fortune, 
-            working together to create 
+            Each platform leverages advanced analytics and AI to transform crowd behavior into 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold">
-              exponential prosperity
-            </span>.
+              actionable intelligence
+            </span>, creating seamless, safe, and engaging experiences.
           </p>
         </div>
 
         <div className="space-y-32">
-          {/* VibePass - Community Fortune */}
+          {/* VibePass - Community Intelligence */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="flex items-center space-x-4">
@@ -49,25 +46,29 @@ export const Services = () => {
                   <div className="relative w-16 h-16 bg-gradient-to-r from-emerald-500 to-amber-500 rounded-2xl overflow-hidden">
                     <img 
                       src="/images/services/vibepass-icon.jpg" 
-                      alt="Community Fortune" 
+                      alt="Community Intelligence" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
                 <div>
                   <h3 className="text-4xl md:text-5xl font-black text-white">VibePass</h3>
-                  <p className="text-emerald-300 text-xl font-semibold">The Community Fortune Engine</p>
+                  <p className="text-emerald-300 text-xl font-semibold">Community Intelligence Engine</p>
                 </div>
               </div>
               
               <p className="text-xl text-gray-300 leading-relaxed">
-                Transform community engagement into 
-                <span className="text-emerald-400 font-semibold"> exponential value creation</span>. 
-                VibePass creates fortunate connections that multiply engagement and unlock hidden potential in every interaction.
+                Transform community engagement through 
+                <span className="text-emerald-400 font-semibold"> predictive analytics and AI-driven insights</span>. 
+                VibePass creates intelligent connections between brand ambassadors, influencers, and audiences, maximizing engagement ROI.
               </p>
               
               <div className="space-y-4">
-                {['Fortune-multiplying community features', 'Serendipitous engagement optimization', 'Value-creating connection algorithms'].map((feature, index) => (
+                {[
+                  'AI-powered influencer matching and performance tracking',
+                  'Real-time sentiment analysis and engagement optimization', 
+                  'Predictive community growth and viral content identification'
+                ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
                     <div className="w-3 h-3 bg-emerald-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
                     <span className="text-gray-300 text-lg">{feature}</span>
@@ -76,7 +77,7 @@ export const Services = () => {
               </div>
 
               <div className="flex items-center space-x-3 text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer group">
-                <span className="font-semibold text-lg">Discover Your Fortune</span>
+                <span className="font-semibold text-lg">Unlock Community Intelligence</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -87,17 +88,17 @@ export const Services = () => {
                 <div className="mb-6">
                   <img 
                     src="/images/services/vibepass-feature.jpg" 
-                    alt="Community Prosperity" 
+                    alt="Community Intelligence Dashboard" 
                     className="w-40 h-32 object-cover rounded-xl border-2 border-emerald-400/30 group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <h4 className="text-2xl font-bold text-emerald-300 mb-4">Community Prosperity</h4>
-                <p className="text-gray-400">Where connections create fortune</p>
+                <h4 className="text-2xl font-bold text-emerald-300 mb-4">Intelligent Communities</h4>
+                <p className="text-gray-400">Where data drives authentic connections</p>
               </div>
             </div>
           </div>
 
-          {/* EventAxis - Event Fortune */}
+          {/* EventAxis - Event Intelligence */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="lg:order-2 space-y-8">
               <div className="flex items-center space-x-4">
@@ -106,25 +107,29 @@ export const Services = () => {
                   <div className="relative w-16 h-16 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-2xl overflow-hidden">
                     <img 
                       src="/images/services/eventaxis-icon.jpg" 
-                      alt="Event Fortune" 
+                      alt="Event Intelligence" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
                 <div>
                   <h3 className="text-4xl md:text-5xl font-black text-white">EventAxis</h3>
-                  <p className="text-cyan-300 text-xl font-semibold">The Event Fortune Orchestrator</p>
+                  <p className="text-cyan-300 text-xl font-semibold">Event Intelligence Platform</p>
                 </div>
               </div>
               
               <p className="text-xl text-gray-300 leading-relaxed">
-                The rare convergence of perfect timing and flawless execution. EventAxis transforms 
-                <span className="text-cyan-400 font-semibold"> ordinary events into fortune-generating experiences</span>, 
-                creating value at every touchpoint.
+                Revolutionary event management powered by 
+                <span className="text-cyan-400 font-semibold"> real-time crowd analytics and safety intelligence</span>. 
+                EventAxis orchestrates staffing, navigation, and logistics with AI precision, ensuring seamless experiences.
               </p>
               
               <div className="space-y-4">
-                {['Fortune-maximizing event orchestration', 'Serendipitous moment creation', 'Value-multiplying experience design'].map((feature, index) => (
+                {[
+                  'Predictive crowd flow analysis and safety navigation', 
+                  'AI-optimized staffing allocation and performance tracking',
+                  'Real-time event intelligence and automated response systems'
+                ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
                     <div className="w-3 h-3 bg-cyan-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
                     <span className="text-gray-300 text-lg">{feature}</span>
@@ -133,7 +138,7 @@ export const Services = () => {
               </div>
 
               <div className="flex items-center space-x-3 text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group">
-                <span className="font-semibold text-lg">Orchestrate Fortune</span>
+                <span className="font-semibold text-lg">Master Event Intelligence</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -144,17 +149,17 @@ export const Services = () => {
                 <div className="w-32 h-32 rounded-full overflow-hidden mb-6 group-hover:scale-110 transition-transform duration-500">
                   <img 
                     src="/images/services/eventaxis-feature.jpg" 
-                    alt="Perfect Orchestration" 
+                    alt="Event Intelligence Analytics" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h4 className="text-2xl font-bold text-cyan-300 mb-4">Perfect Orchestration</h4>
-                <p className="text-gray-400">Where timing creates fortune</p>
+                <h4 className="text-2xl font-bold text-cyan-300 mb-4">Intelligent Events</h4>
+                <p className="text-gray-400">Where AI orchestrates perfect experiences</p>
               </div>
             </div>
           </div>
 
-          {/* The KITO Agency - Intelligence Fortune */}
+          {/* The KITO Agency - Strategic Intelligence */}
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="flex items-center space-x-4">
@@ -163,25 +168,29 @@ export const Services = () => {
                   <div className="relative w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl overflow-hidden">
                     <img 
                       src="/images/services/kito-icon.jpg" 
-                      alt="Intelligence Fortune" 
+                      alt="Strategic Intelligence" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </div>
                 <div>
                   <h3 className="text-4xl md:text-5xl font-black text-white">The KITO Agency</h3>
-                  <p className="text-amber-300 text-xl font-semibold">The Intelligence Fortune Engine</p>
+                  <p className="text-amber-300 text-xl font-semibold">Strategic Intelligence Hub</p>
                 </div>
               </div>
               
               <p className="text-xl text-gray-300 leading-relaxed">
-                Where data becomes destiny. KITO transforms 
-                <span className="text-amber-400 font-semibold"> raw intelligence into exponential advantage</span>, 
-                revealing the rare patterns that create sustainable competitive fortune.
+                Advanced analytics platform that transforms 
+                <span className="text-amber-400 font-semibold"> complex data into strategic intelligence</span>. 
+                KITO provides deep insights across all touchpoints, enabling data-driven decisions that maximize engagement and ROI.
               </p>
               
               <div className="space-y-4">
-                {['Fortune-revealing deep analytics', 'Serendipitous insight generation', 'Value-multiplying strategic intelligence'].map((feature, index) => (
+                {[
+                  'Deep learning analytics for behavioral pattern recognition',
+                  'Cross-platform intelligence synthesis and strategic insights', 
+                  'Predictive modeling for engagement optimization and growth'
+                ].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
                     <div className="w-3 h-3 bg-amber-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
                     <span className="text-gray-300 text-lg">{feature}</span>
@@ -190,7 +199,7 @@ export const Services = () => {
               </div>
 
               <div className="flex items-center space-x-3 text-amber-400 hover:text-amber-300 transition-colors cursor-pointer group">
-                <span className="font-semibold text-lg">Unlock Intelligence Fortune</span>
+                <span className="font-semibold text-lg">Harness Strategic Intelligence</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -201,24 +210,24 @@ export const Services = () => {
                 <div className="mb-6">
                   <img 
                     src="/images/services/kito-feature.jpg" 
-                    alt="Intelligence Fortune" 
+                    alt="Strategic Intelligence Analytics" 
                     className="w-40 h-32 object-cover rounded-xl border-2 border-amber-400/30 group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
-                <h4 className="text-2xl font-bold text-amber-300 mb-4">Intelligence Fortune</h4>
-                <p className="text-gray-400">Where insights create prosperity</p>
+                <h4 className="text-2xl font-bold text-amber-300 mb-4">Strategic Intelligence</h4>
+                <p className="text-gray-400">Where insights become competitive advantage</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Fortune Circuit Connection */}
+        {/* Intelligence Network Connection */}
         <div className="mt-32 text-center">
           <div className="inline-flex items-center space-x-8">
             <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center overflow-hidden">
               <img 
                 src="/images/services/vibepass-icon.jpg" 
-                alt="Community Fortune" 
+                alt="Community Intelligence" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -226,7 +235,7 @@ export const Services = () => {
             <div className="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center overflow-hidden">
               <img 
                 src="/images/services/eventaxis-icon.jpg" 
-                alt="Event Fortune" 
+                alt="Event Intelligence" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -234,12 +243,12 @@ export const Services = () => {
             <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center overflow-hidden">
               <img 
                 src="/images/services/kito-icon.jpg" 
-                alt="Intelligence Fortune" 
+                alt="Strategic Intelligence" 
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
-          <p className="mt-8 text-xl text-gray-400">Three fortunes, infinite prosperity</p>
+          <p className="mt-8 text-xl text-gray-400">Three platforms, unified intelligence</p>
         </div>
       </div>
     </section>

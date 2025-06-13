@@ -13,43 +13,43 @@ export const Founder = () => {
 
       <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Fortune Leadership Visual */}
+          {/* Leadership Intelligence Visual */}
           <div className="text-center lg:text-left space-y-8">
-            {/* Strategic Fortune Image */}
+            {/* Strategic Intelligence Image */}
             <div className="relative inline-block mb-8">
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600 via-amber-600 to-orange-600 rounded-3xl blur opacity-75 animate-pulse"></div>
               <img 
                 src="/images/founder/strategic-partnership.jpg" 
-                alt="Fortune Partnerships" 
+                alt="Intelligence Leadership" 
                 className="relative w-64 h-48 object-cover rounded-3xl border-2 border-emerald-400/30 hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl"></div>
               <div className="absolute bottom-4 left-4 right-4 text-white text-center">
-                <h4 className="text-lg font-bold">Fortune Partnerships</h4>
-                <p className="text-sm text-emerald-200">Creating prosperity together</p>
+                <h4 className="text-lg font-bold">Intelligence Leadership</h4>
+                <p className="text-sm text-emerald-200">Transforming vision into reality</p>
               </div>
             </div>
 
-            {/* Fortune Leadership Title */}
+            {/* Intelligence Leadership Title */}
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-3 mb-4">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
                 <div className="w-6 h-6 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span className="text-emerald-400 font-semibold text-xl">FORTUNE LEADERSHIP</span>
+                <span className="text-emerald-400 font-semibold text-xl">VISIONARY LEADERSHIP</span>
                 <div className="w-6 h-6 bg-amber-400 rounded-full animate-pulse delay-300"></div>
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-emerald-500"></div>
               </div>
               
               <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
-                Architecting
+                Engineering the
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-orange-400">
-                  Prosperity
+                  Intelligence Future
                 </span>
               </h2>
             </div>
 
-            {/* Enhanced Fortune Buttons */}
+            {/* Enhanced Leadership Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 pt-8">
               <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
@@ -58,7 +58,7 @@ export const Founder = () => {
                   className="relative bg-gradient-to-r from-emerald-600 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-emerald-700 hover:to-amber-700 transition-all duration-300 flex items-center space-x-3 group"
                 >
                   <Mail size={20} />
-                  <span>Join the Fortune</span>
+                  <span>Join the Intelligence Revolution</span>
                 </a>
               </div>
               
@@ -73,38 +73,38 @@ export const Founder = () => {
             </div>
           </div>
           
-          {/* Fortune Leadership Content */}
+          {/* Intelligence Leadership Content */}
           <div className="space-y-8">
             <div className="space-y-6">
               <p className="text-2xl text-gray-300 leading-relaxed font-light">
-                Our founder possesses that rare combination of 
-                <span className="text-emerald-400 font-semibold"> technological vision </span>
-                and 
-                <span className="text-amber-400 font-semibold"> market intuition</span>
-                that recognizes when the stars align for exponential value creation.
+                Our founder combines deep 
+                <span className="text-emerald-400 font-semibold"> AI and analytics expertise </span>
+                with proven 
+                <span className="text-amber-400 font-semibold"> event industry experience</span>, 
+                architecting solutions that transform crowd complexity into competitive intelligence.
               </p>
               
               <p className="text-xl text-gray-300 leading-relaxed">
-                With a proven track record of identifying fortune-creating convergences, 
+                With a track record of building scalable platforms that handle millions of data points, 
                 she's assembling a 
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold">
-                  prosperity-focused team
+                  world-class intelligence team
                 </span> 
-                to transform rare opportunities into sustainable competitive advantage.
+                to revolutionize how crowds are understood, managed, and optimized.
               </p>
             </div>
 
-            {/* Strategic Fortune Cards */}
+            {/* Strategic Intelligence Cards */}
             <div className="space-y-6">
               <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600/50 to-cyan-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
-                    <h3 className="text-xl font-bold text-white">Fortune by Design</h3>
+                    <h3 className="text-xl font-bold text-white">AI-Powered Intelligence</h3>
                   </div>
                   <p className="text-gray-300">
-                    Building MVPs with launch targets for mid-2025, designed to capture the perfect convergence of market readiness and technological maturity.
+                    Building cutting-edge machine learning models that predict crowd behavior, optimize engagement strategies, and enhance safety protocols with unprecedented accuracy.
                   </p>
                 </div>
               </div>
@@ -114,10 +114,10 @@ export const Founder = () => {
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse delay-300"></div>
-                    <h3 className="text-xl font-bold text-white">Prosperity Partnerships</h3>
+                    <h3 className="text-xl font-bold text-white">Industry Partnerships</h3>
                   </div>
                   <p className="text-gray-300">
-                    Actively curating strategic relationships with visionary advisors, fortune-aligned investors, and early adopters who recognize exponential potential.
+                    Cultivating strategic relationships with event organizers, venue operators, brand managers, and technology partners to create the most comprehensive crowd intelligence ecosystem.
                   </p>
                 </div>
               </div>
@@ -127,10 +127,10 @@ export const Founder = () => {
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-3 h-3 bg-amber-400 rounded-full animate-pulse delay-700"></div>
-                    <h3 className="text-xl font-bold text-white">Market Fortune</h3>
+                    <h3 className="text-xl font-bold text-white">Scalable Architecture</h3>
                   </div>
                   <p className="text-gray-300">
-                    Committed to creating genuine prosperity through elegant solutions that multiply value for all participants in the technology ecosystem.
+                    Designing cloud-native platforms capable of processing terabytes of real-time data, delivering insights that scale from intimate gatherings to massive festivals and corporate events.
                   </p>
                 </div>
               </div>

@@ -18,47 +18,47 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Success Metrics - Floating Element */}
+      {/* Intelligence Metrics - Floating Element */}
       <div className="absolute top-20 right-20 z-20 animate-bounce hidden lg:block">
         <div className="relative group">
           <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 to-amber-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
           <img 
             src="/images/hero/innovation-tech.jpg" 
-            alt="Technological Fortune" 
+            alt="Crowd Intelligence Analytics" 
             className="relative w-32 h-32 object-cover rounded-2xl border-2 border-emerald-400/30 hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl"></div>
           <div className="absolute bottom-2 left-2 right-2 text-emerald-300 text-xs font-bold text-center">
-            RARE OPPORTUNITY
+            CROWD INTELLIGENCE
           </div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Status Badge with Fortune Positioning */}
+        {/* Status Badge with Intelligence Positioning */}
         <div className="flex justify-center mb-8">
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
             <div className="relative flex items-center space-x-3 bg-slate-900 border border-emerald-400/30 rounded-full px-6 py-3">
               <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-              <span className="text-emerald-200 font-medium">The Fortune of Technology</span>
+              <span className="text-emerald-200 font-medium">Pioneering Crowd Intelligence</span>
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse delay-300"></div>
             </div>
           </div>
         </div>
         
-        {/* Main Title with Prosperity Focus */}
+        {/* Main Title with Intelligence Focus */}
         <div className="relative mb-8">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-none mb-6">
             <span className="block text-white drop-shadow-2xl">
-              Where Rare
+              Where Crowds
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400 animate-pulse">
-              Opportunities
+              Become
             </span>
             <span className="block text-white drop-shadow-2xl">
-              Flourish
+              Intelligence
             </span>
           </h1>
           
@@ -67,12 +67,12 @@ export const Hero = () => {
           <div className="absolute -right-8 top-1/2 w-16 h-px bg-gradient-to-l from-amber-500 to-transparent"></div>
         </div>
         
-        {/* Fortune-Focused Subtitle */}
+        {/* Intelligence-Focused Subtitle */}
         <div className="relative max-w-5xl mx-auto mb-12">
           <p className="text-2xl md:text-3xl text-gray-300 leading-relaxed font-light">
-            Like finding a 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> four-leaf clover</span>,
-            extraordinary success comes to those who recognize and seize the right technological moment.
+            Advanced 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> analytics and AI </span>
+            transform crowd dynamics into actionable intelligence, revolutionizing event management, safety navigation, and audience engagement.
           </p>
           
           {/* Subtle decorative elements with new colors */}
@@ -88,7 +88,7 @@ export const Hero = () => {
               href="#vision" 
               className="relative bg-gradient-to-r from-emerald-600 to-amber-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:from-emerald-700 hover:to-amber-700 transition-all duration-300 flex items-center space-x-3 group"
             >
-              <span>Discover Your Fortune</span>
+              <span>Discover Crowd Intelligence</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
             </a>
           </div>
@@ -97,7 +97,7 @@ export const Hero = () => {
             href="#contact" 
             className="group relative border-2 border-white/30 text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm"
           >
-            <span className="relative z-10">Join the Fortunate</span>
+            <span className="relative z-10">Join the Revolution</span>
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-amber-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
         </div>
