@@ -4,140 +4,141 @@ import { ChevronDown } from "lucide-react";
 export const Vision = () => {
   return (
     <section id="vision" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Subtle Background with New Color Palette */}
+      {/* Subtle Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/10 via-transparent to-amber-900/10"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-transparent to-pink-900/10"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Section Header with Human Connection */}
+        {/* Section Header with Artistic Elements */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
-            <ChevronDown className="w-6 h-6 text-emerald-400 animate-bounce" />
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-emerald-500"></div>
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-purple-500"></div>
+            <ChevronDown className="w-6 h-6 text-purple-400 animate-bounce" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-purple-500"></div>
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-            When Events
+            The Problem
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400">
-              Come Alive
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
+              We're Solving
             </span>
           </h2>
           
           <div className="max-w-4xl mx-auto">
             <p className="text-2xl text-gray-300 leading-relaxed font-light">
-              Every organizer dreams of that perfect event where 
-              <span className="text-emerald-400 font-semibold"> everything flows seamlessly </span>
-              and guests leave with 
-              <span className="text-amber-400 font-semibold"> stories they'll tell forever</span>.
+              Event organizers struggle with 
+              <span className="text-red-400 font-semibold"> fragmented tools</span>, 
+              brands can't effectively 
+              <span className="text-orange-400 font-semibold"> reach their audiences</span>, 
+              and communities lack 
+              <span className="text-yellow-400 font-semibold"> seamless connection experiences</span>.
             </p>
           </div>
         </div>
 
-        {/* Real Event Challenges */}
+        {/* Problem Cards with Professional Images */}
         <div className="grid lg:grid-cols-3 gap-12 mb-32">
           <div className="group relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
-                    src="/images/vision/fragmented-tech.jpg" 
-                    alt="Event Organizer Stress" 
+                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" 
+                    alt="Fragmented Technology" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">The Juggling Act</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Fragmented Ecosystem</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                You're managing a thousand moving pieces—vendors, staff, security, guests—all while hoping nothing goes wrong. It feels impossible to stay ahead of problems.
+                Event organizers juggle multiple platforms, losing efficiency and creating disconnected experiences for attendees.
               </p>
             </div>
           </div>
 
           <div className="group relative lg:mt-12">
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
-                    src="/images/vision/data-analytics.jpg" 
-                    alt="Crowd Safety Concerns" 
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+                    alt="Data Analytics" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">The Guessing Game</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Limited Insights</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Where will crowds gather? Which areas need more staff? What if someone needs help? You're making critical decisions based on gut feelings instead of real insights.
+                Brands lack deep understanding of their audience engagement and struggle to create meaningful connections.
               </p>
             </div>
           </div>
 
           <div className="group relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
                   <img 
-                    src="/images/vision/missed-opportunities.jpg" 
-                    alt="Missed Connections" 
+                    src="https://images.unsplash.com/photo-1501854140801-50d01698950b" 
+                    alt="Missed Opportunities" 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">Missed Magic</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Missed Opportunities</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
-                Great events create connections, but when you're fighting fires all day, there's no time to focus on the moments that make people's hearts sing.
+                Communities can't capitalize on the power of collective engagement and shared experiences.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Solution Section with Heart-Centered Messaging */}
+        {/* Solution Section with Dramatic Presentation */}
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-amber-900/20 to-cyan-900/20 rounded-3xl blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-pink-900/20 to-blue-900/20 rounded-3xl blur-xl"></div>
           <div className="relative bg-slate-900/60 backdrop-blur-2xl border border-white/20 rounded-3xl p-16">
             <div className="text-center">
               <div className="mb-12">
                 <div className="inline-flex items-center space-x-4 mb-8">
-                  <div className="w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
-                  <span className="text-emerald-400 font-semibold text-xl">IMAGINE THIS</span>
-                  <div className="w-16 h-px bg-gradient-to-l from-transparent via-emerald-400 to-transparent"></div>
+                  <div className="w-16 h-px bg-gradient-to-r from-transparent via-green-400 to-transparent"></div>
+                  <span className="text-green-400 font-semibold text-xl">THE SOLUTION</span>
+                  <div className="w-16 h-px bg-gradient-to-l from-transparent via-green-400 to-transparent"></div>
                 </div>
                 
                 <h3 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">
-                  Events That
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-400 to-cyan-400"> Flow Like Magic</span>
+                  Integrated
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-purple-400"> Intelligence</span>
                 </h3>
               </div>
               
               <p className="text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light">
-                What if you could 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> see around corners, </span> 
-                anticipate your guests' needs, and create those perfect moments where everything just clicks? 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400 font-semibold"> That's the CrowdLogic difference.</span>
+                Crowd Logic unifies event management, audience intelligence, and community engagement into 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-semibold"> one powerful ecosystem </span>
+                that scales with your ambitions.
               </p>
 
-              {/* Circuit-inspired connecting lines */}
+              {/* Decorative connecting lines */}
               <div className="mt-16 flex justify-center">
                 <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-emerald-400 rounded-full animate-pulse flex items-center justify-center">
+                  <div className="w-8 h-8 bg-green-400 rounded-full animate-pulse flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
-                  <div className="w-16 h-px bg-gradient-to-r from-emerald-400 to-amber-400"></div>
-                  <div className="w-8 h-8 bg-amber-400 rounded-full animate-pulse delay-300 flex items-center justify-center">
+                  <div className="w-16 h-px bg-gradient-to-r from-green-400 to-blue-400"></div>
+                  <div className="w-8 h-8 bg-blue-400 rounded-full animate-pulse delay-300 flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
-                  <div className="w-16 h-px bg-gradient-to-r from-amber-400 to-cyan-400"></div>
-                  <div className="w-8 h-8 bg-cyan-400 rounded-full animate-pulse delay-700 flex items-center justify-center">
+                  <div className="w-16 h-px bg-gradient-to-r from-blue-400 to-purple-400"></div>
+                  <div className="w-8 h-8 bg-purple-400 rounded-full animate-pulse delay-700 flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                 </div>
