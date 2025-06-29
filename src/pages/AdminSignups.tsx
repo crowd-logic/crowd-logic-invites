@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { 
@@ -12,6 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Mail, Calendar, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import InspirationalMessage from "@/components/InspirationalMessage";
 
 interface EmailCapture {
   id: string;
@@ -221,21 +221,10 @@ const AdminSignups = () => {
           </CardContent>
         </Card>
 
-        {/* Debug Info */}
-        <Card className="bg-slate-800/50 border-slate-700 mt-6">
-          <CardHeader>
-            <CardTitle className="text-white text-sm">Debug Information</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-xs text-gray-400 space-y-1">
-              <p>Database Table: email_captures</p>
-              <p>Total Count from DB: {totalCount}</p>
-              <p>Records Loaded: {signups.length}</p>
-              <p>Has Error: {error ? 'Yes' : 'No'}</p>
-              <p>Loading State: {loading ? 'Yes' : 'No'}</p>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Inspirational Message for Kito */}
+        <div className="mt-6">
+          <InspirationalMessage />
+        </div>
       </div>
     </div>
   );
