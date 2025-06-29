@@ -32,9 +32,8 @@ const AdminSignups = () => {
 
   const fetchSignups = async () => {
     try {
-      console.log("Fetching signups...");
+      console.log("Fetching signups from email_captures table...");
       
-      // First, let's try to get data without authentication to test RLS policies
       const { data, error, count } = await supabase
         .from('email_captures')
         .select('*', { count: 'exact' })
@@ -43,8 +42,8 @@ const AdminSignups = () => {
       console.log("Supabase response:", { data, error, count });
 
       if (error) {
-        console.error('Error fetching signups:', error);
-        setError(`Error: ${error.message}`);
+        console.error('Supabase error:', error);
+        setError(`Database error: ${error.message}`);
       } else {
         console.log("Successfully fetched signups:", data);
         setSignups(data || []);
@@ -53,7 +52,7 @@ const AdminSignups = () => {
       }
     } catch (error) {
       console.error('Unexpected error:', error);
-      setError(`Unexpected error: ${error}`);
+      setError(`Network error: ${error}`);
     } finally {
       setLoading(false);
     }
@@ -67,6 +66,20 @@ const AdminSignups = () => {
       hour: '2-digit',
       minute: '2-digit'
     });
+  };
+
+  const getThisWeekSignups = () => {
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+    
+    return signups.filter(signup => {
+      const signupDate = new Date(signup.created_at);
+      return signupDate >= oneWeekAgo;
+    }).length;
+  };
+
+  const getLatestSignup = () => {
+    return signups.length > 0 ? signups[0] : null;
   };
 
   if (loading) {
@@ -86,6 +99,9 @@ const AdminSignups = () => {
           {error && (
             <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
               <p className="text-red-300">{error}</p>
+              <p className="text-red-200 text-sm mt-2">
+                Check console for more details. Make sure RLS policies are configured correctly.
+              </p>
             </div>
           )}
         </div>
@@ -107,14 +123,7 @@ const AdminSignups = () => {
               <Calendar className="h-4 w-4 text-emerald-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">
-                {signups.filter(signup => {
-                  const signupDate = new Date(signup.created_at);
-                  const oneWeekAgo = new Date();
-                  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-                  return signupDate >= oneWeekAgo;
-                }).length}
-              </div>
+              <div className="text-2xl font-bold text-white">{getThisWeekSignups()}</div>
             </CardContent>
           </Card>
 
@@ -125,8 +134,16 @@ const AdminSignups = () => {
             </CardHeader>
             <CardContent>
               <div className="text-sm font-medium text-white">
-                {signups.length > 0 ? formatDate(signups[0].created_at) : 'No signups yet'}
+                {getLatestSignup() ? 
+                  `${getLatestSignup()?.first_name} ${getLatestSignup()?.last_name}` : 
+                  'No signups yet'
+                }
               </div>
+              {getLatestSignup() && (
+                <div className="text-xs text-gray-400 mt-1">
+                  {formatDate(getLatestSignup()!.created_at)}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -136,29 +153,30 @@ const AdminSignups = () => {
             <CardTitle className="text-white">All Signups ({signups.length})</CardTitle>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow className="border-slate-700">
-                  <TableHead className="text-gray-300">Name</TableHead>
-                  <TableHead className="text-gray-300">Email</TableHead>
-                  <TableHead className="text-gray-300">Signup Date</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {signups.map((signup) => (
-                  <TableRow key={signup.id} className="border-slate-700">
-                    <TableCell className="text-white font-medium">
-                      {signup.first_name} {signup.last_name}
-                    </TableCell>
-                    <TableCell className="text-gray-300">{signup.email}</TableCell>
-                    <TableCell className="text-gray-300">{formatDate(signup.created_at)}</TableCell>
+            {signups.length > 0 ? (
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-slate-700">
+                    <TableHead className="text-gray-300">Name</TableHead>
+                    <TableHead className="text-gray-300">Email</TableHead>
+                    <TableHead className="text-gray-300">Signup Date</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            {signups.length === 0 && !error && (
+                </TableHeader>
+                <TableBody>
+                  {signups.map((signup) => (
+                    <TableRow key={signup.id} className="border-slate-700">
+                      <TableCell className="text-white font-medium">
+                        {signup.first_name} {signup.last_name}
+                      </TableCell>
+                      <TableCell className="text-gray-300">{signup.email}</TableCell>
+                      <TableCell className="text-gray-300">{formatDate(signup.created_at)}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
               <div className="text-center py-8 text-gray-400">
-                No signups yet. Check back later!
+                {error ? 'Unable to load signups due to error above.' : 'No signups yet. Check back later!'}
               </div>
             )}
           </CardContent>
