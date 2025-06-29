@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,11 +10,15 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/36076c79-2a97-41e7-8999-b919f740d9d9.png" 
+                alt="CrowdLogic Logo" 
+                className="w-10 h-10"
+              />
             </div>
             <span className="text-2xl md:text-3xl font-black text-white">
-              Crowd Logic
+              CrowdLogic
             </span>
           </div>
           
@@ -24,7 +28,7 @@ export const Navigation = () => {
             <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Leadership</a>
             <a href="#contact" className="group relative border border-white/30 text-white px-6 py-2 rounded-full font-medium hover:bg-white/10 transition-all duration-300">
               <span className="relative z-10">Connect</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-amber-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </a>
           </div>
 
@@ -43,7 +47,7 @@ export const Navigation = () => {
                 <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Vision</a>
                 <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Services</a>
                 <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Leadership</a>
-                <a href="#contact" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-medium text-center hover:from-purple-700 hover:to-pink-700 transition-all duration-300" onClick={() => setIsOpen(false)}>Connect</a>
+                <a href="#contact" className="bg-gradient-to-r from-emerald-600 to-amber-600 text-white px-6 py-3 rounded-full font-medium text-center hover:from-emerald-700 hover:to-amber-700 transition-all duration-300" onClick={() => setIsOpen(false)}>Connect</a>
               </div>
             </div>
           </div>
