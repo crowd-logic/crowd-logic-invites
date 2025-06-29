@@ -83,9 +83,9 @@ const InspirationalMessage = () => {
           </div>
         )}
         {error && (
-          <div className="text-center bg-gradient-to-r from-emerald-600/20 to-teal-600/20 rounded-lg p-6 border border-emerald-500/30">
-            <div className="text-3xl font-bold text-emerald-200 mb-3">
-              ✨ Keep <span className="text-emerald-100 animate-pulse">{currentWord}</span>, Kito! ✨
+          <div className="text-center bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+            <div className="text-4xl font-black text-emerald-200 mb-3 tracking-wide">
+              ✨ Keep <span className="text-emerald-100 animate-pulse font-extrabold text-5xl">{currentWord}</span>, Kito! ✨
             </div>
             <p className="text-emerald-300 text-lg font-semibold mb-2">
               Your networking journey is building something amazing.
