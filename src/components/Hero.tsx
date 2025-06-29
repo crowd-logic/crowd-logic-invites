@@ -41,12 +41,6 @@ export const Hero = () => {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light max-w-5xl mx-auto mb-12">
-            Event organizers struggle with fragmented tools, brands can't effectively reach their audiences, 
-            and workforce chaos creates unreliable activations. CrowdLogic connects staff, campaigns, and attendees 
-            through one intelligent operating system built for modern events.
-          </p>
-          
           {/* Artistic accent lines */}
           <div className="absolute -left-8 top-1/2 w-16 h-px bg-gradient-to-r from-emerald-500 to-transparent"></div>
           <div className="absolute -right-8 top-1/2 w-16 h-px bg-gradient-to-l from-amber-500 to-transparent"></div>
