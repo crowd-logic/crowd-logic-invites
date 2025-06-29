@@ -12,7 +12,7 @@ export const Navigation = () => {
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 flex items-center justify-center">
               <img 
-                src="/lovable-uploads/36076c79-2a97-41e7-8999-b919f740d9d9.png" 
+                src="/lovable-uploads/a652dce3-bfe6-44ac-802d-2f1f2148a596.png" 
                 alt="CrowdLogic Logo" 
                 className="w-10 h-10"
               />
