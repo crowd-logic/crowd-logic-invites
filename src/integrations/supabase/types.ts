@@ -312,6 +312,33 @@ export type Database = {
         }
         Relationships: []
       }
+      email_captures: {
+        Row: {
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       field_reports: {
         Row: {
           activation_id: number

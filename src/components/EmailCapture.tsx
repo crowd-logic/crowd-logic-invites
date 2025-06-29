@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Mail, CheckCircle, User } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 export const EmailCapture = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,50 +12,58 @@ export const EmailCapture = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (firstName && lastName && email) {
       setIsLoading(true);
       
-      // Replace this URL with your Google Apps Script web app URL
-      const scriptUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
-      
       try {
-        const response = await fetch(scriptUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            timestamp: new Date().toISOString()
-          }),
-        });
+        const { error } = await supabase
+          .from('email_captures')
+          .insert([
+            {
+              first_name: firstName,
+              last_name: lastName,
+              email: email
+            }
+          ]);
 
-        if (response.ok) {
+        if (error) {
+          console.error("Error submitting form:", error);
+          toast({
+            title: "Error",
+            description: "There was an issue submitting your information. Please try again.",
+            variant: "destructive",
+          });
+        } else {
           setIsSubmitted(true);
           console.log("Form submitted successfully:", { firstName, lastName, email });
-        } else {
-          throw new Error("Failed to submit form");
+          toast({
+            title: "Thank you!",
+            description: "We'll keep you updated on our progress.",
+          });
         }
       } catch (error) {
         console.error("Error submitting form:", error);
-        // For now, we'll still show success to avoid breaking the UX
-        // In production, you'd want to show an error message
-        setIsSubmitted(true);
+        toast({
+          title: "Error",
+          description: "There was an issue submitting your information. Please try again.",
+          variant: "destructive",
+        });
       } finally {
         setIsLoading(false);
         
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setFirstName("");
-          setLastName("");
-          setEmail("");
-          setIsSubmitted(false);
-        }, 3000);
+        // Reset form after 3 seconds if successful
+        if (isSubmitted) {
+          setTimeout(() => {
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setIsSubmitted(false);
+          }, 3000);
+        }
       }
     }
   };
