@@ -21,14 +21,14 @@ export const Hero = () => {
       </div>
 
       {/* Stay Connected Section at Top */}
-      <div className="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <EmailCapture />
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Status Badge with Glow Effect */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6">
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
             <div className="relative flex items-center space-x-3 bg-slate-900 border border-emerald-400/30 rounded-full px-6 py-3">
@@ -39,8 +39,8 @@ export const Hero = () => {
         </div>
         
         {/* Updated Problems Section */}
-        <div className="relative mb-12">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-8">
+        <div className="relative mb-8">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
             <span className="block text-white drop-shadow-2xl mb-4">
               The Problems We're Solving
             </span>
@@ -58,7 +58,7 @@ export const Hero = () => {
         </div>
         
         {/* Enhanced Call-to-Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
           <a 
             href="#contact" 
             className="group relative border-2 border-white/30 text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm"
@@ -69,7 +69,7 @@ export const Hero = () => {
         </div>
 
         {/* Artistic Bottom Element */}
-        <div className="mt-20">
+        <div className="mt-12">
           <div className="flex justify-center space-x-8 opacity-30">
             <div className="w-px h-16 bg-gradient-to-b from-emerald-500 to-transparent"></div>
             <div className="w-px h-20 bg-gradient-to-b from-amber-500 to-transparent"></div>

@@ -3,7 +3,7 @@ import { Mail, Star, Crown, Zap } from "lucide-react";
 
 export const Founder = () => {
   return (
-    <section id="founder" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="founder" className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Artistic Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -11,9 +11,9 @@ export const Founder = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Leadership Visual */}
-          <div className="text-center lg:text-left space-y-8">
+          <div className="text-center lg:text-left space-y-6">
             {/* Artistic CEO Avatar */}
             <div className="relative inline-block">
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600 via-amber-600 to-orange-600 rounded-full blur opacity-75 animate-pulse"></div>
@@ -26,8 +26,8 @@ export const Founder = () => {
             </div>
 
             {/* Visionary Leadership Title */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-3 mb-4">
+            <div className="space-y-4">
+              <div className="inline-flex items-center space-x-3 mb-3">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
                 <Zap className="w-6 h-6 text-emerald-400 animate-pulse" />
                 <span className="text-emerald-400 font-semibold text-xl">VISIONARY LEADERSHIP</span>
@@ -45,7 +45,7 @@ export const Founder = () => {
             </div>
 
             {/* Enhanced Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 pt-8">
+            <div className="flex flex-col sm:flex-row gap-6 pt-6">
               <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
                 <a 
@@ -60,8 +60,8 @@ export const Founder = () => {
           </div>
           
           {/* Leadership Content */}
-          <div className="space-y-8">
-            <div className="space-y-6">
+          <div className="space-y-6">
+            <div className="space-y-4">
               <p className="text-2xl text-gray-300 leading-relaxed font-light">
                 Our founders bring a unique blend of 
                 <span className="text-emerald-400 font-semibold"> technical expertise </span>
@@ -81,11 +81,11 @@ export const Founder = () => {
             </div>
 
             {/* Strategic Focus Cards */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-green-600/50 to-emerald-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
-                  <div className="flex items-center space-x-4 mb-4">
+                  <div className="flex items-center space-x-4 mb-3">
                     <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                     <h3 className="text-xl font-bold text-white">Building for Scale</h3>
                   </div>
@@ -98,7 +98,7 @@ export const Founder = () => {
               <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600/50 to-amber-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
-                  <div className="flex items-center space-x-4 mb-4">
+                  <div className="flex items-center space-x-4 mb-3">
                     <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse delay-300"></div>
                     <h3 className="text-xl font-bold text-white">Strategic Partnerships</h3>
                   </div>
@@ -111,7 +111,7 @@ export const Founder = () => {
               <div className="group relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-amber-600/50 to-orange-600/50 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:transform hover:-translate-y-1 transition-all duration-300">
-                  <div className="flex items-center space-x-4 mb-4">
+                  <div className="flex items-center space-x-4 mb-3">
                     <div className="w-3 h-3 bg-amber-400 rounded-full animate-pulse delay-700"></div>
                     <h3 className="text-xl font-bold text-white">Industry Innovation</h3>
                   </div>
