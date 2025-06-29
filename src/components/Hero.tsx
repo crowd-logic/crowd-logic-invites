@@ -48,15 +48,6 @@ export const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-amber-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
         </div>
-
-        {/* Artistic Bottom Element */}
-        <div className="mt-12">
-          <div className="flex justify-center space-x-8 opacity-30">
-            <div className="w-px h-16 bg-gradient-to-b from-emerald-500 to-transparent"></div>
-            <div className="w-px h-20 bg-gradient-to-b from-amber-500 to-transparent"></div>
-            <div className="w-px h-16 bg-gradient-to-b from-cyan-500 to-transparent"></div>
-          </div>
-        </div>
       </div>
     </section>
   );
