@@ -2,22 +2,35 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Mail, CheckCircle } from "lucide-react";
+import { Mail, CheckCircle, User } from "lucide-react";
 
 export const EmailCapture = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsSubmitted(true);
-      // Here you would typically send the email to your backend
-      console.log("Email captured:", email);
+    if (name && email) {
+      setIsLoading(true);
+      
+      // Here you would send to Google Sheets via webhook
+      // For now, we'll just log the data
+      console.log("Form submitted:", { name, email, timestamp: new Date().toISOString() });
+      
+      // Simulate API call
       setTimeout(() => {
-        setEmail("");
-        setIsSubmitted(false);
-      }, 3000);
+        setIsSubmitted(true);
+        setIsLoading(false);
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setName("");
+          setEmail("");
+          setIsSubmitted(false);
+        }, 3000);
+      }, 1000);
     }
   };
 
@@ -34,6 +47,18 @@ export const EmailCapture = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative">
             <Input
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="pl-12 py-3 bg-slate-900/50 border-white/20 text-white placeholder:text-gray-400 focus:border-emerald-400 focus:ring-emerald-400"
+              required
+            />
+            <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          </div>
+          
+          <div className="relative">
+            <Input
               type="email"
               placeholder="Enter your email address"
               value={email}
@@ -46,13 +71,14 @@ export const EmailCapture = () => {
           
           <Button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-emerald-500 to-amber-500 hover:from-emerald-600 hover:to-amber-600 text-white font-semibold py-3 rounded-lg transition-all duration-300"
+            disabled={isLoading}
+            className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 disabled:opacity-50"
           >
-            Stay Connected
+            {isLoading ? "Submitting..." : "Stay Connected"}
           </Button>
         </form>
       ) : (
-        <div className="text-center p-6 bg-gradient-to-r from-emerald-500/20 to-amber-500/20 rounded-lg border border-emerald-400/30">
+        <div className="text-center p-6 bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-lg border border-emerald-400/30">
           <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
           <h4 className="text-xl font-bold text-white mb-2">Thank you!</h4>
           <p className="text-gray-300">
