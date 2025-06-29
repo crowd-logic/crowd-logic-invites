@@ -83,7 +83,7 @@ const InspirationalMessage = () => {
           </div>
         )}
         {error && (
-          <div className="text-center bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+          <div className="text-center bg-transparent rounded-lg p-6">
             <div className="text-4xl font-black text-emerald-200 mb-3 tracking-wide">
               ✨ Keep <span className="text-emerald-100 animate-pulse font-extrabold text-5xl">{currentWord}</span>, Kito! ✨
             </div>
