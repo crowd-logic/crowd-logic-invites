@@ -33,8 +33,9 @@ export const Vision = () => {
               <span className="text-red-400 font-semibold"> fragmented tools</span>, 
               brands can't effectively 
               <span className="text-orange-400 font-semibold"> reach their audiences</span>, 
-              and communities lack 
-              <span className="text-yellow-400 font-semibold"> seamless connection experiences</span>.
+              and workforce chaos creates 
+              <span className="text-yellow-400 font-semibold"> unreliable activations</span>. 
+              CrowdLogic connects staff, campaigns, and attendees through one intelligent operating system built for modern events.
             </p>
           </div>
         </div>
