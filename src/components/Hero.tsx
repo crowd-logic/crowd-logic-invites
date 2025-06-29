@@ -20,11 +20,6 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Stay Connected Section at Top */}
-      <div className="relative z-10 w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <EmailCapture />
-      </div>
-
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Status Badge with Glow Effect */}
@@ -46,7 +41,7 @@ export const Hero = () => {
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light max-w-5xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light max-w-5xl mx-auto mb-12">
             Event organizers struggle with fragmented tools, brands can't effectively reach their audiences, 
             and workforce chaos creates unreliable activations. CrowdLogic connects staff, campaigns, and attendees 
             through one intelligent operating system built for modern events.
@@ -55,6 +50,11 @@ export const Hero = () => {
           {/* Artistic accent lines */}
           <div className="absolute -left-8 top-1/2 w-16 h-px bg-gradient-to-r from-emerald-500 to-transparent"></div>
           <div className="absolute -right-8 top-1/2 w-16 h-px bg-gradient-to-l from-amber-500 to-transparent"></div>
+        </div>
+
+        {/* Stay Connected Section */}
+        <div className="w-full max-w-2xl mx-auto mb-8">
+          <EmailCapture />
         </div>
         
         {/* Enhanced Call-to-Action Buttons */}
