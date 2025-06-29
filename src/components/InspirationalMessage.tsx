@@ -11,15 +11,17 @@ const InspirationalMessage = () => {
 
   const inspirationalWords = [
     "shining",
+    "empowering",
     "networking",
-    "growing",
     "connecting",
     "thriving",
     "building",
     "creating",
     "inspiring",
     "leading",
-    "achieving"
+    "achieving",
+    "conquering",
+    "radiating"
   ];
 
   useEffect(() => {
