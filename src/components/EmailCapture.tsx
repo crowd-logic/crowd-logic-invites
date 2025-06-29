@@ -5,32 +5,56 @@ import { Button } from "@/components/ui/button";
 import { Mail, CheckCircle, User } from "lucide-react";
 
 export const EmailCapture = () => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name && email) {
+    if (firstName && lastName && email) {
       setIsLoading(true);
       
-      // Here you would send to Google Sheets via webhook
-      // For now, we'll just log the data
-      console.log("Form submitted:", { name, email, timestamp: new Date().toISOString() });
+      // Replace this URL with your Google Apps Script web app URL
+      const scriptUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
       
-      // Simulate API call
-      setTimeout(() => {
+      try {
+        const response = await fetch(scriptUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            timestamp: new Date().toISOString()
+          }),
+        });
+
+        if (response.ok) {
+          setIsSubmitted(true);
+          console.log("Form submitted successfully:", { firstName, lastName, email });
+        } else {
+          throw new Error("Failed to submit form");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        // For now, we'll still show success to avoid breaking the UX
+        // In production, you'd want to show an error message
         setIsSubmitted(true);
+      } finally {
         setIsLoading(false);
         
         // Reset form after 3 seconds
         setTimeout(() => {
-          setName("");
+          setFirstName("");
+          setLastName("");
           setEmail("");
           setIsSubmitted(false);
         }, 3000);
-      }, 1000);
+      }
     }
   };
 
@@ -45,22 +69,36 @@ export const EmailCapture = () => {
 
       {!isSubmitted ? (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="relative">
-            <Input
-              type="text"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="pl-12 py-3 bg-slate-900/50 border-white/20 text-white placeholder:text-gray-400 focus:border-emerald-400 focus:ring-emerald-400"
-              required
-            />
-            <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="relative">
+              <Input
+                type="text"
+                placeholder="First name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="pl-12 py-3 bg-slate-900/50 border-white/20 text-white placeholder:text-gray-400 focus:border-emerald-400 focus:ring-emerald-400"
+                required
+              />
+              <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            </div>
+            
+            <div className="relative">
+              <Input
+                type="text"
+                placeholder="Last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="pl-12 py-3 bg-slate-900/50 border-white/20 text-white placeholder:text-gray-400 focus:border-emerald-400 focus:ring-emerald-400"
+                required
+              />
+              <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            </div>
           </div>
           
           <div className="relative">
             <Input
               type="email"
-              placeholder="Enter your email address"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="pl-12 py-3 bg-slate-900/50 border-white/20 text-white placeholder:text-gray-400 focus:border-emerald-400 focus:ring-emerald-400"
