@@ -24,6 +24,7 @@ const AdminSignups = () => {
   const [signups, setSignups] = useState<EmailCapture[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchSignups();
@@ -31,19 +32,28 @@ const AdminSignups = () => {
 
   const fetchSignups = async () => {
     try {
+      console.log("Fetching signups...");
+      
+      // First, let's try to get data without authentication to test RLS policies
       const { data, error, count } = await supabase
         .from('email_captures')
         .select('*', { count: 'exact' })
         .order('created_at', { ascending: false });
 
+      console.log("Supabase response:", { data, error, count });
+
       if (error) {
         console.error('Error fetching signups:', error);
+        setError(`Error: ${error.message}`);
       } else {
+        console.log("Successfully fetched signups:", data);
         setSignups(data || []);
         setTotalCount(count || 0);
+        setError(null);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Unexpected error:', error);
+      setError(`Unexpected error: ${error}`);
     } finally {
       setLoading(false);
     }
@@ -62,7 +72,7 @@ const AdminSignups = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+        <div className="text-white text-xl">Loading signups...</div>
       </div>
     );
   }
@@ -73,6 +83,11 @@ const AdminSignups = () => {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">Email Signups Dashboard</h1>
           <p className="text-gray-300">View all email capture submissions</p>
+          {error && (
+            <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
+              <p className="text-red-300">{error}</p>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -118,7 +133,7 @@ const AdminSignups = () => {
 
         <Card className="bg-slate-800/50 border-slate-700">
           <CardHeader>
-            <CardTitle className="text-white">All Signups</CardTitle>
+            <CardTitle className="text-white">All Signups ({signups.length})</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
@@ -141,7 +156,7 @@ const AdminSignups = () => {
                 ))}
               </TableBody>
             </Table>
-            {signups.length === 0 && (
+            {signups.length === 0 && !error && (
               <div className="text-center py-8 text-gray-400">
                 No signups yet. Check back later!
               </div>
