@@ -9,7 +9,7 @@ const InspirationalMessage = () => {
 
   if (loading) {
     return (
-      <Card className="bg-gradient-to-r from-emerald-800/50 to-teal-800/50 border-emerald-600">
+      <Card className="bg-slate-800/50 border-slate-700">
         <CardContent className="p-6">
           <div className="flex items-center justify-center text-emerald-300">
             <RefreshCw className="animate-spin h-5 w-5 mr-2" />
@@ -21,7 +21,7 @@ const InspirationalMessage = () => {
   }
 
   return (
-    <Card className="bg-gradient-to-r from-emerald-800/50 to-teal-800/50 border-emerald-600">
+    <Card className="bg-slate-800/50 border-slate-700">
       <CardHeader className="pb-4">
         <CardTitle className="text-emerald-300 text-lg flex items-center gap-2">
           <Sparkles className="h-5 w-5" />
@@ -46,7 +46,7 @@ const InspirationalMessage = () => {
                 New Quote
               </Button>
             </div>
-            <div className="text-xs text-emerald-400 mt-4 border-t border-emerald-700/50 pt-3">
+            <div className="text-xs text-emerald-400 mt-4 border-t border-slate-700 pt-3">
               Inspirational quotes provided by{" "}
               <a 
                 href="https://zenquotes.io/" 
