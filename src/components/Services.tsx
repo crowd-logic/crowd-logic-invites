@@ -1,27 +1,63 @@
 
-import { ArrowRight } from "lucide-react";
-import { NeonUsersIcon } from "./icons/NeonUsersIcon";
-import { NeonCalendarIcon } from "./icons/NeonCalendarIcon";
-import { NeonTrendingIcon } from "./icons/NeonTrendingIcon";
-import { NeonStarIcon } from "./icons/NeonStarIcon";
+import { Calendar, Users, TrendingUp, ArrowRight, Sparkles } from "lucide-react";
+import { Star } from "lucide-react";
 
 export const Services = () => {
   return (
     <section id="services" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Artistic Background Elements */}
+      {/* Artistic Background Elements with logo stars */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-0 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <Star className="absolute top-1/4 left-0 w-72 h-72 text-purple-500/10 blur-3xl animate-pulse" fill="currentColor" />
+        <Star className="absolute bottom-1/4 right-0 w-72 h-72 text-pink-500/10 blur-3xl animate-pulse delay-1000" fill="currentColor" />
+        <Star className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 text-blue-500/5 blur-3xl" fill="currentColor" />
+      </div>
+
+      {/* Uploaded Images as Design Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-32 left-10 w-36 h-36 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
+            alt="Event Features" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-2xl"></div>
+        </div>
+        
+        <div className="absolute bottom-32 right-10 w-40 h-40 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
+            alt="Brand Ambassador" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-2xl"></div>
+        </div>
+
+        <div className="absolute top-1/2 right-20 w-32 h-32 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/767d6bcb-f922-48ed-9dd9-e9478694321f.png" 
+            alt="Exclusive Access" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-2xl"></div>
+        </div>
+
+        <div className="absolute bottom-20 left-20 w-28 h-28 opacity-15 hover:opacity-25 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
+            alt="Strategic Partnership" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-orange-500/30 rounded-2xl"></div>
+        </div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
         {/* Dramatic Section Header */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-3 mb-8">
-            <NeonStarIcon size={24} className="animate-spin" />
+            <Sparkles className="w-6 h-6 text-purple-400 animate-pulse" />
             <span className="text-purple-400 font-semibold text-xl">OUR ECOSYSTEM</span>
-            <NeonStarIcon size={24} className="animate-spin" />
+            <Sparkles className="w-6 h-6 text-purple-400 animate-pulse" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
@@ -51,7 +87,7 @@ export const Services = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
-                    <NeonUsersIcon size={32} />
+                    <Users className="w-8 h-8 text-white" />
                   </div>
                 </div>
                 <div>
@@ -69,7 +105,7 @@ export const Services = () => {
               <div className="space-y-4">
                 {['Interactive community features', 'Real-time engagement tools', 'Personalized experience curation'].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <Star className="w-3 h-3 text-purple-400 group-hover:scale-125 transition-transform duration-300" fill="currentColor" />
                     <span className="text-gray-300 text-lg">{feature}</span>
                   </div>
                 ))}
@@ -84,13 +120,8 @@ export const Services = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
-                {/* Brand Ambassador Image */}
-                <div className="mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb" 
-                    alt="Community Connection" 
-                    className="w-40 h-32 object-cover rounded-xl border-2 border-purple-400/30 group-hover:scale-110 transition-transform duration-500"
-                  />
+                <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <Users className="w-16 h-16 text-white" />
                 </div>
                 <h4 className="text-2xl font-bold text-purple-300 mb-4">Community at the Core</h4>
                 <p className="text-gray-400">Connecting hearts and minds</p>
@@ -105,7 +136,7 @@ export const Services = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
-                    <NeonCalendarIcon size={32} />
+                    <Calendar className="w-8 h-8 text-white" />
                   </div>
                 </div>
                 <div>
@@ -123,7 +154,7 @@ export const Services = () => {
               <div className="space-y-4">
                 {['End-to-end event lifecycle management', 'Integrated vendor and resource coordination', 'Real-time analytics and optimization'].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-3 h-3 bg-blue-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <Star className="w-3 h-3 text-blue-400 group-hover:scale-125 transition-transform duration-300" fill="currentColor" />
                     <span className="text-gray-300 text-lg">{feature}</span>
                   </div>
                 ))}
@@ -139,7 +170,7 @@ export const Services = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
                 <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <NeonCalendarIcon size={64} />
+                  <Calendar className="w-16 h-16 text-white" />
                 </div>
                 <h4 className="text-2xl font-bold text-blue-300 mb-4">Seamless Orchestration</h4>
                 <p className="text-gray-400">Every detail, perfectly synchronized</p>
@@ -154,7 +185,7 @@ export const Services = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl blur opacity-75"></div>
                   <div className="relative w-16 h-16 bg-gradient-to-r from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center">
-                    <NeonTrendingIcon size={32} />
+                    <TrendingUp className="w-8 h-8 text-white" />
                   </div>
                 </div>
                 <div>
@@ -172,7 +203,7 @@ export const Services = () => {
               <div className="space-y-4">
                 {['Deep audience analytics and insights', 'Strategic consulting and implementation', 'Custom research and market intelligence'].map((feature, index) => (
                   <div key={index} className="flex items-center space-x-3 group">
-                    <div className="w-3 h-3 bg-pink-400 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <Star className="w-3 h-3 text-pink-400 group-hover:scale-125 transition-transform duration-300" fill="currentColor" />
                     <span className="text-gray-300 text-lg">{feature}</span>
                   </div>
                 ))}
@@ -187,13 +218,8 @@ export const Services = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-pink-600 to-orange-600 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
               <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-80 flex flex-col items-center justify-center text-center">
-                {/* Service Icons Collection Image */}
-                <div className="mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1500673922987-e212871fec22" 
-                    alt="Strategic Intelligence" 
-                    className="w-40 h-32 object-cover rounded-xl border-2 border-pink-400/30 group-hover:scale-110 transition-transform duration-500"
-                  />
+                <div className="w-32 h-32 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <TrendingUp className="w-16 h-16 text-white" />
                 </div>
                 <h4 className="text-2xl font-bold text-pink-300 mb-4">Intelligence-Driven Strategy</h4>
                 <p className="text-gray-400">Data that transforms decisions</p>
@@ -202,19 +228,19 @@ export const Services = () => {
           </div>
         </div>
 
-        {/* Connecting Element */}
+        {/* Connecting Element with logo stars */}
         <div className="mt-32 text-center">
           <div className="inline-flex items-center space-x-8">
             <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
-              <NeonUsersIcon size={24} />
+              <Users className="w-6 h-6 text-white" />
             </div>
             <div className="w-24 h-px bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500"></div>
             <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-              <NeonCalendarIcon size={24} />
+              <Calendar className="w-6 h-6 text-white" />
             </div>
             <div className="w-24 h-px bg-gradient-to-r from-blue-500 via-pink-500 to-orange-500"></div>
             <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
-              <NeonTrendingIcon size={24} />
+              <TrendingUp className="w-6 h-6 text-white" />
             </div>
           </div>
           <p className="mt-8 text-xl text-gray-400">Three services, infinite possibilities</p>

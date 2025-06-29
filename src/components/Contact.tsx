@@ -1,7 +1,6 @@
 
-import { ArrowRight } from "lucide-react";
-import { NeonMailIcon } from "./icons/NeonMailIcon";
-import { NeonStarIcon } from "./icons/NeonStarIcon";
+import { Mail, MessageSquare, ArrowRight, Sparkles, Heart } from "lucide-react";
+import { Star } from "lucide-react";
 
 export const Contact = () => {
   return (
@@ -13,13 +12,52 @@ export const Contact = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-blue-500/5 rounded-full blur-3xl"></div>
       </div>
 
+      {/* Uploaded Images as Design Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-40 left-10 w-44 h-44 opacity-25 hover:opacity-35 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/767d6bcb-f922-48ed-9dd9-e9478694321f.png" 
+            alt="Exclusive Opportunity" 
+            className="w-full h-full object-cover rounded-3xl shadow-2xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-3xl"></div>
+        </div>
+        
+        <div className="absolute bottom-40 right-10 w-48 h-48 opacity-25 hover:opacity-35 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/1cc647f2-ac03-4c52-903f-b521b858e0cd.png" 
+            alt="Strategic Connection" 
+            className="w-full h-full object-cover rounded-3xl shadow-2xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-3xl"></div>
+        </div>
+
+        <div className="absolute top-20 right-1/4 w-32 h-32 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/fe7a702b-12de-4c6f-8100-4f521f450247.png" 
+            alt="Event Innovation" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/30 to-blue-500/30 rounded-2xl"></div>
+        </div>
+
+        <div className="absolute bottom-20 left-1/4 w-36 h-36 opacity-20 hover:opacity-30 transition-opacity duration-500">
+          <img 
+            src="/lovable-uploads/6d4f8ea2-e5c6-4f75-9769-5b796708b75e.png" 
+            alt="Brand Ambassador" 
+            className="w-full h-full object-cover rounded-2xl shadow-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-orange-500/30 rounded-2xl"></div>
+        </div>
+      </div>
+
       <div className="relative max-w-7xl mx-auto">
         {/* Dramatic Header */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
-            <NeonStarIcon size={24} className="animate-spin" />
+            <Star className="w-6 h-6 text-yellow-400 animate-pulse" fill="currentColor" />
             <span className="text-purple-400 font-semibold text-xl">JOIN THE REVOLUTION</span>
-            <NeonStarIcon size={24} className="animate-spin" />
+            <Star className="w-6 h-6 text-yellow-400 animate-pulse" fill="currentColor" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
@@ -44,7 +82,7 @@ export const Contact = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <NeonMailIcon size={40} />
+                  <Mail className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-4">Strategic Conversations</h3>
               </div>
@@ -62,7 +100,7 @@ export const Contact = () => {
               </a>
 
               <div className="absolute top-6 right-6">
-                <NeonStarIcon size={16} className="text-purple-400 animate-ping" />
+                <Star className="w-4 h-4 text-purple-400 animate-pulse" fill="currentColor" />
               </div>
             </div>
           </div>
@@ -72,7 +110,7 @@ export const Contact = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <NeonMailIcon size={40} />
+                  <MessageSquare className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-4">Join Our Journey</h3>
               </div>
@@ -90,7 +128,7 @@ export const Contact = () => {
               </a>
 
               <div className="absolute top-6 right-6">
-                <NeonStarIcon size={16} className="text-blue-400 animate-ping delay-500" />
+                <Star className="w-4 h-4 text-blue-400 animate-pulse delay-500" fill="currentColor" />
               </div>
             </div>
           </div>
@@ -102,9 +140,9 @@ export const Contact = () => {
           <div className="relative bg-slate-900/60 backdrop-blur-2xl border border-white/20 rounded-3xl p-16 text-center">
             <div className="mb-8">
               <div className="inline-flex items-center space-x-4 mb-6">
-                <NeonStarIcon size={32} className="text-yellow-400 animate-pulse" />
+                <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
                 <span className="text-yellow-400 font-bold text-2xl">LAUNCHING MID-2025</span>
-                <NeonStarIcon size={32} className="text-yellow-400 animate-pulse" />
+                <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
               </div>
               
               <h3 className="text-4xl md:text-5xl font-black text-white mb-8">
@@ -120,17 +158,17 @@ export const Contact = () => {
             {/* Artistic Progress Indicator */}
             <div className="flex justify-center items-center space-x-4 mb-8">
               <div className="flex items-center space-x-2">
-                <NeonStarIcon size={16} className="text-green-400 animate-pulse" />
+                <Star className="w-4 h-4 text-green-400 animate-pulse" fill="currentColor" />
                 <span className="text-green-400 font-semibold">Active Development</span>
               </div>
               <div className="w-16 h-px bg-gradient-to-r from-green-400 to-yellow-400"></div>
               <div className="flex items-center space-x-2">
-                <NeonStarIcon size={16} className="text-yellow-400 animate-pulse delay-300" />
+                <Star className="w-4 h-4 text-yellow-400 animate-pulse delay-300" fill="currentColor" />
                 <span className="text-yellow-400 font-semibold">Demo Ready</span>
               </div>
               <div className="w-16 h-px bg-gradient-to-r from-yellow-400 to-blue-400"></div>
               <div className="flex items-center space-x-2">
-                <NeonStarIcon size={16} className="text-blue-400 animate-pulse delay-700" />
+                <Star className="w-4 h-4 text-blue-400 animate-pulse delay-700" fill="currentColor" />
                 <span className="text-blue-400 font-semibold">Mid-2025 Launch</span>
               </div>
             </div>
@@ -141,9 +179,9 @@ export const Contact = () => {
         <div className="relative">
           <div className="text-center py-12 border-t border-white/10">
             <div className="flex justify-center items-center space-x-6 mb-6">
-              <NeonStarIcon size={24} className="text-pink-400 animate-pulse" />
+              <Heart className="w-6 h-6 text-pink-400 animate-pulse" />
               <span className="text-2xl font-bold text-white">Crowd Logic</span>
-              <NeonStarIcon size={24} className="text-pink-400 animate-pulse" />
+              <Heart className="w-6 h-6 text-pink-400 animate-pulse" />
             </div>
             
             <p className="text-gray-400 text-lg">
