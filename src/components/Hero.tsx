@@ -14,7 +14,7 @@ export const Hero = () => {
           <div className="absolute top-1/2 left-3/4 w-24 h-24 bg-cyan-500/10 rounded-full blur-lg animate-pulse delay-500"></div>
           
           {/* Animated grid overlay */}
-          <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-2 opacity-20">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent animate-pulse"></div>
           </div>
         </div>
