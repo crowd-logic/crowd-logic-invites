@@ -32,19 +32,6 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-        
-        {/* Updated Problems Section */}
-        <div className="relative mb-8">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
-            <span className="block text-white drop-shadow-2xl mb-4">
-              The Problems We're Solving
-            </span>
-          </h1>
-          
-          {/* Artistic accent lines */}
-          <div className="absolute -left-8 top-1/2 w-16 h-px bg-gradient-to-r from-emerald-500 to-transparent"></div>
-          <div className="absolute -right-8 top-1/2 w-16 h-px bg-gradient-to-l from-amber-500 to-transparent"></div>
-        </div>
 
         {/* Stay Connected Section */}
         <div className="w-full max-w-2xl mx-auto mb-8">
