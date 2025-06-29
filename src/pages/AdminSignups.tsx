@@ -10,7 +10,8 @@ import {
   TableRow 
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Mail, Calendar } from "lucide-react";
+import { Users, Mail, Calendar, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface EmailCapture {
   id: string;
@@ -32,18 +33,35 @@ const AdminSignups = () => {
 
   const fetchSignups = async () => {
     try {
+      setLoading(true);
+      setError(null);
       console.log("Fetching signups from email_captures table...");
       
+      // Test the connection first
+      const { data: testData, error: testError } = await supabase
+        .from('email_captures')
+        .select('count(*)', { count: 'exact', head: true });
+
+      console.log("Connection test:", { testData, testError });
+
+      if (testError) {
+        console.error('Connection test failed:', testError);
+        setError(`Connection failed: ${testError.message}`);
+        return;
+      }
+
+      // Fetch all data
       const { data, error, count } = await supabase
         .from('email_captures')
         .select('*', { count: 'exact' })
         .order('created_at', { ascending: false });
 
       console.log("Supabase response:", { data, error, count });
+      console.log("Raw data:", JSON.stringify(data, null, 2));
 
       if (error) {
         console.error('Supabase error:', error);
-        setError(`Database error: ${error.message}`);
+        setError(`Database error: ${error.message} (Code: ${error.code})`);
       } else {
         console.log("Successfully fetched signups:", data);
         setSignups(data || []);
@@ -59,13 +77,17 @@ const AdminSignups = () => {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+    try {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } catch (e) {
+      return dateString;
+    }
   };
 
   const getThisWeekSignups = () => {
@@ -85,7 +107,10 @@ const AdminSignups = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading signups...</div>
+        <div className="text-white text-xl flex items-center gap-2">
+          <RefreshCw className="animate-spin h-5 w-5" />
+          Loading signups...
+        </div>
       </div>
     );
   }
@@ -94,14 +119,26 @@ const AdminSignups = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 p-8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Email Signups Dashboard</h1>
-          <p className="text-gray-300">View all email capture submissions</p>
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-4xl font-bold text-white mb-2">Email Signups Dashboard</h1>
+              <p className="text-gray-300">View all email capture submissions</p>
+            </div>
+            <Button onClick={fetchSignups} variant="outline" className="bg-slate-800 border-slate-600 text-white hover:bg-slate-700">
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
+          </div>
+          
           {error && (
             <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-lg">
-              <p className="text-red-300">{error}</p>
+              <p className="text-red-300 font-semibold">Error: {error}</p>
               <p className="text-red-200 text-sm mt-2">
-                Check console for more details. Make sure RLS policies are configured correctly.
+                Check the browser console (F12) for more details. The data might be in your Supabase backend but not displaying due to RLS policies or connection issues.
               </p>
+              <Button onClick={fetchSignups} className="mt-2 bg-red-600 hover:bg-red-700">
+                Try Again
+              </Button>
             </div>
           )}
         </div>
@@ -114,6 +151,9 @@ const AdminSignups = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">{totalCount}</div>
+              <p className="text-xs text-gray-400 mt-1">
+                {signups.length} records loaded
+              </p>
             </CardContent>
           </Card>
 
@@ -154,31 +194,59 @@ const AdminSignups = () => {
           </CardHeader>
           <CardContent>
             {signups.length > 0 ? (
-              <Table>
-                <TableHeader>
-                  <TableRow className="border-slate-700">
-                    <TableHead className="text-gray-300">Name</TableHead>
-                    <TableHead className="text-gray-300">Email</TableHead>
-                    <TableHead className="text-gray-300">Signup Date</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {signups.map((signup) => (
-                    <TableRow key={signup.id} className="border-slate-700">
-                      <TableCell className="text-white font-medium">
-                        {signup.first_name} {signup.last_name}
-                      </TableCell>
-                      <TableCell className="text-gray-300">{signup.email}</TableCell>
-                      <TableCell className="text-gray-300">{formatDate(signup.created_at)}</TableCell>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-slate-700">
+                      <TableHead className="text-gray-300">Name</TableHead>
+                      <TableHead className="text-gray-300">Email</TableHead>
+                      <TableHead className="text-gray-300">Signup Date</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {signups.map((signup) => (
+                      <TableRow key={signup.id} className="border-slate-700">
+                        <TableCell className="text-white font-medium">
+                          {signup.first_name} {signup.last_name}
+                        </TableCell>
+                        <TableCell className="text-gray-300">{signup.email}</TableCell>
+                        <TableCell className="text-gray-300">{formatDate(signup.created_at)}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             ) : (
-              <div className="text-center py-8 text-gray-400">
-                {error ? 'Unable to load signups due to error above.' : 'No signups yet. Check back later!'}
+              <div className="text-center py-8">
+                {error ? (
+                  <div className="text-red-400">
+                    <p>Unable to load signups due to error above.</p>
+                    <p className="text-sm mt-2">Check your Supabase dashboard to verify the data exists.</p>
+                  </div>
+                ) : (
+                  <div className="text-gray-400">
+                    <p>No signups found in the database.</p>
+                    <p className="text-sm mt-2">Try submitting the form on the homepage to test.</p>
+                  </div>
+                )}
               </div>
             )}
+          </CardContent>
+        </Card>
+
+        {/* Debug Info */}
+        <Card className="bg-slate-800/50 border-slate-700 mt-6">
+          <CardHeader>
+            <CardTitle className="text-white text-sm">Debug Information</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-xs text-gray-400 space-y-1">
+              <p>Database Table: email_captures</p>
+              <p>Total Count from DB: {totalCount}</p>
+              <p>Records Loaded: {signups.length}</p>
+              <p>Has Error: {error ? 'Yes' : 'No'}</p>
+              <p>Loading State: {loading ? 'Yes' : 'No'}</p>
+            </div>
           </CardContent>
         </Card>
       </div>
