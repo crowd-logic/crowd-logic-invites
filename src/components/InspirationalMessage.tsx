@@ -3,9 +3,30 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Sparkles } from "lucide-react";
 import { useQuote } from "@/hooks/useQuote";
+import { useState, useEffect } from "react";
 
 const InspirationalMessage = () => {
   const { quote, loading, error, refreshQuote } = useQuote();
+  const [currentWord, setCurrentWord] = useState("");
+
+  const inspirationalWords = [
+    "shining",
+    "networking",
+    "growing",
+    "connecting",
+    "thriving",
+    "building",
+    "creating",
+    "inspiring",
+    "leading",
+    "achieving"
+  ];
+
+  useEffect(() => {
+    // Set a random word on component mount
+    const randomIndex = Math.floor(Math.random() * inspirationalWords.length);
+    setCurrentWord(inspirationalWords[randomIndex]);
+  }, []);
 
   if (loading) {
     return (
@@ -60,9 +81,16 @@ const InspirationalMessage = () => {
           </div>
         )}
         {error && (
-          <div className="text-emerald-300 text-center">
-            <p className="mb-2">✨ Keep shining, Kito! ✨</p>
-            <p className="text-sm">Your networking journey is building something amazing.</p>
+          <div className="text-center bg-gradient-to-r from-emerald-600/20 to-teal-600/20 rounded-lg p-6 border border-emerald-500/30">
+            <div className="text-3xl font-bold text-emerald-200 mb-3">
+              ✨ Keep <span className="text-emerald-100 animate-pulse">{currentWord}</span>, Kito! ✨
+            </div>
+            <p className="text-emerald-300 text-lg font-semibold mb-2">
+              Your networking journey is building something amazing.
+            </p>
+            <p className="text-emerald-400 text-base">
+              Every connection you make is a step towards your incredible future.
+            </p>
           </div>
         )}
       </CardContent>
