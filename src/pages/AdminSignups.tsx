@@ -37,26 +37,13 @@ const AdminSignups = () => {
       setError(null);
       console.log("Fetching signups from email_captures table...");
       
-      // Test the connection first
-      const { data: testData, error: testError } = await supabase
+      // Simplified approach - just fetch all data directly
+      const { data, error } = await supabase
         .from('email_captures')
-        .select('count(*)', { count: 'exact', head: true });
-
-      console.log("Connection test:", { testData, testError });
-
-      if (testError) {
-        console.error('Connection test failed:', testError);
-        setError(`Connection failed: ${testError.message}`);
-        return;
-      }
-
-      // Fetch all data
-      const { data, error, count } = await supabase
-        .from('email_captures')
-        .select('*', { count: 'exact' })
+        .select('*')
         .order('created_at', { ascending: false });
 
-      console.log("Supabase response:", { data, error, count });
+      console.log("Supabase response:", { data, error });
       console.log("Raw data:", JSON.stringify(data, null, 2));
 
       if (error) {
@@ -65,7 +52,7 @@ const AdminSignups = () => {
       } else {
         console.log("Successfully fetched signups:", data);
         setSignups(data || []);
-        setTotalCount(count || 0);
+        setTotalCount(data?.length || 0);
         setError(null);
       }
     } catch (error) {
