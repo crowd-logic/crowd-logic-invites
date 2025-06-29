@@ -1,14 +1,16 @@
 
-import { ArrowRight, Mail, Linkedin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { NeonMailIcon } from "./icons/NeonMailIcon";
+import { NeonCrownIcon } from "./icons/NeonCrownIcon";
+import { NeonStarIcon } from "./icons/NeonStarIcon";
 
 export const Founder = () => {
   return (
     <section id="founder" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Subtle Background */}
+      {/* Artistic Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-transparent to-pink-600/5"></div>
-        <div className="absolute top-0 left-1/3 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
@@ -34,9 +36,9 @@ export const Founder = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center space-x-3 mb-4">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-purple-500"></div>
-                <div className="w-6 h-6 bg-purple-400 rounded-full animate-pulse"></div>
+                <NeonStarIcon size={24} className="animate-pulse" />
                 <span className="text-purple-400 font-semibold text-xl">VISIONARY LEADERSHIP</span>
-                <div className="w-6 h-6 bg-pink-400 rounded-full animate-pulse delay-300"></div>
+                <NeonStarIcon size={24} className="animate-pulse" />
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-purple-500"></div>
               </div>
               
@@ -57,7 +59,7 @@ export const Founder = () => {
                   href="#contact"
                   className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center space-x-3 group"
                 >
-                  <Mail size={20} />
+                  <NeonMailIcon size={20} />
                   <span>Connect</span>
                 </a>
               </div>
@@ -66,7 +68,6 @@ export const Founder = () => {
                 href="#"
                 className="group relative border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm flex items-center space-x-3"
               >
-                <Linkedin size={20} />
                 <span>LinkedIn</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>

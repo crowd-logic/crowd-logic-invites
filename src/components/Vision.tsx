@@ -1,12 +1,14 @@
 
 import { ChevronDown } from "lucide-react";
+import { NeonNetworkIcon } from "./icons/NeonNetworkIcon";
+import { NeonTrendingIcon } from "./icons/NeonTrendingIcon";
+import { NeonStarIcon } from "./icons/NeonStarIcon";
 
 export const Vision = () => {
   return (
     <section id="vision" className="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Subtle Background */}
+      {/* Artistic Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-transparent to-pink-900/10"></div>
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
       </div>
@@ -40,25 +42,23 @@ export const Vision = () => {
           </div>
         </div>
 
-        {/* Problem Cards with Professional Images */}
+        {/* Problem Cards with Artistic Layout */}
         <div className="grid lg:grid-cols-3 gap-12 mb-32">
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
-                <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" 
-                    alt="Fragmented Technology" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <NeonNetworkIcon size={40} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Fragmented Ecosystem</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Event organizers juggle multiple platforms, losing efficiency and creating disconnected experiences for attendees.
               </p>
+              <div className="absolute top-4 right-4">
+                <NeonStarIcon size={8} className="text-purple-400 animate-ping" />
+              </div>
             </div>
           </div>
 
@@ -66,19 +66,17 @@ export const Vision = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
-                <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
-                    alt="Data Analytics" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <NeonTrendingIcon size={40} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Limited Insights</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Brands lack deep understanding of their audience engagement and struggle to create meaningful connections.
               </p>
+              <div className="absolute top-4 right-4">
+                <NeonStarIcon size={8} className="text-blue-400 animate-ping delay-500" />
+              </div>
             </div>
           </div>
 
@@ -86,19 +84,17 @@ export const Vision = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
-                <div className="w-full h-32 mb-6 rounded-xl overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1501854140801-50d01698950b" 
-                    alt="Missed Opportunities" 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <NeonStarIcon size={40} />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Missed Opportunities</h3>
               </div>
               <p className="text-gray-300 text-lg leading-relaxed">
                 Communities can't capitalize on the power of collective engagement and shared experiences.
               </p>
+              <div className="absolute top-4 right-4">
+                <NeonStarIcon size={8} className="text-pink-400 animate-ping delay-1000" />
+              </div>
             </div>
           </div>
         </div>
@@ -131,15 +127,15 @@ export const Vision = () => {
               <div className="mt-16 flex justify-center">
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-green-400 rounded-full animate-pulse flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                    <NeonStarIcon size={16} />
                   </div>
                   <div className="w-16 h-px bg-gradient-to-r from-green-400 to-blue-400"></div>
                   <div className="w-8 h-8 bg-blue-400 rounded-full animate-pulse delay-300 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                    <NeonStarIcon size={16} />
                   </div>
                   <div className="w-16 h-px bg-gradient-to-r from-blue-400 to-purple-400"></div>
                   <div className="w-8 h-8 bg-purple-400 rounded-full animate-pulse delay-700 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                    <NeonStarIcon size={16} />
                   </div>
                 </div>
               </div>
