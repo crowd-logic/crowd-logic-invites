@@ -1,5 +1,6 @@
 
 import { ArrowRight, Compass, Users2, BarChart3 } from "lucide-react";
+import { AnimatedLandscape } from "./AnimatedLandscape";
 
 export const Hero = () => {
   return (
@@ -11,20 +12,11 @@ export const Hero = () => {
           {/* Left Column - B2C / escapade Users */}
           <div className="relative">
             {/* Living Landscape Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-cyan-500 to-blue-600 rounded-3xl">
-              <div className="absolute inset-0">
-                {/* Animated landscape elements */}
-                <div className="absolute top-1/4 left-1/4 w-24 h-24 bg-white/10 rounded-full blur-2xl animate-pulse"></div>
-                <div className="absolute top-3/4 right-1/4 w-32 h-32 bg-yellow-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-pink-400/15 rounded-full blur-xl animate-pulse delay-500"></div>
-                
-                {/* Wave overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/20 to-transparent rounded-b-3xl"></div>
-              </div>
-            </div>
+            <AnimatedLandscape />
             
             {/* B2C Content */}
-            <div className="relative z-10 p-8 lg:p-12 text-white">
+            <div className="relative z-10 p-8 lg:p-12 text-white h-full flex flex-col justify-center"
+                 style={{ background: 'linear-gradient(45deg, rgba(0,0,0,0.3), rgba(0,0,0,0.1))' }}>
               <div className="mb-6">
                 <Compass className="w-12 h-12 mb-4 text-white/90" />
                 <h1 className="text-4xl lg:text-5xl font-bold mb-4 leading-tight">
@@ -36,7 +28,7 @@ export const Hero = () => {
                 </p>
               </div>
               
-              <button className="group relative bg-white text-emerald-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 transform hover:scale-105">
+              <button className="group relative bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 transform hover:scale-105 shadow-lg">
                 <span className="flex items-center gap-2">
                   Join the Escapade
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
