@@ -1,5 +1,5 @@
 
-import { Calendar, Users, BarChart3, Zap, Star, Sparkles } from "lucide-react";
+import { Calendar, Users, BarChart3, Zap, Star, Sparkles, Compass, ArrowRight } from "lucide-react";
 
 export const Services = () => {
   return (
@@ -20,21 +20,20 @@ export const Services = () => {
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-            Three Platforms,
-            <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-400">
-              One Vision
+              Our Ecosystem
             </span>
           </h2>
           
           <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
-            CrowdLogic isn't just one product—it's an integrated ecosystem of specialized platforms 
-            working together to revolutionize how events, experiences, and communities connect.
+            CrowdLogic is a unified ecosystem where personal adventures fuel professional intelligence. 
+            Our B2C apps create engaged communities, generating insights that power our best-in-class 
+            B2B platforms for brands, agencies, and event organizers.
           </p>
         </div>
 
-        {/* Three Platform Cards */}
-        <div className="grid lg:grid-cols-3 gap-12 mb-32">
+        {/* Four Platform Cards */}
+        <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-8 mb-32">
           {/* Event Axis */}
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-cyan-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
@@ -154,6 +153,50 @@ export const Services = () => {
               <div className="absolute top-4 right-4 w-2 h-2 bg-cyan-400 rounded-full animate-ping delay-1000"></div>
             </div>
           </div>
+          {/* escapade */}
+          <div className="group relative lg:mt-12">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-500"></div>
+            <div className="relative bg-gradient-to-br from-purple-900/80 to-pink-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
+              <div className="mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Compass className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">escapade</h3>
+                <div className="w-12 h-px bg-gradient-to-r from-purple-400 to-transparent mb-4"></div>
+              </div>
+              
+              <p className="text-gray-300 text-base mb-6 leading-relaxed">
+                The app for authoring adventures. From weekend getaways to once-in-a-lifetime trips, 
+                escapade is where you and your crew plan the moments you'll remember forever.
+              </p>
+              
+              <ul className="space-y-2 text-gray-400 text-sm mb-6">
+                <li className="flex items-center space-x-2">
+                  <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>Collaborative Idea Bucket</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>AI-Powered POI Stash</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>Interactive Itinerary & Map Hub</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                  <span>Digital Keepsake Generation</span>
+                </li>
+              </ul>
+
+              <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full font-semibold text-sm hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center gap-2">
+                Try the Beta
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400 rounded-full animate-ping delay-1500"></div>
+            </div>
+          </div>
         </div>
 
         {/* Integration Section */}
@@ -175,18 +218,20 @@ export const Services = () => {
               </div>
               
               <p className="text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light">
-                When Event Axis, KITO Agency, and VibePass work together, they create something powerful: 
+                When escapade, Event Axis, KITO Agency, and VibePass work together, they create something powerful: 
                 a complete event intelligence system that learns, adapts, and grows with every interaction.
               </p>
 
               {/* Decorative connecting lines */}
               <div className="mt-16 flex justify-center">
-                <div className="flex items-center space-x-4">
-                  <div className="w-8 h-8 bg-emerald-400 rounded-full animate-pulse"></div>
-                  <div className="w-16 h-px bg-gradient-to-r from-emerald-400 to-amber-400"></div>
-                  <div className="w-8 h-8 bg-amber-400 rounded-full animate-pulse delay-300"></div>
-                  <div className="w-16 h-px bg-gradient-to-r from-amber-400 to-cyan-400"></div>
-                  <div className="w-8 h-8 bg-cyan-400 rounded-full animate-pulse delay-700"></div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-6 h-6 bg-purple-400 rounded-full animate-pulse"></div>
+                  <div className="w-12 h-px bg-gradient-to-r from-purple-400 to-emerald-400"></div>
+                  <div className="w-6 h-6 bg-emerald-400 rounded-full animate-pulse delay-300"></div>
+                  <div className="w-12 h-px bg-gradient-to-r from-emerald-400 to-amber-400"></div>
+                  <div className="w-6 h-6 bg-amber-400 rounded-full animate-pulse delay-600"></div>
+                  <div className="w-12 h-px bg-gradient-to-r from-amber-400 to-cyan-400"></div>
+                  <div className="w-6 h-6 bg-cyan-400 rounded-full animate-pulse delay-900"></div>
                 </div>
               </div>
             </div>
