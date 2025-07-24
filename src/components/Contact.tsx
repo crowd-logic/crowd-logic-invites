@@ -35,8 +35,34 @@ export const Contact = () => {
           </p>
         </div>
 
-        {/* Enhanced Contact Cards */}
+        {/* Two-Path CTA Cards */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          {/* Left Side - B2C CTA */}
+          <div className="group relative">
+            <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+            <div className="relative bg-gradient-to-br from-purple-900/80 to-pink-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full">
+              <div className="mb-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Sparkles className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-3">Start Your Adventure</h3>
+              </div>
+              
+              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                Ready to stop dreaming and start planning? Join the escapade beta and be the first to 
+                experience the future of group travel.
+              </p>
+              
+              <button className="group/btn inline-flex items-center space-x-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105">
+                <span>Join the Beta</span>
+                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+              </button>
+
+              <div className="absolute top-6 right-6 w-4 h-4 bg-purple-400 rounded-full animate-ping"></div>
+            </div>
+          </div>
+
+          {/* Right Side - B2B CTA */}
           <div className="group relative">
             <div className="absolute -inset-2 bg-gradient-to-r from-emerald-600 to-amber-600 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full">
@@ -44,48 +70,23 @@ export const Contact = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-amber-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Mail className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-3">Strategic Conversations</h3>
+                <h3 className="text-3xl font-bold text-white mb-3">Shape the Future</h3>
               </div>
               
               <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                Ready to discuss partnerships, investment opportunities, or how CrowdLogic can transform your events and community engagement?
+                Ready to discuss partnerships, investment opportunities, or how EventOS can transform your business? 
+                Let's connect.
               </p>
               
               <a 
                 href="mailto:connect@accesscrowdlogic.com"
-                className="group/link inline-flex items-center space-x-3 text-emerald-400 hover:text-emerald-300 transition-colors text-lg font-semibold"
+                className="group/link inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-500 to-amber-500 text-white px-6 py-3 rounded-full font-semibold text-lg hover:from-emerald-600 hover:to-amber-600 transition-all duration-300 transform hover:scale-105"
               >
-                <span>connect@accesscrowdlogic.com</span>
-                <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform duration-300" />
+                <span>Connect with Us</span>
+                <ArrowRight className="w-5 h-5 group-hover/link:translate-x-1 transition-transform duration-300" />
               </a>
 
-              <div className="absolute top-6 right-6 w-4 h-4 bg-emerald-400 rounded-full animate-ping"></div>
-            </div>
-          </div>
-
-          <div className="group relative">
-            <div className="absolute -inset-2 bg-gradient-to-r from-amber-600 to-cyan-600 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
-            <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full">
-              <div className="mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <MessageSquare className="w-10 h-10 text-white" />
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-3">Join Our Journey</h3>
-              </div>
-              
-              <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                Interested in early access, becoming a design partner, or simply staying updated on our progress? Let's start a conversation.
-              </p>
-              
-              <a 
-                href="mailto:connect@accesscrowdlogic.com"
-                className="group/link inline-flex items-center space-x-3 text-amber-400 hover:text-amber-300 transition-colors text-lg font-semibold"
-              >
-                <span>connect@accesscrowdlogic.com</span>
-                <ArrowRight className="w-5 h-5 group-hover/link:translate-x-2 transition-transform duration-300" />
-              </a>
-
-              <div className="absolute top-6 right-6 w-4 h-4 bg-amber-400 rounded-full animate-ping delay-500"></div>
+              <div className="absolute top-6 right-6 w-4 h-4 bg-emerald-400 rounded-full animate-ping delay-500"></div>
             </div>
           </div>
         </div>

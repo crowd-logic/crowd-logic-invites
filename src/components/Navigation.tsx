@@ -26,9 +26,8 @@ export const Navigation = () => {
             <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Vision</a>
             <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Services</a>
             <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Leadership</a>
-            <a href="#contact" className="group relative border border-white/30 text-white px-6 py-2 rounded-full font-medium hover:bg-white/10 transition-all duration-300">
-              <span className="relative z-10">Connect</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-amber-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <a href="#contact" className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+              <span className="relative z-10">Get Escapade</span>
             </a>
           </div>
 
@@ -47,7 +46,7 @@ export const Navigation = () => {
                 <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Vision</a>
                 <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Services</a>
                 <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Leadership</a>
-                <a href="#contact" className="bg-gradient-to-r from-emerald-600 to-amber-600 text-white px-6 py-3 rounded-full font-medium text-center hover:from-emerald-700 hover:to-amber-700 transition-all duration-300" onClick={() => setIsOpen(false)}>Connect</a>
+                <a href="#contact" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold text-center hover:from-purple-700 hover:to-pink-700 transition-all duration-300" onClick={() => setIsOpen(false)}>Get Escapade</a>
               </div>
             </div>
           </div>
