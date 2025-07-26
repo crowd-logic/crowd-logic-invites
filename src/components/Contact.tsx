@@ -49,7 +49,7 @@ export const Contact = () => {
               </div>
               
               <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                Ready to stop dreaming and start planning? Join the escapade beta and be the first to 
+                Ready to stop dreaming and start planning? Join the escapade™ beta and be the first to 
                 experience the future of group travel.
               </p>
               
@@ -74,7 +74,7 @@ export const Contact = () => {
               </div>
               
               <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                Ready to discuss partnerships, investment opportunities, or how EventOS can transform your business? 
+                Ready to discuss partnerships, investment opportunities, or how EventOS™ can transform your business? 
                 Let's connect.
               </p>
               

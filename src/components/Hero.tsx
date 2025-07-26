@@ -23,14 +23,14 @@ export const Hero = () => {
                   Your next adventure starts now.
                 </h1>
                 <p className="text-xl lg:text-2xl text-white/90 leading-relaxed">
-                  escapade, our new app for planning trips with your crew, is now live in beta. 
+                  escapade™, our new app for planning trips with your crew, is now live in beta. 
                   Stop dreaming, start authoring.
                 </p>
               </div>
               
               <button className="group relative bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all duration-300 transform hover:scale-105 shadow-lg">
                 <span className="flex items-center gap-2">
-                  Join the Escapade
+                  Join the Escapade™
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
@@ -62,7 +62,7 @@ export const Hero = () => {
                   The Operating System for Experiential Marketing.
                 </h1>
                 <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed">
-                  CrowdLogic's EventOS platform unifies staffing, campaigns, and attendees into a single, 
+                  CrowdLogic's EventOS™ platform unifies staffing, campaigns, and attendees into a single, 
                   intelligent ecosystem. Built for brands and agencies who demand results.
                 </p>
               </div>

@@ -82,7 +82,7 @@ export const Services = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Users className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">KITO Agency</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">KITO Agency™</h3>
                 <div className="w-12 h-px bg-gradient-to-r from-amber-400 to-transparent mb-6"></div>
               </div>
               
@@ -122,7 +122,7 @@ export const Services = () => {
                 <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Zap className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-6">VibePass</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">VibePass™</h3>
                 <div className="w-12 h-px bg-gradient-to-r from-cyan-400 to-transparent mb-6"></div>
               </div>
               
@@ -161,13 +161,13 @@ export const Services = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Compass className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">escapade</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">escapade™</h3>
                 <div className="w-12 h-px bg-gradient-to-r from-purple-400 to-transparent mb-4"></div>
               </div>
               
               <p className="text-gray-300 text-base mb-6 leading-relaxed">
                 The app for authoring adventures. From weekend getaways to once-in-a-lifetime trips, 
-                escapade is where you and your crew plan the moments you'll remember forever.
+                escapade™ is where you and your crew plan the moments you'll remember forever.
               </p>
               
               <ul className="space-y-2 text-gray-400 text-sm mb-6">
@@ -218,7 +218,7 @@ export const Services = () => {
               </div>
               
               <p className="text-2xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light">
-                When escapade, Event Axis, KITO Agency, and VibePass work together, they create something powerful: 
+                When escapade™, Event Axis™, KITO Agency™, and VibePass™ work together, they create something powerful: 
                 a complete event intelligence system that learns, adapts, and grows with every interaction.
               </p>
 
