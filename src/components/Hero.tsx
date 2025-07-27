@@ -1,21 +1,18 @@
 
 import { ArrowRight, Compass, BarChart3 } from "lucide-react";
+import { AnimatedLandscape } from "./AnimatedLandscape";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row min-h-[600px]">
       
       {/* Left Column - The escapade / B2C Side */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center text-white relative">
-        {/* Adventure Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-blue-600 to-purple-600">
-          {/* Adventure landscape overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"></div>
-          {/* Animated elements for adventure feel */}
-          <div className="absolute top-1/4 left-1/6 w-16 h-16 border-2 border-white/20 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-20 h-20 border border-white/10 rounded-lg rotate-45 animate-pulse delay-500"></div>
-          <div className="absolute top-2/3 left-1/3 w-12 h-12 bg-white/10 rounded-full animate-pulse delay-1000"></div>
-        </div>
+        {/* Animated Landscape Background */}
+        <AnimatedLandscape />
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
         
         {/* Content */}
         <div className="relative z-10 max-w-md">
@@ -37,7 +34,7 @@ export const Hero = () => {
       </div>
 
       {/* Right Column - The EventOS / B2B Side */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center text-white relative border-l border-gray-700">
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center text-white relative border-l border-gray-700 min-h-[600px]">
         {/* Professional Tech Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-900 to-indigo-900">
           {/* Data visualization patterns */}
