@@ -58,17 +58,14 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
     <section className="w-full bg-background py-20 px-8">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-5xl font-bold mb-6 text-foreground">
-          Tell us about you.
+          Tell us about you, and we'll design your solution.
         </h1>
-        <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-          And we'll show you exactly how the CrowdLogic ecosystem can help.
-        </p>
         
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
           <div className="flex flex-col sm:flex-row gap-4">
             <Input
               type="text"
-              placeholder="Describe your role or goal..."
+              placeholder="I'm a brand manager..." 
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="flex-1 h-12 text-lg"
@@ -78,7 +75,7 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
               type="submit"
               size="lg"
               disabled={isLoading || !input.trim()}
-              className="h-12 px-8"
+              className="h-12 px-6"
             >
               {isLoading ? (
                 <>
@@ -86,10 +83,7 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
                   Analyzing...
                 </>
               ) : (
-                <>
-                  Find My Solution
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </>
+                "Go"
               )}
             </Button>
           </div>

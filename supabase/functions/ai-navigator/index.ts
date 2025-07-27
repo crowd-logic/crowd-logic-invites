@@ -8,22 +8,50 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const systemPrompt = `You are an AI assistant for CrowdLogic, a company that provides experiential marketing solutions. Based on user input describing their role or goal, you need to identify which CrowdLogic solution would be most relevant and return a structured JSON response.
+const systemPrompt = `You are "The AI Solutions Architect" for the CrowdLogic ecosystem. Your task is to analyze a user's role/goal and generate a personalized, 3-step user flow explaining how they would use our platform.
 
-CrowdLogic Solutions:
-1. EventOS™ - For brands and agencies needing experiential marketing operations
-2. escapade™ - For consumers planning group trips and experiences
-3. VibePass™ - For vendors and concession stands at events
-
-Analyze the user input and return a JSON response with:
+You must return ONLY a single, valid JSON object with the following structure:
 {
-  "title": "Solution-specific headline",
-  "description": "Personalized description explaining how this solution helps them",
-  "ctaText": "Relevant call-to-action button text",
-  "solutionType": "EventOS" | "escapade" | "VibePass"
+  "product": "[Product Name]",
+  "heroImage": "[background image path]",
+  "userFlow": [
+    { "step": 1, "text": "[First step of their journey]" },
+    { "step": 2, "text": "[Second step of their journey]" },
+    { "step": 3, "text": "[Third step of their journey]" }
+  ],
+  "ctaType": "[signup or waitlist]",
+  "ctaText": "[Text for the final button]"
 }
 
-Keep responses concise, engaging, and focused on value proposition.`;
+Example 1:
+User Input: "I need to staff buses for an aviation conference."
+Your JSON Output:
+{
+  "product": "KITO Agency",
+  "heroImage": "/images/b2b-professional-bg.jpg",
+  "userFlow": [
+    { "step": 1, "text": "Post your staffing needs, specifying roles and required credentials." },
+    { "step": 2, "text": "Our AI matches you with vetted, reliable professionals from our extensive talent network." },
+    { "step": 3, "text": "Manage scheduling, communication, and real-time logistics from the Event Axis command center." }
+  ],
+  "ctaType": "waitlist",
+  "ctaText": "Request a Demo"
+}
+
+Example 2:
+User Input: "planning a trip with my friends"
+Your JSON Output:
+{
+  "product": "escapade",
+  "heroImage": "/images/escapade-adventure-bg.jpg",
+  "userFlow": [
+    { "step": 1, "text": "Capture inspiration from anywhere into your personal 'Stash' with our AI assistant." },
+    { "step": 2, "text": "Propose ideas to the 'Idea Bucket' for the whole crew to champion their favorites." },
+    { "step": 3, "text": "Watch your plan come to life on a shared, interactive map and itinerary that everyone can access." }
+  ],
+  "ctaType": "signup",
+  "ctaText": "Start Your First Escapade"
+}`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -70,10 +98,15 @@ serve(async (req) => {
     } catch (e) {
       // Fallback if AI doesn't return valid JSON
       parsedResponse = {
-        title: "Discover Your Solution",
-        description: "Let us show you how CrowdLogic can transform your experiential marketing approach.",
-        ctaText: "Learn More",
-        solutionType: "EventOS"
+        product: "escapade",
+        heroImage: "/images/escapade-adventure-bg.jpg",
+        userFlow: [
+          { step: 1, text: "Capture inspiration from anywhere into your personal 'Stash' with our AI assistant." },
+          { step: 2, text: "Propose ideas to the 'Idea Bucket' for the whole crew to champion their favorites." },
+          { step: 3, text: "Watch your plan come to life on a shared, interactive map and itinerary that everyone can access." }
+        ],
+        ctaType: "signup",
+        ctaText: "Start Your First Escapade"
       };
     }
 
@@ -85,10 +118,15 @@ serve(async (req) => {
     console.error('Error in ai-navigator function:', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      title: "Explore Our Solutions",
-      description: "Discover how CrowdLogic can help you succeed in experiential marketing.",
-      ctaText: "Get Started",
-      solutionType: "EventOS"
+      product: "escapade",
+      heroImage: "/images/escapade-adventure-bg.jpg",
+      userFlow: [
+        { step: 1, text: "Capture inspiration from anywhere into your personal 'Stash' with our AI assistant." },
+        { step: 2, text: "Propose ideas to the 'Idea Bucket' for the whole crew to champion their favorites." },
+        { step: 3, text: "Watch your plan come to life on a shared, interactive map and itinerary that everyone can access." }
+      ],
+      ctaType: "signup",
+      ctaText: "Start Your First Escapade"
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
