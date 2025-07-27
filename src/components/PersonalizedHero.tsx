@@ -220,12 +220,12 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
               className="mt-8 w-full max-w-sm mx-auto"
             >
               {/* iPhone Mockup */}
-              <div className="relative mx-auto bg-black rounded-[3rem] p-2 shadow-2xl">
-                <div className="bg-black rounded-[2.5rem] overflow-hidden">
+              <div className="relative mx-auto bg-gradient-to-br from-emerald-100 to-white rounded-[3rem] p-2 shadow-2xl ring-2 ring-white/30">
+                <div className="bg-emerald-50 rounded-[2.5rem] overflow-hidden shadow-inner">
                   {/* iPhone Notch */}
-                  <div className="relative bg-black h-6 flex justify-center">
-                    <div className="absolute top-1 bg-black rounded-full w-16 h-4 flex items-center justify-center">
-                      <div className="w-10 h-1.5 bg-gray-800 rounded-full"></div>
+                  <div className="relative bg-emerald-100 h-6 flex justify-center">
+                    <div className="absolute top-1 bg-emerald-200 rounded-full w-16 h-4 flex items-center justify-center">
+                      <div className="w-10 h-1.5 bg-emerald-400 rounded-full"></div>
                     </div>
                   </div>
                   
@@ -240,8 +240,8 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
                   </div>
                   
                   {/* Home Indicator */}
-                  <div className="bg-black h-6 flex justify-center items-center">
-                    <div className="w-32 h-1 bg-gray-800 rounded-full"></div>
+                  <div className="bg-emerald-100 h-6 flex justify-center items-center">
+                    <div className="w-32 h-1 bg-emerald-300 rounded-full"></div>
                   </div>
                 </div>
               </div>
