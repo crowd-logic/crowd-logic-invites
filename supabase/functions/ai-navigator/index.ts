@@ -56,6 +56,8 @@ serve(async (req) => {
       throw new Error('ANTHROPIC_API_KEY not configured');
     }
 
+    console.log('🔍 Searching for blueprint with input:', userInput);
+
     // Search for matching blueprint in the database
     // First try keyword search (more flexible)
     const { data: keywordBlueprints, error: keywordError } = await supabase
@@ -63,17 +65,22 @@ serve(async (req) => {
       .select('*')
       .overlaps('keywords', [userInput.toLowerCase()]);
 
+    console.log('📊 Keyword search results:', keywordBlueprints?.length || 0, 'blueprints found');
+    if (keywordError) console.error('❌ Keyword search error:', keywordError);
+
     let matchedBlueprint = keywordBlueprints?.[0];
 
     // If no keyword match, try partial persona match
     if (!matchedBlueprint || keywordBlueprints?.length === 0) {
+      console.log('🔄 Trying persona search...');
       const { data: personaBlueprints, error: personaError } = await supabase
         .from('solution_blueprints')
         .select('*')
         .ilike('persona', `%${userInput}%`);
 
+      console.log('👤 Persona search results:', personaBlueprints?.length || 0, 'blueprints found');
       if (personaError) {
-        console.error('Persona search error:', personaError);
+        console.error('❌ Persona search error:', personaError);
       } else {
         matchedBlueprint = personaBlueprints?.[0];
       }
@@ -81,29 +88,43 @@ serve(async (req) => {
 
     // If still no match, try searching for common terms
     if (!matchedBlueprint) {
+      console.log('🔄 Trying individual term search...');
       const searchTerms = userInput.toLowerCase().split(' ');
+      console.log('🔤 Search terms:', searchTerms);
+      
       for (const term of searchTerms) {
+        if (term.length < 3) continue; // Skip very short terms
+        
         const { data: termBlueprints } = await supabase
           .from('solution_blueprints')
           .select('*')
           .overlaps('keywords', [term]);
         
+        console.log(`📝 Term "${term}" found:`, termBlueprints?.length || 0, 'blueprints');
+        
         if (termBlueprints && termBlueprints.length > 0) {
           matchedBlueprint = termBlueprints[0];
+          console.log('✅ Matched blueprint:', matchedBlueprint.persona);
           break;
         }
       }
     }
 
     if (!matchedBlueprint) {
-      // Fallback to a default blueprint if no match found
-      const { data: defaultBlueprint } = await supabase
+      console.log('⚠️ No match found, using fallback blueprint');
+      // Fallback to a random blueprint instead of always the same one
+      const { data: allBlueprints } = await supabase
         .from('solution_blueprints')
-        .select('*')
-        .eq('persona', 'Personal Trip Planner')
-        .single();
+        .select('*');
       
-      matchedBlueprint = defaultBlueprint;
+      if (allBlueprints && allBlueprints.length > 0) {
+        // Select a random blueprint instead of always the first one
+        const randomIndex = Math.floor(Math.random() * allBlueprints.length);
+        matchedBlueprint = allBlueprints[randomIndex];
+        console.log('🎲 Using random blueprint:', matchedBlueprint.persona);
+      }
+    } else {
+      console.log('✅ Final matched blueprint:', matchedBlueprint.persona);
     }
 
     if (!matchedBlueprint) {
