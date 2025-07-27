@@ -19,17 +19,30 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
     setIsLoading(true);
     
     try {
+      console.log('🚀 Calling AI Navigator with input:', input);
+      
       const { data, error } = await supabase.functions.invoke('ai-navigator', {
         body: { userInput: input },
       });
 
-      if (error) throw error;
+      console.log('📦 Edge function response:', { data, error });
+
+      if (error) {
+        console.error('❌ Edge function error:', error);
+        throw error;
+      }
+      
       const result = data;
+      console.log('✅ Parsed result:', result);
+      
       onSolutionFound(result);
+      console.log('🎯 State updated, scrolling to hero...');
       
       // Smooth scroll to PersonalizedHero section
       setTimeout(() => {
-        document.getElementById('personalized-hero')?.scrollIntoView({ 
+        const heroElement = document.getElementById('personalized-hero');
+        console.log('🔍 Found hero element:', heroElement);
+        heroElement?.scrollIntoView({ 
           behavior: 'smooth' 
         });
       }, 100);

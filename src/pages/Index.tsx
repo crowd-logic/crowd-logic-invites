@@ -11,10 +11,15 @@ import { Navigation } from "@/components/Navigation";
 const Index = () => {
   const [solution, setSolution] = useState(null);
 
+  const handleSolutionFound = (newSolution: any) => {
+    console.log('🔄 Index: Updating solution state:', newSolution);
+    setSolution(newSolution);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
       <Navigation />
-      <AINavigator onSolutionFound={setSolution} />
+      <AINavigator onSolutionFound={handleSolutionFound} />
       <PersonalizedHero solution={solution} />
       <Vision />
       <Services />

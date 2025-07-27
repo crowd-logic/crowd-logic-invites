@@ -6,6 +6,7 @@ interface PersonalizedHeroProps {
 }
 
 export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
+  console.log('🎨 PersonalizedHero rendering with solution:', solution);
   // Default state when no solution is provided
   if (!solution) {
     return (
