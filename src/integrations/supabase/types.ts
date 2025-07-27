@@ -921,6 +921,42 @@ export type Database = {
           },
         ]
       }
+      solution_blueprints: {
+        Row: {
+          cta_link: string
+          cta_text: string
+          cta_type: string
+          id: string
+          keywords: string[] | null
+          pain_point_headline: string
+          persona: string
+          solution_products: Json | null
+          user_journey_raw: string
+        }
+        Insert: {
+          cta_link: string
+          cta_text: string
+          cta_type: string
+          id?: string
+          keywords?: string[] | null
+          pain_point_headline: string
+          persona: string
+          solution_products?: Json | null
+          user_journey_raw: string
+        }
+        Update: {
+          cta_link?: string
+          cta_text?: string
+          cta_type?: string
+          id?: string
+          keywords?: string[] | null
+          pain_point_headline?: string
+          persona?: string
+          solution_products?: Json | null
+          user_journey_raw?: string
+        }
+        Relationships: []
+      }
       solutions: {
         Row: {
           created_at: string | null
