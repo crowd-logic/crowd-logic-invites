@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 
 interface AINavigatorProps {
   onSolutionFound: (solution: any) => void;
+  compact?: boolean;
 }
 
-export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
+export const AINavigator = ({ onSolutionFound, compact = false }: AINavigatorProps) => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,6 +40,48 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
       setIsLoading(false);
     }
   };
+
+  if (compact) {
+    return (
+      <motion.form
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="space-y-6 max-w-2xl mx-auto"
+      >
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Describe your role, your goal, or your biggest challenge..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="w-full h-14 px-6 text-lg bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white placeholder:text-white/60 rounded-xl focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+            disabled={isLoading}
+          />
+        </div>
+        
+        <Button 
+          type="submit" 
+          disabled={!input.trim() || isLoading}
+          size="lg"
+          className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-3 h-5 w-5 animate-spin" />
+              Analyzing your mission...
+            </>
+          ) : (
+            <>
+              <Sparkles className="mr-3 h-5 w-5" />
+              Design My Solution
+            </>
+          )}
+        </Button>
+      </motion.form>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center">
