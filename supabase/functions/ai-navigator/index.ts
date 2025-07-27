@@ -36,6 +36,8 @@ You must return ONLY a single, valid JSON object with the following structure:
 {
   "product": "[Must be one of: escapade, EventOS, KITO Agency, EventAxis, VibePass]",
   "heroImage": "[background image path]",
+  "challenge": "[The user's specific pain point or challenge]",
+  "tools": "[How the chosen product specifically addresses their challenge]",
   "userFlow": [
     { "step": 1, "text": "[First step of their journey]" },
     { "step": 2, "text": "[Second step of their journey]" },
@@ -51,6 +53,8 @@ Your JSON Output:
 {
   "product": "KITO Agency",
   "heroImage": "/images/b2b-professional-bg.jpg",
+  "challenge": "Finding reliable, qualified staff for specialized events like aviation conferences requires extensive vetting and coordination.",
+  "tools": "KITO Agency provides access to our vetted talent network of Brand Ambassadors with verified credentials and specialized experience.",
   "userFlow": [
     { "step": 1, "text": "Post your staffing needs, specifying roles and required credentials." },
     { "step": 2, "text": "Our AI matches you with vetted, reliable professionals from our extensive talent network." },
@@ -66,6 +70,8 @@ Your JSON Output:
 {
   "product": "escapade",
   "heroImage": "/images/escapade-adventure-bg.jpg",
+  "challenge": "Planning group trips often becomes chaotic with endless group chats, conflicting schedules, and people dropping out last minute.",
+  "tools": "escapade transforms group trip planning into a seamless, collaborative experience with AI-powered organization and engagement tools.",
   "userFlow": [
     { "step": 1, "text": "Capture inspiration from anywhere into your personal 'Stash' with our AI assistant." },
     { "step": 2, "text": "Propose ideas to the 'Idea Bucket' for the whole crew to champion their favorites." },
@@ -81,6 +87,8 @@ Your JSON Output:
 {
   "product": "EventOS",
   "heroImage": "/images/event-management-bg.jpg",
+  "challenge": "Organizing complex events like music festivals requires coordinating hundreds of moving parts while ensuring seamless execution.",
+  "tools": "EventOS provides your comprehensive operating system for event management, integrating planning, logistics, and attendee experience in one platform.",
   "userFlow": [
     { "step": 1, "text": "Design your event blueprint with our comprehensive planning tools and vendor coordination." },
     { "step": 2, "text": "Manage ticketing, attendee communications, and real-time logistics through EventAxis." },
@@ -137,6 +145,8 @@ serve(async (req) => {
       parsedResponse = {
         product: "escapade",
         heroImage: "/images/escapade-adventure-bg.jpg",
+        challenge: "Planning group trips often becomes chaotic with endless group chats and conflicting schedules.",
+        tools: "escapade transforms group trip planning into a seamless, collaborative experience.",
         userFlow: [
           { step: 1, text: "Capture inspiration from anywhere into your personal 'Stash' with our AI assistant." },
           { step: 2, text: "Propose ideas to the 'Idea Bucket' for the whole crew to champion their favorites." },
@@ -157,6 +167,8 @@ serve(async (req) => {
       error: error.message,
       product: "escapade",
       heroImage: "/images/escapade-adventure-bg.jpg",
+      challenge: "Planning group trips often becomes chaotic with endless group chats and conflicting schedules.",
+      tools: "escapade transforms group trip planning into a seamless, collaborative experience.",
       userFlow: [
         { step: 1, text: "Capture inspiration from anywhere into your personal 'Stash' with our AI assistant." },
         { step: 2, text: "Propose ideas to the 'Idea Bucket' for the whole crew to champion their favorites." },
