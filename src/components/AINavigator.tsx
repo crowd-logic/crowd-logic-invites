@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AINavigatorProps {
   onSolutionFound: (solution: any) => void;
@@ -18,15 +19,12 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
     setIsLoading(true);
     
     try {
-      const response = await fetch('/api/ai-navigator', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userInput: input }),
+      const { data, error } = await supabase.functions.invoke('ai-navigator', {
+        body: { userInput: input },
       });
 
-      const result = await response.json();
+      if (error) throw error;
+      const result = data;
       onSolutionFound(result);
       
       // Smooth scroll to PersonalizedHero section
