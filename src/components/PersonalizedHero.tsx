@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Compass, BarChart3 } from "lucide-react";
 import { AnimatedLandscape } from "./AnimatedLandscape";
+import { EmailCapture } from "./EmailCapture";
 
 interface PersonalizedHeroProps {
   solution: any;
@@ -135,21 +136,70 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
 
   // Personalized hero when solution is provided
   const typedSolution = solution as Solution;
+  
+  // Determine background based on product
+  const getProductBackground = () => {
+    if (typedSolution.product === "escapade") {
+      return (
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-700 to-emerald-800">
+          <AnimatedLandscape />
+        </div>
+      );
+    } else if (typedSolution.product === "KITO Agency") {
+      return (
+        <div className="absolute inset-0">
+          <div className="grid grid-cols-3 h-full">
+            <div 
+              className="bg-cover bg-center opacity-80"
+              style={{ backgroundImage: 'url(/lovable-uploads/21927be0-01c9-4a91-a532-c6684454e280.png)' }}
+            />
+            <div 
+              className="bg-cover bg-center opacity-80"
+              style={{ backgroundImage: 'url(/lovable-uploads/a23bcfeb-8aa9-443c-a4a6-333b32717982.png)' }}
+            />
+            <div 
+              className="bg-cover bg-center opacity-80"
+              style={{ backgroundImage: 'url(/lovable-uploads/0cd428cb-98d5-40a3-b1f8-a6ee2e1218bb.png)' }}
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80" />
+        </div>
+      );
+    } else {
+      // EventOS, EventAxis, VibePass - video placeholder backgrounds
+      return (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-emerald-900">
+          <div className="absolute inset-0 opacity-20">
+            <div className="grid grid-cols-8 grid-rows-8 h-full opacity-30">
+              {Array.from({ length: 64 }).map((_, i) => (
+                <div key={i} className="border border-slate-700/50" />
+              ))}
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-slate-400 text-lg">Video Demo Coming Soon</div>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  const getProductDisplayName = () => {
+    if (typedSolution.product === "KITO Agency") return "KITO Agency";
+    return typedSolution.product;
+  };
 
   return (
     <section id="personalized-hero" className="w-full h-screen flex">
       {/* Left Side - Personalized Product */}
       <motion.div 
         className="flex-1 relative overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url(${typedSolution.heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {getProductBackground()}
+        
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-white p-12">
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
@@ -157,9 +207,25 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-center"
           >
-            <h2 className="text-6xl font-bold mb-4">{typedSolution.product}</h2>
-            <p className="text-xl opacity-90">Your personalized solution</p>
+            <h2 className="text-6xl font-bold mb-4">{getProductDisplayName()}</h2>
+            <p className="text-xl opacity-90">Your CrowdLogic Solution</p>
           </motion.div>
+          
+          {/* Escapade Auth Embed */}
+          {typedSolution.product === "escapade" && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="mt-8 w-full max-w-md"
+            >
+              <iframe
+                src="https://escapadeapp.accesscrowdlogic.com/auth"
+                className="w-full h-96 rounded-lg border-2 border-white/20"
+                title="Escapade Authentication"
+              />
+            </motion.div>
+          )}
         </div>
       </motion.div>
 
@@ -215,7 +281,7 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
               ))}
             </AnimatePresence>
 
-            {/* CTA Card with 3D Flip */}
+            {/* CTA Section */}
             <AnimatePresence>
               {showCTA && (
                 <motion.div
@@ -224,42 +290,22 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
                   transition={{ duration: 0.8 }}
                   className="mt-12"
                 >
-                  <div 
-                    className="relative w-full h-24 cursor-pointer"
-                    style={{ perspective: '1000px' }}
-                    onClick={handleCTAFlip}
-                  >
-                    <motion.div
-                      className="absolute inset-0 w-full h-full"
-                      style={{ transformStyle: 'preserve-3d' }}
-                      animate={{ rotateY: isFlipped ? 180 : 0 }}
-                      transition={{ duration: 0.8 }}
-                    >
-                      {/* Front of card */}
-                      <div 
-                        className="absolute inset-0 w-full h-full bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-lg flex items-center justify-center"
-                        style={{ backfaceVisibility: 'hidden' }}
-                      >
-                        <span className="text-xl font-semibold">Your Blueprint</span>
-                      </div>
-                      
-                      {/* Back of card */}
-                      <div 
-                        className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center"
-                        style={{ 
-                          backfaceVisibility: 'hidden',
-                          transform: 'rotateY(180deg)'
-                        }}
-                      >
-                        <Button 
-                          size="lg"
-                          className="bg-white text-blue-700 hover:bg-gray-100"
-                        >
-                          {typedSolution.ctaText}
-                        </Button>
-                      </div>
-                    </motion.div>
-                  </div>
+                  {typedSolution.product === "escapade" ? (
+                    // For escapade, show different CTA since auth is embedded on left
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold mb-4 text-emerald-400">Your Blueprint</h3>
+                      <p className="text-lg opacity-90">Sign in on the left to start your adventure!</p>
+                    </div>
+                  ) : (
+                    // For other products, show email capture
+                    <div>
+                      <h3 className="text-2xl font-bold mb-6 text-center text-emerald-400">Your Blueprint</h3>
+                      <EmailCapture 
+                        placeholder="Enter your email for early access"
+                        buttonText={typedSolution.ctaText}
+                      />
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
