@@ -57,28 +57,41 @@ serve(async (req) => {
     }
 
     // Search for matching blueprint in the database
-    const { data: blueprints, error: dbError } = await supabase
+    // First try keyword search (more flexible)
+    const { data: keywordBlueprints, error: keywordError } = await supabase
       .from('solution_blueprints')
       .select('*')
-      .ilike('persona', `%${userInput}%`);
+      .overlaps('keywords', [userInput.toLowerCase()]);
 
-    if (dbError) {
-      console.error('Database error:', dbError);
-      throw new Error('Failed to search solution blueprints');
-    }
+    let matchedBlueprint = keywordBlueprints?.[0];
 
-    // If no direct match, try keyword search
-    let matchedBlueprint = blueprints?.[0];
-    if (!matchedBlueprint && blueprints?.length === 0) {
-      const { data: keywordBlueprints, error: keywordError } = await supabase
+    // If no keyword match, try partial persona match
+    if (!matchedBlueprint || keywordBlueprints?.length === 0) {
+      const { data: personaBlueprints, error: personaError } = await supabase
         .from('solution_blueprints')
         .select('*')
-        .overlaps('keywords', [userInput.toLowerCase()]);
+        .ilike('persona', `%${userInput}%`);
 
-      if (keywordError) {
-        console.error('Keyword search error:', keywordError);
+      if (personaError) {
+        console.error('Persona search error:', personaError);
       } else {
-        matchedBlueprint = keywordBlueprints?.[0];
+        matchedBlueprint = personaBlueprints?.[0];
+      }
+    }
+
+    // If still no match, try searching for common terms
+    if (!matchedBlueprint) {
+      const searchTerms = userInput.toLowerCase().split(' ');
+      for (const term of searchTerms) {
+        const { data: termBlueprints } = await supabase
+          .from('solution_blueprints')
+          .select('*')
+          .overlaps('keywords', [term]);
+        
+        if (termBlueprints && termBlueprints.length > 0) {
+          matchedBlueprint = termBlueprints[0];
+          break;
+        }
       }
     }
 
