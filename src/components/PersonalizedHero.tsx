@@ -211,19 +211,40 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
             <p className="text-xl opacity-90">Your CrowdLogic Solution</p>
           </motion.div>
           
-          {/* Escapade Auth Embed */}
+          {/* Escapade Auth Embed in iPhone Mockup */}
           {typedSolution.product === "escapade" && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="mt-8 w-full max-w-md"
+              className="mt-8 w-full max-w-sm mx-auto"
             >
-              <iframe
-                src="https://escapadeapp.accesscrowdlogic.com/auth"
-                className="w-full h-96 rounded-lg border-2 border-white/20"
-                title="Escapade Authentication"
-              />
+              {/* iPhone Mockup */}
+              <div className="relative mx-auto bg-black rounded-[3rem] p-2 shadow-2xl">
+                <div className="bg-black rounded-[2.5rem] overflow-hidden">
+                  {/* iPhone Notch */}
+                  <div className="relative bg-black h-6 flex justify-center">
+                    <div className="absolute top-1 bg-black rounded-full w-16 h-4 flex items-center justify-center">
+                      <div className="w-10 h-1.5 bg-gray-800 rounded-full"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Screen Content */}
+                  <div className="bg-white relative" style={{ aspectRatio: '9/19.5' }}>
+                    <iframe
+                      src="https://escapadeapp.accesscrowdlogic.com/auth"
+                      className="w-full h-full border-none"
+                      title="Escapade Authentication"
+                      style={{ minHeight: '600px' }}
+                    />
+                  </div>
+                  
+                  {/* Home Indicator */}
+                  <div className="bg-black h-6 flex justify-center items-center">
+                    <div className="w-32 h-1 bg-gray-800 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           )}
         </div>
