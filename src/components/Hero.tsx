@@ -4,7 +4,7 @@ import { AnimatedLandscape } from "./AnimatedLandscape";
 
 export const Hero = () => {
   return (
-    <div className="flex flex-col md:flex-row min-h-[600px]">
+    <div className="flex flex-col md:flex-row min-h-[90vh]">
       
       {/* Left Column - The escapade / B2C Side */}
       <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center text-white relative">
@@ -34,7 +34,7 @@ export const Hero = () => {
       </div>
 
       {/* Right Column - The EventOS / B2B Side */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center text-white relative border-l border-gray-700 min-h-[600px]">
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center text-white relative border-l border-gray-700 min-h-[90vh]">
         {/* Professional Tech Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-900 to-indigo-900">
           {/* Data visualization patterns */}
