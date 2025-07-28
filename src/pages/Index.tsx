@@ -64,40 +64,23 @@ const Index = () => {
       />
       
       {solution ? (
-        <div className="pt-20">
+        <div className={solution ? "pt-32" : "pt-20"}>
           <SolutionBlueprint 
             solution={solution} 
             onBack={handleBackToInput}
           />
         </div>
       ) : (
-        <>
+        <div className="pt-20">
+          <Hero />
           {showInputSection && (
-            <div className="pt-20 pb-8 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
-              <div className="max-w-4xl mx-auto px-6 text-center">
-                <div className="mb-8">
-                  <h1 className="text-4xl font-bold text-white mb-4">
-                    What's your next mission?
-                  </h1>
-                  <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-                    Every great achievement starts with understanding the challenge. 
-                    Tell us about your world, and we'll craft your perfect solution.
-                  </p>
-                  <AINavigator onSolutionFound={handleSolutionFound} />
-                </div>
-              </div>
-            </div>
+            <AINavigator onSolutionFound={handleSolutionFound} />
           )}
-          
-          <div className="perspective-1000">
-            <Hero />
-          </div>
-          
           <Vision />
           <Services />
           <Founder />
           <Contact />
-        </>
+        </div>
       )}
     </div>
   );

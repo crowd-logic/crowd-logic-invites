@@ -51,9 +51,9 @@ export const PersistentChatBar = ({ isVisible, originalSolution, onResponse }: P
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="w-full bg-background border-b border-border shadow-sm"
+          className="fixed top-20 left-0 right-0 z-40 w-full bg-background/95 backdrop-blur-sm border-b border-border shadow-sm"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <form onSubmit={handleSubmit} className="flex items-center gap-3">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MessageCircle className="h-4 w-4" />
