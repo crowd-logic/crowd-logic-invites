@@ -80,7 +80,7 @@ export const DualPathHero = ({ onSolutionFound, initialPersona }: DualPathHeroPr
   ];
 
   return (
-    <div className="h-screen grid grid-cols-1 lg:grid-cols-2">
+    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px] py-8">
       {/* Left Panel - AI Navigator */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-8">
         <div className="max-w-md w-full space-y-8">
