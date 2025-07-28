@@ -65,18 +65,25 @@ const Index = () => {
       />
       
       {solution ? (
-        <div className={solution ? "pt-32" : "pt-20"}>
+        <div className="pt-32">
           <SolutionBlueprint 
             solution={solution} 
             onBack={handleBackToInput}
           />
         </div>
+      ) : showInputSection ? (
+        <div className="h-screen pt-20 flex">
+          {/* Left Half - AI Navigator */}
+          <div className="w-1/2 h-full">
+            <AINavigator onSolutionFound={handleSolutionFound} />
+          </div>
+          {/* Right Half - Hero Content */}
+          <div className="w-1/2 h-full">
+            <Hero />
+          </div>
+        </div>
       ) : (
         <div className="pt-20">
-          <Hero />
-          {showInputSection && (
-            <AINavigator onSolutionFound={handleSolutionFound} />
-          )}
           <Vision />
           <Services />
           <Founder />
