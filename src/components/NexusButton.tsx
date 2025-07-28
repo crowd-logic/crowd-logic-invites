@@ -37,25 +37,11 @@ export const NexusButton = ({ onClick }: NexusButtonProps) => {
         }}
       >
         {/* CrowdLogic Logo */}
-        <svg
-          className="w-12 h-12 text-white"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2L13.09 8.26L19.5 9L13.09 9.74L12 16L10.91 9.74L4.5 9L10.91 8.26L12 2Z"
-            fill="currentColor"
-          />
-          <circle
-            cx="12"
-            cy="12"
-            r="3"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-          />
-        </svg>
+        <img 
+          src="/lovable-uploads/a652dce3-bfe6-44ac-802d-2f1f2148a596.png" 
+          alt="CrowdLogic Logo" 
+          className="w-12 h-12 object-contain filter brightness-0 invert"
+        />
       </motion.button>
 
       {/* Hover Text */}
