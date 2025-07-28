@@ -4,30 +4,41 @@ import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Hero } from "@/components/Hero";
 import { AINavigator } from "@/components/AINavigator";
-import { SolutionBlueprint } from "@/components/SolutionBlueprint";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
 import { Contact } from "@/components/Contact";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
+import { EcosystemOverview } from "@/components/EcosystemOverview";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
-  const [showInputSection, setShowInputSection] = useState(true);
+  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
-  const handleSolutionFound = (newSolution: any) => {
-    console.log('Solution found:', newSolution); // Debug log
-    setSolution(newSolution);
-    setShowInputSection(false);
+  const handleNexusClick = () => {
+    setIsAIModalOpen(true);
   };
 
-  const handleBackToInput = () => {
+  const handleSolutionFound = (newSolution: any) => {
+    console.log('Solution found:', newSolution);
+    setIsAIModalOpen(false);
+    setIsLoading(true);
+    
+    // Simulate loading delay for the spinning animation
+    setTimeout(() => {
+      setSolution(newSolution);
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const handleBackToHero = () => {
     setSolution(null);
-    setShowInputSection(true);
+    setIsLoading(false);
   };
 
   const handleChatResponse = (response: string) => {
@@ -41,11 +52,18 @@ const Index = () => {
       
       {/* Persistent Chat Bar - appears after solution is found */}
       <PersistentChatBar 
-        isVisible={!!solution && !showInputSection}
+        isVisible={!!solution}
         originalSolution={solution}
         onResponse={handleChatResponse}
       />
       
+      {/* AI Navigator Modal */}
+      <Dialog open={isAIModalOpen} onOpenChange={setIsAIModalOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-auto">
+          <AINavigator onSolutionFound={handleSolutionFound} />
+        </DialogContent>
+      </Dialog>
+
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
         <DialogContent className="max-w-4xl h-[80vh] p-0">
@@ -64,32 +82,29 @@ const Index = () => {
         response={chatResponse}
       />
       
-      {solution ? (
-        <div className="pt-32">
-          <SolutionBlueprint 
-            solution={solution} 
-            onBack={handleBackToInput}
-          />
-        </div>
-      ) : showInputSection ? (
-        <div className="h-screen pt-20 flex">
-          {/* Left Half - AI Navigator */}
-          <div className="w-1/2 h-full">
-            <AINavigator onSolutionFound={handleSolutionFound} />
-          </div>
-          {/* Right Half - Hero Content */}
-          <div className="w-1/2 h-full">
-            <Hero />
-          </div>
-        </div>
-      ) : (
-        <div className="pt-20">
-          <Vision />
-          <Services />
-          <Founder />
-          <Contact />
-        </div>
-      )}
+      {/* Main Content */}
+      <div className="pt-20">
+        <Hero 
+          isLoading={isLoading}
+          solution={solution}
+          onNexusClick={handleNexusClick}
+          onSignupClick={() => setIsSignupModalOpen(true)}
+          onBack={handleBackToHero}
+        />
+        
+        {/* Ecosystem Overview - always visible */}
+        <EcosystemOverview />
+        
+        {/* Additional sections when no solution is active */}
+        {!solution && !isLoading && (
+          <>
+            <Vision />
+            <Services />
+            <Founder />
+            <Contact />
+          </>
+        )}
+      </div>
     </div>
   );
 };
