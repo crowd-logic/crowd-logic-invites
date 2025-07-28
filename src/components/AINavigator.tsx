@@ -1,283 +1,162 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { ProductShowcase } from "./ProductShowcase";
-import { PersonalizedBlueprint } from "./PersonalizedBlueprint";
 
 interface AINavigatorProps {
   onSolutionFound: (solution: any) => void;
 }
 
-interface SolutionUIProps {
-  solution: any;
-  onStartOver: () => void;
-}
-
-const SolutionUI = ({ solution, onStartOver }: SolutionUIProps) => {
-  return (
-    <motion.div 
-      className="min-h-[60vh] flex w-full relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      {/* Left Panel - Product Showcase */}
-      <div className="w-1/2 h-full">
-        <ProductShowcase solutionProducts={solution.solution_products} />
-      </div>
-      
-      {/* Right Panel - Personalized Blueprint */}
-      <div className="w-1/2 h-full">
-        <PersonalizedBlueprint solution={solution} />
-      </div>
-
-      {/* Start Over Button */}
-      <motion.button
-        onClick={onStartOver}
-        className="absolute top-4 right-4 px-4 py-2 text-sm bg-white/80 backdrop-blur-sm rounded-lg border hover:bg-gray-50 transition-colors z-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        Start Over
-      </motion.button>
-    </motion.div>
-  );
-};
-
 export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [solution, setSolution] = useState<any>(null);
-  const [uiState, setUiState] = useState<'question' | 'loading' | 'solution'>('question');
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!userInput.trim()) return;
-    
-    setUiState('loading');
+
     setIsLoading(true);
-    
+
     try {
       const { data, error } = await supabase.functions.invoke('ai-navigator', {
         body: { userInput }
       });
 
-      if (error) throw error;
-      setSolution(data);
-      setUiState('solution');
+      if (error) {
+        console.error('Error calling ai-navigator:', error);
+        return;
+      }
+
+      console.log('AI Navigator response:', data);
       onSolutionFound(data);
     } catch (error) {
-      console.error('Error getting solution:', error);
-      setUiState('question');
+      console.error('Error in handleSubmit:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleStartOver = () => {
-    setSolution(null);
-    setUserInput("");
-    setUiState('question');
-  };
-
   return (
-    <div className="min-h-[60vh]">
-      <AnimatePresence mode="wait">
-        {uiState === 'question' && (
-          <motion.div 
-            key="question"
-            className="min-h-[60vh] flex flex-col justify-center items-center relative overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Rich animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
-              <motion.div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              {/* Floating elements */}
-              <motion.div
-                className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-xl"
-                animate={{
-                  x: [0, 100, 0],
-                  y: [0, -50, 0],
-                }}
-                transition={{
-                  duration: 12,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div
-                className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-secondary/10 to-primary/10 rounded-full blur-xl"
-                animate={{
-                  x: [0, -80, 0],
-                  y: [0, 60, 0],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2
-                }}
-              />
-            </div>
-
-            {/* Content */}
-            <motion.div 
-              className="z-10 text-center max-w-2xl px-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <motion.h1 
-                className="text-6xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                Find your fit in the CrowdLogic ecosystem
-              </motion.h1>
-              
-              <motion.p 
-                className="text-xl text-muted-foreground mb-8 max-w-3xl leading-relaxed"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                From personal trip planning with escapade™ to enterprise-level event logistics with EventOS™, 
-                our platform has a solution built for your needs. To see yours, tell us about your role or goal.
-              </motion.p>
-              
-              <motion.div 
-                className="space-y-6"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <Input
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  placeholder="Describe your role, your goal, or your biggest challenge..."
-                  className="text-lg p-6 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40 rounded-xl"
-                  onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-                />
-                
-                <Button 
-                  onClick={handleSubmit}
-                  size="lg"
-                  className="px-12 py-6 text-lg rounded-xl bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all duration-200"
-                >
-                  Design My Solution
-                </Button>
-                
-                <motion.a
-                  href="#ecosystem"
-                  className="inline-block text-muted-foreground hover:text-foreground transition-colors cursor-pointer mt-4"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  Or, browse our full ecosystem ➔
-                </motion.a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        )}
-        
-        {uiState === 'loading' && (
-          <motion.div 
-            key="loading"
-            className="min-h-[60vh] flex flex-col justify-center items-center relative overflow-hidden"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-50">
-              <motion.div
-                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.2, 0.4, 0.2],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </div>
-
+    <div className="h-screen relative overflow-hidden">
+      {/* Rich Branded Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-teal-800 to-emerald-700">
+        {/* Animated Data Nebula Effect */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
             <motion.div
-              className="text-center z-10"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              key={i}
+              className="absolute w-2 h-2 bg-emerald-400/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [-20, 20, -20],
+                x: [-10, 10, -10],
+                opacity: [0.3, 0.7, 0.3],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Abstract Journey Lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-20">
+          <motion.path
+            d="M0,300 Q400,100 800,250 T1600,200"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            className="text-emerald-300"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+          />
+          <motion.path
+            d="M0,500 Q600,200 1200,400 T2400,300"
+            stroke="currentColor"
+            strokeWidth="1"
+            fill="none"
+            className="text-teal-300"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 6, repeat: Infinity, repeatType: "reverse", delay: 1 }}
+          />
+        </svg>
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 flex items-center justify-center h-full px-6">
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Find your fit in the CrowdLogic ecosystem.
+          </motion.h1>
+          
+          <motion.p 
+            className="text-xl md:text-2xl text-emerald-100 mb-12 leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            From personal trip planning with escapade™ to enterprise-level event logistics with EventOS™, 
+            our platform has a solution built for your needs. To see yours, tell us about your role or goal.
+          </motion.p>
+          
+          {isLoading ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center"
             >
               <motion.div
-                className="w-24 h-24 mx-auto mb-8 bg-gradient-to-r from-primary to-secondary rounded-full relative"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <motion.div
-                  className="absolute inset-2 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-full"
-                  animate={{
-                    scale: [0.8, 1.1, 0.8],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                />
-              </motion.div>
-              
+                className="inline-block w-16 h-16 border-4 border-white/20 border-t-white rounded-full mb-6"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
               <motion.p 
-                className="text-xl text-muted-foreground"
+                className="text-2xl text-white"
                 animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                transition={{ duration: 2, repeat: Infinity }}
               >
-                Finding the best fit for you...
+                Finding your fit...
               </motion.p>
             </motion.div>
-          </motion.div>
-        )}
-        
-        {uiState === 'solution' && solution && (
-          <SolutionUI 
-            key="solution"
-            solution={solution} 
-            onStartOver={handleStartOver} 
-          />
-        )}
-      </AnimatePresence>
+          ) : (
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Input
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="e.g., I plan family events, I manage brand activations..."
+                className="h-14 text-lg px-6 bg-white/10 border-white/20 text-white placeholder-emerald-200 backdrop-blur-sm"
+                disabled={isLoading}
+              />
+              <Button 
+                type="submit" 
+                disabled={isLoading || !userInput.trim()}
+                className="h-14 px-8 text-lg bg-white text-emerald-900 hover:bg-emerald-50 transition-all duration-300"
+              >
+                Design My Solution
+              </Button>
+            </motion.form>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
