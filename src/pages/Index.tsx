@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { SolutionBuilderBar } from "@/components/SolutionBuilderBar";
 import { DynamicHero } from "@/components/DynamicHero";
-import { Contact } from "@/components/Contact";
+
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
 import { EcosystemOverview } from "@/components/EcosystemOverview";
@@ -68,10 +68,6 @@ const Index = () => {
       {/* Ecosystem Overview - always visible */}
       <EcosystemOverview />
       
-      {/* Footer - always visible */}
-      {!solution && !isLoading && (
-        <Contact />
-      )}
 
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
