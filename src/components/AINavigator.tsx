@@ -16,24 +16,34 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
     e.preventDefault();
     if (!userInput.trim()) return;
 
+    console.log('AINavigator: Starting submission with input:', userInput);
     setIsLoading(true);
 
     try {
+      console.log('AINavigator: Calling supabase function...');
       const { data, error } = await supabase.functions.invoke('ai-navigator', {
         body: { userInput }
       });
+
+      console.log('AINavigator: Response received:', { data, error });
 
       if (error) {
         console.error('Error calling ai-navigator:', error);
         return;
       }
 
-      console.log('AI Navigator response:', data);
-      onSolutionFound(data);
+      if (data) {
+        console.log('AI Navigator response:', data);
+        console.log('AINavigator: Calling onSolutionFound with data:', data);
+        onSolutionFound(data);
+      } else {
+        console.log('AINavigator: No data received');
+      }
     } catch (error) {
       console.error('Error in handleSubmit:', error);
     } finally {
       setIsLoading(false);
+      console.log('AINavigator: Loading finished');
     }
   };
 
