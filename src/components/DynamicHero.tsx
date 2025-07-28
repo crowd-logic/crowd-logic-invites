@@ -74,81 +74,32 @@ export const DynamicHero = ({
                 background: 'linear-gradient(135deg, #1e1b4b 0%, #581c87 50%, #7c3aed 100%)'
               }}
             >
-              <div className="relative z-10 h-full flex flex-col justify-center items-center p-12 text-center text-white">
+              {/* Centered Logo Circle */}
+              <div className="absolute inset-0 flex items-center justify-center z-20">
                 <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  className="max-w-lg"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.6, type: "spring" }}
+                  className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300"
+                  onClick={onSignupClick}
                 >
-                  <Compass className="h-16 w-16 mx-auto mb-6 text-purple-200" />
-                  <h1 className="text-4xl font-bold mb-6 leading-tight">
-                    Your next adventure starts now
-                  </h1>
-                  <p className="text-xl text-purple-100 mb-8 leading-relaxed">
-                    Discover personalized travel experiences crafted just for you. From hidden gems to bucket-list destinations.
-                  </p>
-                  <Button 
-                    size="lg"
-                    onClick={onSignupClick}
-                    className="bg-white text-purple-900 hover:bg-purple-50 font-semibold px-8 py-3 text-lg"
-                  >
-                    Join the Escapade™
-                  </Button>
+                  <div className="text-2xl font-bold text-purple-900">C</div>
                 </motion.div>
               </div>
               
-              {/* Animated Landscape Background */}
-              <div className="absolute inset-0 opacity-30">
+              {/* Dimmed Animated Landscape Background */}
+              <div className="absolute inset-0 opacity-10">
                 <AnimatedLandscape />
               </div>
             </motion.div>
 
-            {/* Right Panel - EventOS Pitch */}
+            {/* Right Panel - Simple Background */}
             <motion.div
               className="w-1/2 h-full relative overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)'
               }}
-            >
-              <div className="relative z-10 h-full flex flex-col justify-center items-center p-12 text-center text-white">
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="max-w-lg"
-                >
-                  <BarChart3 className="h-16 w-16 mx-auto mb-6 text-slate-300" />
-                  <h1 className="text-4xl font-bold mb-6 leading-tight">
-                    The Operating System for Experiential Marketing
-                  </h1>
-                  <p className="text-xl text-slate-200 mb-8 leading-relaxed">
-                    Transform events into powerful brand experiences with data-driven insights and seamless execution.
-                  </p>
-                  <Button 
-                    size="lg"
-                    onClick={onSignupClick}
-                    className="bg-white text-slate-900 hover:bg-slate-50 font-semibold px-8 py-3 text-lg"
-                  >
-                    Explore the Platform
-                  </Button>
-                </motion.div>
-              </div>
-              
-              {/* Animated background elements */}
-              <div className="absolute inset-0 opacity-20">
-                <motion.div
-                  animate={{ x: [0, 100, 0] }}
-                  transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-16 left-16 w-6 h-6 bg-white/30 rounded-full"
-                />
-                <motion.div
-                  animate={{ y: [0, -80, 0] }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute bottom-24 right-24 w-8 h-8 bg-white/20 rounded-full"
-                />
-              </div>
-            </motion.div>
+            />
           </motion.div>
         )}
       </AnimatePresence>
