@@ -74,18 +74,6 @@ export const ContentLibrary = ({ onSignupClick = () => {} }: ContentLibraryProps
                   </Button>
                 </div>
 
-                <div className="relative">
-                  <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                    <CardContent className="p-8">
-                      <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/30 rounded-lg flex items-center justify-center">
-                        <div className="text-center space-y-2">
-                          <MapPin className="h-12 w-12 text-primary mx-auto" />
-                          <p className="text-sm font-medium text-primary">escapade App Preview</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
               </div>
             </motion.div>
           </TabsContent>
