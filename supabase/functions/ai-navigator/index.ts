@@ -18,6 +18,7 @@ serve(async (req) => {
     const { userInput } = await req.json()
     
     console.log('User input received:', userInput)
+    console.log('Using Anthropic API with key present:', !!anthropicApiKey)
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
