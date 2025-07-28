@@ -9,11 +9,15 @@ import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
 import { Contact } from "@/components/Contact";
+import { PersistentChatBar } from "@/components/PersistentChatBar";
+import { ChatResponseModal } from "@/components/ChatResponseModal";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
   const [showInputSection, setShowInputSection] = useState(true);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+  const [chatResponse, setChatResponse] = useState<string>('');
+  const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
   const handleSolutionFound = (newSolution: any) => {
     setSolution(newSolution);
@@ -25,9 +29,21 @@ const Index = () => {
     setShowInputSection(true);
   };
 
+  const handleChatResponse = (response: string) => {
+    setChatResponse(response);
+    setIsResponseModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
+      
+      {/* Persistent Chat Bar - appears after solution is found */}
+      <PersistentChatBar 
+        isVisible={!!solution && !showInputSection}
+        originalSolution={solution}
+        onResponse={handleChatResponse}
+      />
       
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
@@ -39,6 +55,13 @@ const Index = () => {
           />
         </DialogContent>
       </Dialog>
+
+      {/* Chat Response Modal */}
+      <ChatResponseModal 
+        isOpen={isResponseModalOpen}
+        onClose={() => setIsResponseModalOpen(false)}
+        response={chatResponse}
+      />
       
       {solution ? (
         <div className="pt-20">

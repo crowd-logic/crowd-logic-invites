@@ -814,18 +814,21 @@ export type Database = {
       products: {
         Row: {
           created_at: string | null
+          faq: Json | null
           id: string
           name: string
           tagline: string | null
         }
         Insert: {
           created_at?: string | null
+          faq?: Json | null
           id?: string
           name: string
           tagline?: string | null
         }
         Update: {
           created_at?: string | null
+          faq?: Json | null
           id?: string
           name?: string
           tagline?: string | null
