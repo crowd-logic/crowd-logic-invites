@@ -27,7 +27,7 @@ export const PersonalizedBlueprint = ({ solution, onSignupClick, onBack }: Perso
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {solution?.persona}
+            A Blueprint for the {solution?.persona}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
             {solution?.pain_point_headline}
@@ -69,7 +69,7 @@ export const PersonalizedBlueprint = ({ solution, onSignupClick, onBack }: Perso
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
                     <div className="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                    The Solution
+                    Our Solution
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-5">
                     {caseStudy.solution}
@@ -79,7 +79,7 @@ export const PersonalizedBlueprint = ({ solution, onSignupClick, onBack }: Perso
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                    The Result
+                    The Outcome
                   </h3>
                   <p className="text-gray-600 leading-relaxed pl-5">
                     {caseStudy.result}
@@ -165,7 +165,7 @@ export const PersonalizedBlueprint = ({ solution, onSignupClick, onBack }: Perso
         <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
-              Ready to transform your approach?
+              Ready to get started?
             </h3>
             <p className="text-gray-600">
               Join thousands who've revolutionized their workflow
