@@ -8,9 +8,10 @@ import { supabase } from "@/integrations/supabase/client";
 interface DualPathHeroProps {
   onSolutionFound: (solution: any) => void;
   initialPersona?: string;
+  onSignupClick: () => void;
 }
 
-export const DualPathHero = ({ onSolutionFound, initialPersona }: DualPathHeroProps) => {
+export const DualPathHero = ({ onSolutionFound, initialPersona, onSignupClick }: DualPathHeroProps) => {
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [solution, setSolution] = useState<any>(null);
@@ -184,7 +185,7 @@ export const DualPathHero = ({ onSolutionFound, initialPersona }: DualPathHeroPr
                 </div>
               )}
 
-              <Button size="lg" className="w-full">
+              <Button size="lg" className="w-full" onClick={onSignupClick}>
                 {solution.cta_text}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

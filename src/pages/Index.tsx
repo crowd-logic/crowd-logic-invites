@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Hero } from "@/components/Hero";
 import { AINavigator } from "@/components/AINavigator";
 import { SolutionBlueprint } from "@/components/SolutionBlueprint";
@@ -12,6 +13,7 @@ import { Contact } from "@/components/Contact";
 const Index = () => {
   const [solution, setSolution] = useState(null);
   const [showInputSection, setShowInputSection] = useState(true);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
   const handleSolutionFound = (newSolution: any) => {
     setSolution(newSolution);
@@ -25,7 +27,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <Navigation />
+      <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
+      
+      {/* Signup Modal */}
+      <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] p-0">
+          <iframe
+            src="https://escapadeapp.accesscrowdlogic.com/auth"
+            className="w-full h-full rounded-lg"
+            title="Escapade Sign Up"
+          />
+        </DialogContent>
+      </Dialog>
       
       {solution ? (
         <div className="pt-20">

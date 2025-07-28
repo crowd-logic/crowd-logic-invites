@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { DualPathHero } from "@/components/DualPathHero";
 import { ContentLibrary } from "@/components/ContentLibrary";
 import { Navigation } from "@/components/Navigation";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const Homepage = () => {
   const [solution, setSolution] = useState<any>(null);
   const [initialPersona, setInitialPersona] = useState<string | null>(null);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
   // Check for URL parameters on component mount
   useEffect(() => {
@@ -19,16 +21,31 @@ const Homepage = () => {
   return (
     <div className="min-h-screen">
       {/* Persistent Top Navigation */}
-      <Navigation />
+      <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
       
-      {/* Dual-Path Hero Section */}
-      <DualPathHero 
-        onSolutionFound={setSolution} 
-        initialPersona={initialPersona}
-      />
+      {/* Main Content with top padding to avoid navigation overlap */}
+      <div className="pt-20">
+        {/* Dual-Path Hero Section */}
+        <DualPathHero 
+          onSolutionFound={setSolution} 
+          initialPersona={initialPersona}
+          onSignupClick={() => setIsSignupModalOpen(true)}
+        />
+        
+        {/* Content Library */}
+        <ContentLibrary onSignupClick={() => setIsSignupModalOpen(true)} />
+      </div>
       
-      {/* Content Library */}
-      <ContentLibrary />
+      {/* Signup Modal */}
+      <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
+        <DialogContent className="max-w-4xl h-[80vh] p-0">
+          <iframe
+            src="https://escapadeapp.accesscrowdlogic.com/auth"
+            className="w-full h-full rounded-lg"
+            title="Escapade Sign Up"
+          />
+        </DialogContent>
+      </Dialog>
       
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-8 px-6">

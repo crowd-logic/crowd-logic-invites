@@ -4,7 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MapPin, Users, Calendar, BarChart3, Shield, Zap } from "lucide-react";
 
-export const ContentLibrary = () => {
+interface ContentLibraryProps {
+  onSignupClick: () => void;
+}
+
+export const ContentLibrary = ({ onSignupClick }: ContentLibraryProps) => {
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -65,7 +69,7 @@ export const ContentLibrary = () => {
                     </div>
                   </div>
                   
-                  <Button size="lg" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto" onClick={onSignupClick}>
                     Start Planning Your Adventure
                   </Button>
                 </div>
@@ -136,7 +140,7 @@ export const ContentLibrary = () => {
                   </div>
                   
                   <Button size="lg" className="w-full sm:w-auto">
-                    See Event Axis in Action
+                    Request Demo
                   </Button>
                 </div>
               </div>
