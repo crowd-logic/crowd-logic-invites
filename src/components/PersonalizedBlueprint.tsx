@@ -3,21 +3,35 @@ import { Button } from "@/components/ui/button";
 
 interface PersonalizedBlueprintProps {
   solution: {
-    persona: string;
-    pain_point_headline: string;
-    case_study: {
+    persona?: string;
+    pain_point_headline?: string;
+    case_study?: {
       title: string;
       scenario: string;
       solution: string;
       result: string;
-    };
-    cta_type: string;
-    cta_text: string;
-    cta_link: string;
+    } | null;
+    cta_type?: string;
+    cta_text?: string;
+    cta_link?: string;
+    userFlow?: Array<{
+      step: number;
+      text: string;
+      highlight?: string;
+    }>;
+    challenge?: string;
+    tools?: string;
   };
 }
 
 export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) => {
+  // Safe fallbacks for missing data
+  const persona = solution?.persona || "Solutions Expert";
+  const painPoint = solution?.pain_point_headline || "Let us help you find the perfect solution";
+  const caseStudy = solution?.case_study;
+  const ctaText = solution?.cta_text || "Get Started";
+  const ctaLink = solution?.cta_link || "#";
+
   return (
     <div className="h-full bg-white p-12 overflow-y-auto">
       <div className="max-w-2xl">
@@ -32,47 +46,76 @@ export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) 
             Personalized Solution
           </p>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {solution.persona}
+            {persona}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            {solution.pain_point_headline}
+            {painPoint}
           </p>
         </motion.div>
 
-        {/* Case Study */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            {solution.case_study.title}
-          </h2>
-          
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">The Challenge</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {solution.case_study.scenario}
-              </p>
-            </div>
+        {/* Case Study - Only render if data exists */}
+        {caseStudy && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12"
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              {caseStudy.title}
+            </h2>
             
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">The Solution</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {solution.case_study.solution}
-              </p>
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">The Challenge</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {caseStudy.scenario}
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">The Solution</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {caseStudy.solution}
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">The Result</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {caseStudy.result}
+                </p>
+              </div>
             </div>
+          </motion.div>
+        )}
+
+        {/* User Journey - Fallback content when no case study */}
+        {!caseStudy && solution?.userFlow && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-12"
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Your Journey
+            </h2>
             
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">The Result</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {solution.case_study.result}
-              </p>
+            <div className="space-y-4">
+              {solution.userFlow.map((step: any, index: number) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-emerald-600 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">
+                    {step.step}
+                  </div>
+                  <p className="text-gray-600 leading-relaxed pt-1">
+                    {step.text}
+                  </p>
+                </div>
+              ))}
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         {/* CTA */}
         <motion.div
@@ -85,14 +128,14 @@ export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) 
             Ready to get started?
           </h3>
           <p className="text-gray-600 mb-6">
-            Join the thousands of {solution.persona.toLowerCase()}s who have already transformed their approach.
+            Join thousands who have already transformed their approach.
           </p>
           <Button 
             size="lg" 
             className="bg-emerald-600 hover:bg-emerald-700 text-white"
-            onClick={() => window.open(solution.cta_link, '_blank')}
+            onClick={() => window.open(ctaLink, '_blank')}
           >
-            {solution.cta_text}
+            {ctaText}
           </Button>
         </motion.div>
       </div>
