@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { Compass, BarChart3 } from "lucide-react";
 import { ProductShowcase } from "./ProductShowcase";
 import { PersonalizedBlueprint } from "./PersonalizedBlueprint";
+import { AnimatedLandscape } from "./AnimatedLandscape";
 
 interface DynamicHeroProps {
   solution?: any;
@@ -97,18 +98,9 @@ export const DynamicHero = ({
                 </motion.div>
               </div>
               
-              {/* Animated background elements */}
-              <div className="absolute inset-0 opacity-20">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute top-20 right-20 w-32 h-32 border-2 border-white/30 rounded-full"
-                />
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute bottom-20 left-20 w-24 h-24 border border-white/20 rounded-full"
-                />
+              {/* Animated Landscape Background */}
+              <div className="absolute inset-0 opacity-30">
+                <AnimatedLandscape />
               </div>
             </motion.div>
 
