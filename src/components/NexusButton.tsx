@@ -15,7 +15,7 @@ export const NexusButton = ({ onClick }: NexusButtonProps) => {
         onClick={onClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-32 h-32 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg shadow-white/20 flex items-center justify-center group relative"
+        className="w-32 h-32 rounded-full bg-black/60 backdrop-blur-md border border-white/30 shadow-lg shadow-white/20 flex items-center justify-center group relative"
         whileHover={{ 
           scale: 1.05,
           boxShadow: "0 0 40px rgba(255, 255, 255, 0.4)"
