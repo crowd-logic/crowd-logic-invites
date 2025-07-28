@@ -95,14 +95,14 @@ export const Hero = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative h-full grid grid-cols-2 grid-rows-2"
+            className="relative w-full h-full grid grid-cols-2 grid-rows-2 gap-0"
           >
             {quadrants.map((quadrant, index) => {
               const IconComponent = quadrant.icon;
               return (
                 <motion.div
                   key={quadrant.id}
-                  className="relative flex flex-col items-center justify-center p-8 text-white border border-gray-700/30"
+                  className="relative w-full h-full flex flex-col items-center justify-center p-8 text-white border border-gray-700/30 min-h-0"
                   style={{ background: quadrant.background }}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
