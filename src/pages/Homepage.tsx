@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,10 +67,11 @@ const Homepage = () => {
     }
   };
 
+  // Question State - Initial landing experience
   if (uiState === 'question') {
     return (
       <motion.div 
-        className="h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-background/90"
+        className="h-screen flex flex-col justify-center items-center relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -78,7 +79,7 @@ const Homepage = () => {
         {/* Abstract animated background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
           <motion.div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(var(--primary),0.1),transparent_50%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -87,6 +88,32 @@ const Homepage = () => {
               duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
+            }}
+          />
+          {/* Additional floating elements for visual richness */}
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-xl"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, -50, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-secondary/10 to-primary/10 rounded-full blur-xl"
+            animate={{
+              x: [0, -80, 0],
+              y: [0, 60, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
             }}
           />
         </div>
@@ -134,22 +161,40 @@ const Homepage = () => {
     );
   }
 
+  // Loading State - Beautiful transition animation
   if (uiState === 'loading') {
     return (
       <motion.div 
-        className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-background via-background/95 to-background/90"
+        className="h-screen flex flex-col justify-center items-center relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
+        {/* Keep background but fade it */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-50">
+          <motion.div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+
         <motion.div
-          className="text-center"
+          className="text-center z-10"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
+          {/* Pulsing logo/loading animation */}
           <motion.div
-            className="w-24 h-24 mx-auto mb-8 bg-gradient-to-r from-primary to-secondary rounded-full"
+            className="w-24 h-24 mx-auto mb-8 bg-gradient-to-r from-primary to-secondary rounded-full relative"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.7, 1, 0.7],
@@ -159,7 +204,22 @@ const Homepage = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-          />
+          >
+            {/* Inner pulsing circle */}
+            <motion.div
+              className="absolute inset-2 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-full"
+              animate={{
+                scale: [0.8, 1.1, 0.8],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+            />
+          </motion.div>
+          
           <motion.p 
             className="text-xl text-muted-foreground"
             animate={{ opacity: [0.5, 1, 0.5] }}
@@ -172,6 +232,7 @@ const Homepage = () => {
     );
   }
 
+  // Solution State - Split screen hero with animations
   if (uiState === 'solution' && solution) {
     return (
       <div className="h-screen relative overflow-hidden">
@@ -187,7 +248,7 @@ const Homepage = () => {
         </motion.button>
 
         <div className="flex h-full">
-          {/* Left Panel */}
+          {/* Left Panel - Product showcase */}
           <motion.div 
             className={`w-1/2 h-full relative flex flex-col justify-center items-center text-white ${getProductBackground(solution.product)}`}
             initial={{ x: '-100%' }}
@@ -215,7 +276,7 @@ const Homepage = () => {
             </div>
           </motion.div>
 
-          {/* Right Panel */}
+          {/* Right Panel - User journey */}
           <motion.div 
             className="w-1/2 h-full bg-background flex flex-col justify-center px-12"
             initial={{ x: '100%' }}
@@ -245,7 +306,7 @@ const Homepage = () => {
                   }}
                   transition={{ delay: 1.8 + (index * 0.2) }}
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold transition-colors duration-500 ${
                     currentStep > index ? 'bg-primary' : 'bg-muted'
                   }`}>
                     {step.step}
@@ -274,7 +335,7 @@ const Homepage = () => {
                   {solution.ctaType === 'signup' ? (
                     <Button 
                       size="lg"
-                      className="px-8 py-4 text-lg bg-primary hover:bg-primary/90"
+                      className="px-8 py-4 text-lg bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all duration-200"
                       onClick={() => window.open(solution.ctaLink, '_blank')}
                     >
                       {solution.ctaText}
