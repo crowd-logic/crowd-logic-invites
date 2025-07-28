@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Hero } from "@/components/Hero";
+import { HeroSection } from "@/components/HeroSection";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
@@ -79,10 +79,10 @@ const Index = () => {
       
       {/* Main Content */}
       <div>
-        <Hero 
+        <HeroSection 
           isLoading={isLoading}
           solution={solution}
-          onNexusClick={() => console.log('Nexus clicked - but AI bar should handle input')}
+          onNexusClick={() => console.log('Nexus clicked - will be handled by PersistentAIBar')}
           onSignupClick={() => setIsSignupModalOpen(true)}
           onBack={handleBackToHero}
         />
