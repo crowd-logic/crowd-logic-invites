@@ -13,11 +13,18 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const getSystemPrompt = () => `Your ONLY task is to find the single most relevant record in the solution_blueprints knowledge base that matches the user's input. You must then return the entire, unmodified JSON object from that record. Do NOT invent, create, or summarize any content. You are a data retrieval engine, not a creative writer.
+// The Master "Composable Story" Prompt for Anthropic
+const getComposerPrompt = (userInput: string, storyModules: any[]) => `You are "The Br.AI.n," an expert AI storyteller and Solutions Architect. Your task is to take a user's query and a set of pre-approved, modular story components from our knowledge base, and compose them into a compelling, 3-step personalized journey.
 
-When you find the matching record, return it exactly as stored in the database, including all fields: persona, pain_point_headline, solution_products, user_journey_raw, case_study, cta_type, cta_text, and cta_link.
+You must intelligently weave the provided story modules together. You can add smooth, professional transition phrases, but the core facts and product names must come directly from the modules. You must also identify a key phrase to highlight in each step of the final narrative.
 
-Your response must be a single JSON object containing the exact data from the database record.`;
+Return ONLY a single, valid JSON object with the key "story_flow", which contains an array of exactly three step objects. Each step object must have a "narrative" and a "highlight" key.
+
+USER QUERY: ${userInput}
+
+PRE-APPROVED STORY MODULES: ${JSON.stringify(storyModules)}
+
+YOUR REQUIRED JSON OUTPUT: Return a JSON object with "story_flow" containing exactly 3 steps with "narrative" and "highlight" fields.`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -31,116 +38,179 @@ serve(async (req) => {
       throw new Error('ANTHROPIC_API_KEY not configured');
     }
 
-    console.log('🔍 Searching for blueprint with input:', userInput);
+    console.log('🔍 Processing user input:', userInput);
 
-    // Search for matching blueprint in the database
-    // First try keyword search (more flexible)
-    const { data: keywordBlueprints, error: keywordError } = await supabase
-      .from('solution_blueprints')
-      .select('*')
-      .overlaps('keywords', [userInput.toLowerCase()]);
+    // Step 1: Find the best matching persona using keyword search
+    console.log('🎯 Step 1: Finding matching persona...');
+    
+    const inputTerms = userInput.toLowerCase().split(/\s+/);
+    console.log('📝 Input terms:', inputTerms);
 
-    console.log('📊 Keyword search results:', keywordBlueprints?.length || 0, 'blueprints found');
-    if (keywordError) console.error('❌ Keyword search error:', keywordError);
+    // Search for personas that match any of the input terms
+    const { data: allPersonas, error: personaError } = await supabase
+      .from('personas')
+      .select('*');
 
-    let matchedBlueprint = keywordBlueprints?.[0];
-
-    // If no keyword match, try partial persona match
-    if (!matchedBlueprint || keywordBlueprints?.length === 0) {
-      console.log('🔄 Trying persona search...');
-      const { data: personaBlueprints, error: personaError } = await supabase
-        .from('solution_blueprints')
-        .select('*')
-        .ilike('persona', `%${userInput}%`);
-
-      console.log('👤 Persona search results:', personaBlueprints?.length || 0, 'blueprints found');
-      if (personaError) {
-        console.error('❌ Persona search error:', personaError);
-      } else {
-        matchedBlueprint = personaBlueprints?.[0];
-      }
+    if (personaError) {
+      console.error('❌ Error fetching personas:', personaError);
+      throw new Error('Failed to fetch personas');
     }
 
-    // If still no match, try searching for common terms
-    if (!matchedBlueprint) {
-      console.log('🔄 Trying individual term search...');
-      const searchTerms = userInput.toLowerCase().split(' ');
-      console.log('🔤 Search terms:', searchTerms);
+    console.log('👥 Found personas:', allPersonas?.length || 0);
+
+    // Score each persona based on keyword matches
+    let bestPersona = null;
+    let maxScore = 0;
+
+    for (const persona of allPersonas || []) {
+      let score = 0;
+      const personaKeywords = persona.keywords || [];
       
-      for (const term of searchTerms) {
+      for (const term of inputTerms) {
         if (term.length < 3) continue; // Skip very short terms
         
-        const { data: termBlueprints } = await supabase
-          .from('solution_blueprints')
-          .select('*')
-          .overlaps('keywords', [term]);
+        // Check if any persona keyword contains this term
+        for (const keyword of personaKeywords) {
+          if (keyword.toLowerCase().includes(term) || term.includes(keyword.toLowerCase())) {
+            score += 1;
+            console.log(`✅ Match: "${term}" matches keyword "${keyword}" for ${persona.name}`);
+          }
+        }
         
-        console.log(`📝 Term "${term}" found:`, termBlueprints?.length || 0, 'blueprints');
-        
-        if (termBlueprints && termBlueprints.length > 0) {
-          matchedBlueprint = termBlueprints[0];
-          console.log('✅ Matched blueprint:', matchedBlueprint.persona);
-          break;
+        // Also check persona name and description
+        if (persona.name.toLowerCase().includes(term)) {
+          score += 2; // Higher weight for name matches
+          console.log(`✅ Name match: "${term}" in "${persona.name}"`);
+        }
+        if (persona.description?.toLowerCase().includes(term)) {
+          score += 1;
+          console.log(`✅ Description match: "${term}" in persona description`);
         }
       }
-    }
-
-    if (!matchedBlueprint) {
-      console.log('⚠️ No match found, using fallback blueprint');
-      // Fallback to a random blueprint instead of always the same one
-      const { data: allBlueprints } = await supabase
-        .from('solution_blueprints')
-        .select('*');
       
-      if (allBlueprints && allBlueprints.length > 0) {
-        // Select a random blueprint instead of always the first one
-        const randomIndex = Math.floor(Math.random() * allBlueprints.length);
-        matchedBlueprint = allBlueprints[randomIndex];
-        console.log('🎲 Using random blueprint:', matchedBlueprint.persona);
+      console.log(`📊 ${persona.name}: score ${score}`);
+      
+      if (score > maxScore) {
+        maxScore = score;
+        bestPersona = persona;
       }
-    } else {
-      console.log('✅ Final matched blueprint:', matchedBlueprint.persona);
     }
 
-    if (!matchedBlueprint) {
-      throw new Error('No solution blueprints found in database');
+    // Fallback to a default persona if no matches
+    if (!bestPersona && allPersonas && allPersonas.length > 0) {
+      bestPersona = allPersonas[0]; // Default to first persona
+      console.log('🎲 No matches found, using default persona:', bestPersona.name);
     }
 
-    // Return the exact blueprint record as structured data
-    const dashboardContent = {
-      persona: matchedBlueprint.persona,
-      pain_point_headline: matchedBlueprint.pain_point_headline,
-      solution_products: matchedBlueprint.solution_products,
-      user_journey_raw: matchedBlueprint.user_journey_raw,
-      case_study: matchedBlueprint.case_study,
-      cta_type: matchedBlueprint.cta_type,
-      cta_text: matchedBlueprint.cta_text,
-      cta_link: matchedBlueprint.cta_link,
-      keywords: matchedBlueprint.keywords
+    if (!bestPersona) {
+      throw new Error('No personas found in database');
+    }
+
+    console.log('🎯 Selected persona:', bestPersona.name, 'with score:', maxScore);
+
+    // Step 2: Retrieve story modules for the matched persona
+    console.log('📚 Step 2: Retrieving story modules...');
+    
+    const { data: storyModules, error: modulesError } = await supabase
+      .from('story_modules')
+      .select('*')
+      .eq('persona_id', bestPersona.id);
+
+    if (modulesError) {
+      console.error('❌ Error fetching story modules:', modulesError);
+      throw new Error('Failed to fetch story modules');
+    }
+
+    console.log('📖 Found story modules:', storyModules?.length || 0);
+
+    if (!storyModules || storyModules.length === 0) {
+      throw new Error('No story modules found for persona');
+    }
+
+    // Step 3: Call Anthropic to compose the story
+    console.log('🧠 Step 3: Composing story with Anthropic...');
+    
+    const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: getComposerPrompt(userInput, storyModules)
+        }]
+      })
+    });
+
+    if (!anthropicResponse.ok) {
+      const errorText = await anthropicResponse.text();
+      console.error('❌ Anthropic API error:', errorText);
+      throw new Error(`Anthropic API error: ${anthropicResponse.status}`);
+    }
+
+    const anthropicData = await anthropicResponse.json();
+    console.log('🧠 Anthropic response received');
+
+    // Parse the AI response
+    let aiResponse;
+    try {
+      aiResponse = JSON.parse(anthropicData.content[0].text);
+    } catch (parseError) {
+      console.error('❌ Failed to parse AI response:', anthropicData.content[0].text);
+      throw new Error('Invalid AI response format');
+    }
+
+    // Step 4: Format the final response
+    const result = {
+      persona: bestPersona.name,
+      pain_point_headline: `Personalized solution for ${bestPersona.name}`,
+      story_flow: aiResponse.story_flow,
+      source_modules: storyModules.length,
+      cta_type: 'demo',
+      cta_text: 'Get Started',
+      cta_link: '#contact'
     };
 
-    return new Response(JSON.stringify(dashboardContent), {
+    console.log('✅ Success! Generated personalized story for:', bestPersona.name);
+
+    return new Response(JSON.stringify(result), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
 
   } catch (error) {
-    console.error('Error in ai-navigator function:', error);
-    return new Response(JSON.stringify({ 
-      error: error.message,
-      product: "escapade",
-      heroImage: "/images/escapade-adventure-bg.jpg",
-      challenge: "Tired of the Group Chat Chaos?",
-      tools: "The app for authoring unforgettable adventures with your crew.",
-      userFlow: [
-        { step: 1, text: "First, you capture inspiration from social media and websites into your personal 'Stash' using our AI parsing tool.", highlight: "AI parsing tool" },
-        { step: 2, text: "Next, you propose your best ideas to your crew's 'Idea Bucket.'", highlight: "Idea Bucket" },
-        { step: 3, text: "Finally, the winning ideas are automatically promoted to a beautiful, interactive Itinerary & Map Hub.", highlight: "interactive Itinerary & Map Hub" }
+    console.error('❌ Error in ai-navigator function:', error);
+    
+    // Return a fallback response
+    const fallbackResponse = {
+      persona: "Solutions Explorer",
+      pain_point_headline: "Let us help you find the perfect solution",
+      story_flow: [
+        {
+          narrative: "We understand that every business has unique challenges and goals that require tailored solutions.",
+          highlight: "unique challenges and goals"
+        },
+        {
+          narrative: "Our CrowdLogic ecosystem offers a range of products from personal trip planning to enterprise event management.",
+          highlight: "CrowdLogic ecosystem"
+        },
+        {
+          narrative: "Connect with our team to discover how our solutions can transform your specific use case.",
+          highlight: "transform your specific use case"
+        }
       ],
-      ctaType: "signup",
-      ctaText: "Start Your First Escapade",
-      ctaLink: "https://escapade.accesscrowdlogic.com"
-    }), {
-      status: 500,
+      cta_type: "contact",
+      cta_text: "Get In Touch",
+      cta_link: "#contact",
+      error: error.message
+    };
+
+    return new Response(JSON.stringify(fallbackResponse), {
+      status: 200, // Return 200 so frontend doesn't error
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
