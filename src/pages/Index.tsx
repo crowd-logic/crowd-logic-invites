@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Hero } from "@/components/Hero";
 import { AINavigator } from "@/components/AINavigator";
-import { SolutionBlueprint } from "@/components/SolutionBlueprint";
+import { PersonalizedSolution } from "@/components/PersonalizedSolution";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
@@ -62,12 +62,7 @@ const Index = () => {
       />
       
       {solution ? (
-        <div className={solution ? "pt-32" : "pt-20"}>
-          <SolutionBlueprint 
-            solution={solution} 
-            onBack={handleBackToInput}
-          />
-        </div>
+        <PersonalizedSolution solution={solution} />
       ) : (
         <div className="pt-20">
           <Hero />
