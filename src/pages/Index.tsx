@@ -3,30 +3,24 @@ import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Hero } from "@/components/Hero";
-import { AINavigator } from "@/components/AINavigator";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
 import { Contact } from "@/components/Contact";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
+import { PersistentAIBar } from "@/components/PersistentAIBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
 import { EcosystemOverview } from "@/components/EcosystemOverview";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
-  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
-  const handleNexusClick = () => {
-    setIsAIModalOpen(true);
-  };
-
   const handleSolutionFound = (newSolution: any) => {
     console.log('Solution found:', newSolution);
-    setIsAIModalOpen(false);
     setIsLoading(true);
     
     // Simulate loading delay for the spinning animation
@@ -50,19 +44,20 @@ const Index = () => {
     <div className="min-h-screen bg-slate-900">
       <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
       
-      {/* Persistent Chat Bar - appears after solution is found */}
-      <PersistentChatBar 
-        isVisible={!!solution}
-        originalSolution={solution}
-        onResponse={handleChatResponse}
+      {/* Persistent AI Bar - always visible below navigation */}
+      <PersistentAIBar 
+        onSolutionFound={handleSolutionFound}
+        isLoading={isLoading}
       />
       
-      {/* AI Navigator Modal */}
-      <Dialog open={isAIModalOpen} onOpenChange={setIsAIModalOpen}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-auto">
-          <AINavigator onSolutionFound={handleSolutionFound} />
-        </DialogContent>
-      </Dialog>
+      {/* Persistent Chat Bar - appears after solution is found */}
+      {solution && (
+        <PersistentChatBar 
+          isVisible={true}
+          originalSolution={solution}
+          onResponse={handleChatResponse}
+        />
+      )}
 
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
@@ -83,11 +78,10 @@ const Index = () => {
       />
       
       {/* Main Content */}
-      <div className="pt-20">
+      <div>
         <Hero 
           isLoading={isLoading}
           solution={solution}
-          onNexusClick={handleNexusClick}
           onSignupClick={() => setIsSignupModalOpen(true)}
           onBack={handleBackToHero}
         />
