@@ -1,22 +1,27 @@
-import { motion } from "framer-motion";
 import { ProductShowcase } from "./ProductShowcase";
 import { PersonalizedBlueprint } from "./PersonalizedBlueprint";
 
 interface PersonalizedSolutionProps {
   solution: any;
+  onSignupClick: () => void;
+  onBack: () => void;
 }
 
-export const PersonalizedSolution = ({ solution }: PersonalizedSolutionProps) => {
+export const PersonalizedSolution = ({ solution, onSignupClick, onBack }: PersonalizedSolutionProps) => {
   return (
-    <div className="flex h-full">
-      {/* Left Panel: Product Showcase */}
-      <div className="w-1/2 bg-emerald-600">
-        <ProductShowcase solutionProducts={solution.solution_products || []} />
+    <div className="h-screen flex">
+      {/* Left Panel - Product Showcase */}
+      <div className="w-1/2 h-full">
+        <ProductShowcase solution={solution} />
       </div>
       
-      {/* Right Panel: Blueprint */}
-      <div className="w-1/2 bg-white">
-        <PersonalizedBlueprint solution={solution} />
+      {/* Right Panel - Personalized Blueprint */}
+      <div className="w-1/2 h-full">
+        <PersonalizedBlueprint 
+          solution={solution} 
+          onSignupClick={onSignupClick}
+          onBack={onBack}
+        />
       </div>
     </div>
   );
