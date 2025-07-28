@@ -20,6 +20,7 @@ const Index = () => {
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
   const handleSolutionFound = (newSolution: any) => {
+    console.log('Solution found:', newSolution); // Debug log
     setSolution(newSolution);
     setShowInputSection(false);
   };

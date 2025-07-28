@@ -14,6 +14,8 @@ interface PersistentChatBarProps {
 export const PersistentChatBar = ({ isVisible, originalSolution, onResponse }: PersistentChatBarProps) => {
   const [question, setQuestion] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
+  console.log('PersistentChatBar props:', { isVisible, originalSolution }); // Debug log
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
