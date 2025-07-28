@@ -38,7 +38,7 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
   };
 
   return (
-    <div className="h-screen relative overflow-hidden">
+    <div className="min-h-[calc(100vh-8rem)] relative overflow-hidden">
       {/* Rich Branded Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-teal-800 to-emerald-700">
         {/* Animated Data Nebula Effect */}
