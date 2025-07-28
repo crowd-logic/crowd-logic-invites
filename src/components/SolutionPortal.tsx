@@ -1,16 +1,18 @@
+import { PersonalizedSolution } from "./PersonalizedSolution";
+import { EcosystemOverview } from "./EcosystemOverview";
+
 interface SolutionPortalProps {
   solution: any;
 }
 
 export const SolutionPortal = ({ solution }: SolutionPortalProps) => {
   return (
-    <div className="min-h-screen">
-      <div className="p-8">
-        <h1 className="text-2xl font-bold mb-4">Solution Portal</h1>
-        <pre className="bg-gray-100 p-4 rounded">
-          {JSON.stringify(solution, null, 2)}
-        </pre>
-      </div>
+    <div className="grid grid-rows-[65vh_35vh] h-screen">
+      {/* Top Section: PersonalizedSolution */}
+      <PersonalizedSolution solution={solution} />
+      
+      {/* Bottom Section: EcosystemOverview */}
+      <EcosystemOverview />
     </div>
   );
 };
