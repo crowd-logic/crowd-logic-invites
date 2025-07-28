@@ -82,6 +82,7 @@ const Index = () => {
         <Hero 
           isLoading={isLoading}
           solution={solution}
+          onNexusClick={() => console.log('Nexus clicked - but AI bar should handle input')}
           onSignupClick={() => setIsSignupModalOpen(true)}
           onBack={handleBackToHero}
         />

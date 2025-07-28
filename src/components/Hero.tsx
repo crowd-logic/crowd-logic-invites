@@ -151,7 +151,7 @@ export const Hero = ({
                   ease: "linear" 
                 } : { duration: 0.3 }}
               >
-                <NexusButton onClick={() => {}} />
+                <NexusButton onClick={onNexusClick} />
               </motion.div>
             </div>
           </motion.div>
