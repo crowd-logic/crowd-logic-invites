@@ -68,6 +68,18 @@ const Index = () => {
         onBack={handleBackToHero}
       />
       
+      {/* Ecosystem Overview - always visible */}
+      <EcosystemOverview />
+      
+      {/* Additional sections when no solution is active */}
+      {!solution && !isLoading && (
+        <>
+          <Vision />
+          <Services />
+          <Founder />
+          <Contact />
+        </>
+      )}
 
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
