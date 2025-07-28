@@ -67,54 +67,15 @@ const Index = () => {
       {solution ? (
         <PersonalizedSolution solution={solution} />
       ) : (
-        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 grid grid-cols-1 lg:grid-cols-2">
-          {/* Left Side - AI Navigator */}
-          <div className="flex items-center justify-center p-8">
-            <div className="w-full max-w-lg">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Let's find your solution
-                </h2>
-                <p className="text-emerald-100 text-lg">
-                  Tell us about your challenge and we'll connect you with the perfect solution from our ecosystem
-                </p>
-              </div>
-              <AINavigator onSolutionFound={handleSolutionFound} />
-            </div>
-          </div>
-
-          {/* Right Side - Hero Content */}
-          <div className="flex items-center justify-center p-8 bg-white/5 backdrop-blur-sm">
-            <div className="text-center">
-              <h1 className="text-5xl font-bold text-white mb-6">
-                Find your fit in the CrowdLogic ecosystem
-              </h1>
-              <p className="text-xl text-emerald-100 mb-8 leading-relaxed max-w-2xl">
-                From personal trip planning with escapade™ to enterprise-level event logistics with EventOS™, 
-                our platform has a solution built for your needs.
-              </p>
-              
-              {/* Feature highlights */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl">
-                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Personal Planning</h3>
-                  <p className="text-emerald-100 text-sm">Individual and group trip coordination made simple</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Brand Activations</h3>
-                  <p className="text-emerald-100 text-sm">Professional event and marketing tools</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Enterprise Events</h3>
-                  <p className="text-emerald-100 text-sm">Large-scale event management platform</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Custom Solutions</h3>
-                  <p className="text-emerald-100 text-sm">Tailored to your specific industry needs</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="pt-20">
+          <Hero />
+          {!solution && (
+            <AINavigator onSolutionFound={handleSolutionFound} />
+          )}
+          <Vision />
+          <Services />
+          <Founder />
+          <Contact />
         </div>
       )}
     </div>
