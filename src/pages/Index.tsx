@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Hero } from "@/components/Hero";
 import { AINavigator } from "@/components/AINavigator";
-import { PersonalizedSolution } from "@/components/PersonalizedSolution";
+import { SolutionBlueprint } from "@/components/SolutionBlueprint";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
@@ -18,11 +18,8 @@ const Index = () => {
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
-  console.log('Current solution state:', solution); // Debug log
-
   const handleSolutionFound = (newSolution: any) => {
     console.log('Solution found:', newSolution); // Debug log
-    console.log('Setting solution state...'); // Debug log
     setSolution(newSolution);
   };
 
@@ -65,7 +62,12 @@ const Index = () => {
       />
       
       {solution ? (
-        <PersonalizedSolution solution={solution} />
+        <div className={solution ? "pt-32" : "pt-20"}>
+          <SolutionBlueprint 
+            solution={solution} 
+            onBack={handleBackToInput}
+          />
+        </div>
       ) : (
         <div className="pt-20">
           <Hero />
