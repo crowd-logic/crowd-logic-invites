@@ -13,40 +13,11 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const getSystemPrompt = () => `You are "The Br.AI.n," an expert AI Solutions Architect. Your task is to analyze a user's role/goal and generate a complete, personalized content package for our website's solution dashboard.
+const getSystemPrompt = () => `Your ONLY task is to find the single most relevant record in the solution_blueprints knowledge base that matches the user's input. You must then return the entire, unmodified JSON object from that record. Do NOT invent, create, or summarize any content. You are a data retrieval engine, not a creative writer.
 
-You must return ONLY a single, valid JSON object with the following keys: personaConfirmation, solutionProducts, dynamicCaseStudy, keyFeatures, and cta.
+When you find the matching record, return it exactly as stored in the database, including all fields: persona, pain_point_headline, solution_products, user_journey_raw, case_study, cta_type, cta_text, and cta_link.
 
-Example Input: "I'm a brand manager trying to prove the value of our festival activations."
-
-Example JSON Output:
-
-{
-  "personaConfirmation": {
-    "title": "For the Modern Brand Manager",
-    "challenge": "The challenge is clear: proving the value of every dollar spent on live events."
-  },
-  "solutionProducts": [
-    {"name": "Event Axis", "description": "Your command center for planning, executing, and analyzing events with precision."},
-    {"name": "VibePass", "description": "The social layer that connects you directly to your audience."}
-  ],
-  "dynamicCaseStudy": {
-    "title": "Case Study: Global Beverage Co.",
-    "scenario": "A global beverage brand needed to measure engagement for their new drink launch at a major music festival.",
-    "solution": "Using Event Axis to track metrics and VibePass to distribute digital collectibles, they gained real-time insight into attendee interactions.",
-    "result": "The result was a 30% increase in measured engagement and a comprehensive ROI report that secured future marketing budget."
-  },
-  "keyFeatures": [
-    {"feature": "Real-Time ROI Dashboard", "benefit": "Stop waiting for post-event reports. See your ROI develop live."},
-    {"feature": "AI-Powered Staffing", "benefit": "Ensure the best Brand Ambassadors are at your most critical locations."},
-    {"feature": "Digital Collectibles (POAPs)", "benefit": "Create lasting brand loyalty with unique, verifiable digital memorabilia."}
-  ],
-  "cta": {
-    "type": "waitlist",
-    "headline": "Ready to See Your True ROI?",
-    "buttonText": "Request a Personalized Demo"
-  }
-}`;
+Your response must be a single JSON object containing the exact data from the database record.`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -135,64 +106,18 @@ serve(async (req) => {
       throw new Error('No solution blueprints found in database');
     }
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${ANTHROPIC_API_KEY}`,
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 500,
-        system: getSystemPrompt(),
-        messages: [{
-          role: 'user',
-          content: `Generate a complete dashboard content package for: ${userInput}`
-        }]
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Anthropic API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const aiResponse = data.content[0].text;
-    
-    // Parse the AI response as JSON
-    let dashboardContent;
-    try {
-      dashboardContent = JSON.parse(aiResponse);
-    } catch (e) {
-      console.error('Failed to parse AI response:', e);
-      // Fallback dashboard content
-      dashboardContent = {
-        personaConfirmation: {
-          title: "For the Modern Professional",
-          challenge: "Navigate complex challenges with confidence and precision."
-        },
-        solutionProducts: [
-          { name: "Event Axis", description: "Your command center for comprehensive event management." }
-        ],
-        dynamicCaseStudy: {
-          title: "Case Study: Success Story",
-          scenario: "A client faced significant operational challenges.",
-          solution: "Our platform provided the tools and insights needed.",
-          result: "Achieved measurable improvements and exceeded goals."
-        },
-        keyFeatures: [
-          { feature: "Real-Time Analytics", benefit: "Monitor performance as it happens." },
-          { feature: "AI-Powered Insights", benefit: "Make data-driven decisions with confidence." }
-        ],
-        cta: {
-          type: "waitlist",
-          headline: "Ready to Transform Your Approach?",
-          buttonText: "Get Started Today"
-        }
-      };
-    }
+    // Return the exact blueprint record as structured data
+    const dashboardContent = {
+      persona: matchedBlueprint.persona,
+      pain_point_headline: matchedBlueprint.pain_point_headline,
+      solution_products: matchedBlueprint.solution_products,
+      user_journey_raw: matchedBlueprint.user_journey_raw,
+      case_study: matchedBlueprint.case_study,
+      cta_type: matchedBlueprint.cta_type,
+      cta_text: matchedBlueprint.cta_text,
+      cta_link: matchedBlueprint.cta_link,
+      keywords: matchedBlueprint.keywords
+    };
 
     return new Response(JSON.stringify(dashboardContent), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import { ProductShowcase } from "./ProductShowcase";
+import { PersonalizedBlueprint } from "./PersonalizedBlueprint";
 
 interface AINavigatorProps {
   onSolutionFound: (solution: any) => void;
@@ -16,93 +18,25 @@ interface SolutionUIProps {
 const SolutionUI = ({ solution, onStartOver }: SolutionUIProps) => {
   return (
     <motion.div 
-      className="min-h-[60vh] flex items-center relative overflow-hidden"
+      className="min-h-[60vh] flex w-full relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
-        <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+      {/* Left Panel - Product Showcase */}
+      <div className="w-1/2 h-full">
+        <ProductShowcase solutionProducts={solution.solution_products} />
       </div>
-
-      {/* Two-panel layout */}
-      <div className="w-full grid md:grid-cols-2 gap-8 px-6 z-10">
-        {/* Left Panel - Product Info */}
-        <motion.div
-          className="flex flex-col justify-center"
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <h2 className="text-4xl font-bold mb-4">
-            {solution.personaConfirmation?.title || "Your Solution"}
-          </h2>
-          <p className="text-xl text-muted-foreground mb-6">
-            {solution.personaConfirmation?.challenge || "Tailored specifically for your needs"}
-          </p>
-          <div className="space-y-4">
-            {solution.solutionProducts?.map((product: any, index: number) => (
-              <div key={index} className="p-4 bg-card rounded-lg border">
-                <h3 className="font-semibold mb-2">{product.name}</h3>
-                <p className="text-sm text-muted-foreground">{product.description}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Right Panel - Key Features */}
-        <motion.div
-          className="flex flex-col justify-center"
-          initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          <h3 className="text-2xl font-semibold mb-6">Key Features</h3>
-          <div className="space-y-4">
-            {solution.keyFeatures?.map((feature: any, index: number) => (
-              <motion.div
-                key={index}
-                className="p-4 bg-muted/50 rounded-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-              >
-                <h4 className="font-medium mb-2">{feature.feature}</h4>
-                <p className="text-sm text-muted-foreground">{feature.benefit}</p>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* CTA */}
-          <motion.div
-            className="mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-          >
-            <Button size="lg" className="w-full">
-              {solution.cta?.buttonText || "Get Started"}
-            </Button>
-          </motion.div>
-        </motion.div>
+      
+      {/* Right Panel - Personalized Blueprint */}
+      <div className="w-1/2 h-full">
+        <PersonalizedBlueprint solution={solution} />
       </div>
 
       {/* Start Over Button */}
       <motion.button
         onClick={onStartOver}
-        className="absolute top-4 right-4 px-4 py-2 text-sm bg-background/80 backdrop-blur-sm rounded-lg border hover:bg-muted/50 transition-colors"
+        className="absolute top-4 right-4 px-4 py-2 text-sm bg-white/80 backdrop-blur-sm rounded-lg border hover:bg-gray-50 transition-colors z-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}

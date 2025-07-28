@@ -923,6 +923,7 @@ export type Database = {
       }
       solution_blueprints: {
         Row: {
+          case_study: Json | null
           cta_link: string
           cta_text: string
           cta_type: string
@@ -934,6 +935,7 @@ export type Database = {
           user_journey_raw: string
         }
         Insert: {
+          case_study?: Json | null
           cta_link: string
           cta_text: string
           cta_type: string
@@ -945,6 +947,7 @@ export type Database = {
           user_journey_raw: string
         }
         Update: {
+          case_study?: Json | null
           cta_link?: string
           cta_text?: string
           cta_type?: string

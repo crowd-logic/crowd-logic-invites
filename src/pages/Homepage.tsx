@@ -17,8 +17,10 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Top Section - AI Navigator */}
-      <AINavigator onSolutionFound={handleSolutionFound} />
+      {/* Top Section - AI Navigator with constrained height */}
+      <div className="min-h-[60vh]">
+        <AINavigator onSolutionFound={handleSolutionFound} />
+      </div>
       
       {/* Bottom Section - Dynamic Content */}
       <AnimatePresence mode="wait">
