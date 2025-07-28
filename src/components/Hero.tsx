@@ -61,7 +61,7 @@ export const Hero = ({
   const isTransformed = solution && matchingQuadrant;
 
   return (
-    <div className="relative h-[80vh] overflow-hidden bg-slate-900">
+    <div className="relative h-[40vh] overflow-hidden bg-slate-900">
       <AnimatePresence mode="wait">
         {isTransformed ? (
           // Transformed state - show solution dashboard
@@ -88,41 +88,58 @@ export const Hero = ({
             </div>
           </motion.div>
         ) : (
-          // Default state - 2x2 grid
+          // Default state - 2 halves (left/right split)
           <motion.div
-            key="quadrants"
+            key="hero-halves"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="relative w-full h-full grid grid-cols-2 grid-rows-2"
+            className="relative w-full h-full flex"
           >
-            {quadrants.map((quadrant, index) => {
-              const IconComponent = quadrant.icon;
-              return (
-                <motion.div
-                  key={quadrant.id}
-                  className="relative flex flex-col items-center justify-center p-8 text-white border border-gray-700/30"
-                  style={{ background: quadrant.background }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                >
-                  {/* Background patterns */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-1/4 left-1/4 w-16 h-16 border border-white/20 rounded-lg rotate-12 animate-pulse"></div>
-                    <div className="absolute bottom-1/4 right-1/4 w-20 h-20 border border-white/10 rounded-full animate-pulse delay-700"></div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="relative z-10 text-center">
-                    <IconComponent className="w-16 h-16 mb-4 mx-auto" />
-                    <h3 className="text-2xl font-bold mb-2">{quadrant.name}</h3>
-                    <p className="text-white/80 text-lg">{quadrant.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* Left Half - Escapade */}
+            <motion.div
+              className="w-1/2 h-full relative flex flex-col items-center justify-center p-8 text-white"
+              style={{ background: quadrants[0].background }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              {/* Background patterns */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-1/4 left-1/4 w-16 h-16 border border-white/20 rounded-lg rotate-12 animate-pulse"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-20 h-20 border border-white/10 rounded-full animate-pulse delay-700"></div>
+              </div>
+              
+              {/* Content */}
+              <div className="relative z-10 text-center">
+                <Compass className="w-12 h-12 mb-4 mx-auto" />
+                <h3 className="text-2xl font-bold mb-2">{quadrants[0].name}</h3>
+                <p className="text-white/80 text-lg">{quadrants[0].description}</p>
+              </div>
+            </motion.div>
+
+            {/* Right Half - EventOS */}
+            <motion.div
+              className="w-1/2 h-full relative flex flex-col items-center justify-center p-8 text-white border-l border-gray-700/30"
+              style={{ background: quadrants[1].background }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              {/* Background patterns */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute top-1/4 left-1/4 w-16 h-16 border border-white/20 rounded-lg rotate-12 animate-pulse"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-20 h-20 border border-white/10 rounded-full animate-pulse delay-700"></div>
+              </div>
+              
+              {/* Content */}
+              <div className="relative z-10 text-center">
+                <BarChart3 className="w-12 h-12 mb-4 mx-auto" />
+                <h3 className="text-2xl font-bold mb-2">{quadrants[1].name}</h3>
+                <p className="text-white/80 text-lg">{quadrants[1].description}</p>
+              </div>
+            </motion.div>
 
             {/* Nexus Button - centered overlay */}
             <div className="absolute inset-0 flex items-center justify-center z-20">
