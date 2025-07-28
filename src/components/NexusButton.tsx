@@ -40,7 +40,7 @@ export const NexusButton = ({ onClick }: NexusButtonProps) => {
         <img 
           src="/lovable-uploads/a652dce3-bfe6-44ac-802d-2f1f2148a596.png" 
           alt="CrowdLogic Logo" 
-          className="w-12 h-12 object-contain filter brightness-0 invert"
+          className="w-20 h-20 object-contain filter brightness-0 invert"
         />
       </motion.button>
 
