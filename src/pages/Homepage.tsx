@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AINavigator } from "@/components/AINavigator";
 import { SolutionDashboard } from "@/components/SolutionDashboard";
+import { EcosystemOverview } from "@/components/EcosystemOverview";
 
 const Homepage = () => {
   const [uiState, setUiState] = useState<'navigator' | 'dashboard'>('navigator');
@@ -18,14 +19,19 @@ const Homepage = () => {
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {uiState === 'navigator' && (
-        <AINavigator onSolutionFound={handleSolutionFound} />
-      )}
-      {uiState === 'dashboard' && solution && (
-        <SolutionDashboard solution={solution} onStartOver={handleStartOver} />
-      )}
-    </AnimatePresence>
+    <div>
+      <AnimatePresence mode="wait">
+        {uiState === 'navigator' && (
+          <motion.div key="navigator">
+            <AINavigator onSolutionFound={handleSolutionFound} />
+            <EcosystemOverview />
+          </motion.div>
+        )}
+        {uiState === 'dashboard' && solution && (
+          <SolutionDashboard solution={solution} onStartOver={handleStartOver} />
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

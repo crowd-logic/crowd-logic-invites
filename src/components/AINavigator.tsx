@@ -156,13 +156,23 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
         transition={{ delay: 0.2 }}
       >
         <motion.h1 
-          className="text-6xl font-bold mb-8 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent"
+          className="text-6xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          What's your next mission?
+          Find your fit in the CrowdLogic ecosystem
         </motion.h1>
+        
+        <motion.p 
+          className="text-xl text-muted-foreground mb-8 max-w-3xl leading-relaxed"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          From personal trip planning with escapade™ to enterprise-level event logistics with EventOS™, 
+          our platform has a solution built for your needs. To see yours, tell us about your role or goal.
+        </motion.p>
         
         <motion.div 
           className="space-y-6"
@@ -185,6 +195,20 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
           >
             Design My Solution
           </Button>
+          
+          <motion.a
+            href="#ecosystem"
+            className="inline-block text-muted-foreground hover:text-foreground transition-colors cursor-pointer mt-4"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('ecosystem')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8 }}
+          >
+            Or, browse our full ecosystem ➔
+          </motion.a>
         </motion.div>
       </motion.div>
     </motion.div>
