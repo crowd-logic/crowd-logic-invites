@@ -4,9 +4,6 @@ import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { SolutionBuilderBar } from "@/components/SolutionBuilderBar";
 import { DynamicHero } from "@/components/DynamicHero";
-import { Vision } from "@/components/Vision";
-import { Services } from "@/components/Services";
-import { Founder } from "@/components/Founder";
 import { Contact } from "@/components/Contact";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
@@ -71,14 +68,9 @@ const Index = () => {
       {/* Ecosystem Overview - always visible */}
       <EcosystemOverview />
       
-      {/* Additional sections when no solution is active */}
+      {/* Footer - always visible */}
       {!solution && !isLoading && (
-        <>
-          <Vision />
-          <Services />
-          <Founder />
-          <Contact />
-        </>
+        <Contact />
       )}
 
       {/* Signup Modal */}
