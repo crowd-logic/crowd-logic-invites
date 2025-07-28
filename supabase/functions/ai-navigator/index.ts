@@ -7,7 +7,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-const openAIApiKey = Deno.env.get('OPENAI_API_KEY')
+const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY')
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -46,27 +46,29 @@ ${JSON.stringify(blueprints, null, 2)}
 
 Your response must be a valid JSON object that exactly matches one of the blueprint records above. If no good match exists, return the closest match but never invent new content.`
 
-    // Call OpenAI with the strict retrieval prompt
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    // Call Anthropic with the strict retrieval prompt
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
+        'Authorization': `Bearer ${anthropicApiKey}`,
         'Content-Type': 'application/json',
+        'x-api-key': anthropicApiKey,
+        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'claude-3-5-haiku-20241022',
+        max_tokens: 1000,
+        temperature: 0.1,
         messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userInput }
+          { role: 'user', content: `${systemPrompt}\n\nUser input: ${userInput}` }
         ],
-        temperature: 0.1, // Very low temperature for consistent retrieval
       }),
     })
 
     if (!response.ok) {
       const errorText = await response.text()
-      console.error('OpenAI API error:', errorText)
-      throw new Error(`OpenAI API error: ${response.status}`)
+      console.error('Anthropic API error:', errorText)
+      throw new Error(`Anthropic API error: ${response.status}`)
     }
 
     const aiResponse = await response.json()
@@ -75,7 +77,7 @@ Your response must be a valid JSON object that exactly matches one of the bluepr
     let solutionData
     try {
       // Extract and parse the AI's response
-      const aiContent = aiResponse.choices[0].message.content
+      const aiContent = aiResponse.content[0].text
       console.log('AI content:', aiContent)
       
       // Clean up the response and parse as JSON
