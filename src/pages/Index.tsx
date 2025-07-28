@@ -18,8 +18,11 @@ const Index = () => {
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
+  console.log('Current solution state:', solution); // Debug log
+
   const handleSolutionFound = (newSolution: any) => {
     console.log('Solution found:', newSolution); // Debug log
+    console.log('Setting solution state...'); // Debug log
     setSolution(newSolution);
   };
 
