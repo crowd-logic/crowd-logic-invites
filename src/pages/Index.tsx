@@ -14,6 +14,7 @@ import { ChatResponseModal } from "@/components/ChatResponseModal";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
+  const [showInputSection, setShowInputSection] = useState(true);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
@@ -21,10 +22,12 @@ const Index = () => {
   const handleSolutionFound = (newSolution: any) => {
     console.log('Solution found:', newSolution); // Debug log
     setSolution(newSolution);
+    setShowInputSection(false);
   };
 
   const handleBackToInput = () => {
     setSolution(null);
+    setShowInputSection(true);
   };
 
   const handleChatResponse = (response: string) => {
@@ -38,7 +41,7 @@ const Index = () => {
       
       {/* Persistent Chat Bar - appears after solution is found */}
       <PersistentChatBar 
-        isVisible={!!solution}
+        isVisible={!!solution && !showInputSection}
         originalSolution={solution}
         onResponse={handleChatResponse}
       />
@@ -71,7 +74,7 @@ const Index = () => {
       ) : (
         <div className="pt-20">
           <Hero />
-          {!solution && (
+          {showInputSection && (
             <AINavigator onSolutionFound={handleSolutionFound} />
           )}
           <Vision />
