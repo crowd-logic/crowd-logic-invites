@@ -2,13 +2,13 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { HeroSection } from "@/components/HeroSection";
+import { SolutionBuilderBar } from "@/components/SolutionBuilderBar";
+import { DynamicHero } from "@/components/DynamicHero";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
 import { Contact } from "@/components/Contact";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
-import { PersistentAIBar } from "@/components/PersistentAIBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
 import { EcosystemOverview } from "@/components/EcosystemOverview";
 
@@ -23,11 +23,11 @@ const Index = () => {
     console.log('Solution found:', newSolution);
     setIsLoading(true);
     
-    // Simulate loading delay for the spinning animation
+    // Simulate loading delay for smooth animation
     setTimeout(() => {
       setSolution(newSolution);
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
   };
 
   const handleBackToHero = () => {
@@ -42,10 +42,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      {/* Main Header */}
       <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
       
-      {/* Persistent AI Bar - always visible below navigation */}
-      <PersistentAIBar 
+      {/* Solution Builder Bar - always visible below header */}
+      <SolutionBuilderBar 
         onSolutionFound={handleSolutionFound}
         isLoading={isLoading}
       />
@@ -57,6 +58,27 @@ const Index = () => {
           originalSolution={solution}
           onResponse={handleChatResponse}
         />
+      )}
+
+      {/* Dynamic Hero - transforms based on solution state */}
+      <DynamicHero 
+        solution={solution}
+        isLoading={isLoading}
+        onSignupClick={() => setIsSignupModalOpen(true)}
+        onBack={handleBackToHero}
+      />
+      
+      {/* Ecosystem Overview - always visible */}
+      <EcosystemOverview />
+      
+      {/* Additional sections when no solution is active */}
+      {!solution && !isLoading && (
+        <>
+          <Vision />
+          <Services />
+          <Founder />
+          <Contact />
+        </>
       )}
 
       {/* Signup Modal */}
@@ -76,30 +98,6 @@ const Index = () => {
         onClose={() => setIsResponseModalOpen(false)}
         response={chatResponse}
       />
-      
-      {/* Main Content */}
-      <div>
-        <HeroSection 
-          isLoading={isLoading}
-          solution={solution}
-          onNexusClick={() => console.log('Nexus clicked - will be handled by PersistentAIBar')}
-          onSignupClick={() => setIsSignupModalOpen(true)}
-          onBack={handleBackToHero}
-        />
-        
-        {/* Ecosystem Overview - always visible */}
-        <EcosystemOverview />
-        
-        {/* Additional sections when no solution is active */}
-        {!solution && !isLoading && (
-          <>
-            <Vision />
-            <Services />
-            <Founder />
-            <Contact />
-          </>
-        )}
-      </div>
     </div>
   );
 };
