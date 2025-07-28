@@ -1,34 +1,51 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AINavigator } from "@/components/AINavigator";
-import { SolutionDashboard } from "@/components/SolutionDashboard";
 import { EcosystemOverview } from "@/components/EcosystemOverview";
+import { StoryFlipbook } from "@/components/StoryFlipbook";
 
 const Homepage = () => {
-  const [uiState, setUiState] = useState<'navigator' | 'dashboard'>('navigator');
   const [solution, setSolution] = useState<any>(null);
 
   const handleSolutionFound = (solutionData: any) => {
     setSolution(solutionData);
-    setUiState('dashboard');
   };
 
   const handleStartOver = () => {
     setSolution(null);
-    setUiState('navigator');
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
+      {/* Top Section - AI Navigator */}
+      <AINavigator onSolutionFound={handleSolutionFound} />
+      
+      {/* Bottom Section - Dynamic Content */}
       <AnimatePresence mode="wait">
-        {uiState === 'navigator' && (
-          <motion.div key="navigator">
-            <AINavigator onSolutionFound={handleSolutionFound} />
+        {!solution ? (
+          <motion.div
+            key="ecosystem"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.6 }}
+          >
             <EcosystemOverview />
           </motion.div>
-        )}
-        {uiState === 'dashboard' && solution && (
-          <SolutionDashboard solution={solution} onStartOver={handleStartOver} />
+        ) : (
+          <StoryFlipbook 
+            key="flipbook"
+            story={{
+              userFlow: [
+                { step: 1, text: "Identify your specific needs and challenges" },
+                { step: 2, text: "Discover the perfect combination of tools" },
+                { step: 3, text: "Implement your personalized solution" },
+                { step: 4, text: "Track results and optimize your workflow" },
+                { step: 5, text: "Scale your success across your organization" }
+              ]
+            }} 
+            onStartOver={handleStartOver} 
+          />
         )}
       </AnimatePresence>
     </div>
