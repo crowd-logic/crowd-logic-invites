@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Hero } from "@/components/Hero";
 import { AINavigator } from "@/components/AINavigator";
 import { ProductShowcase } from "@/components/ProductShowcase";
@@ -9,6 +8,7 @@ import { PersonalizedBlueprint } from "@/components/PersonalizedBlueprint";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
 import { EcosystemOverview } from "@/components/EcosystemOverview";
+import { NexusButton } from "@/components/NexusButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Compass, BarChart3 } from "lucide-react";
 import { AnimatedLandscape } from "@/components/AnimatedLandscape";
@@ -170,20 +170,8 @@ const Homepage = () => {
                 </div>
               </div>
               
-              {/* Center Overlay Button */}
-              <motion.div
-                className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
-                <Button
-                  onClick={() => setIsAIModalOpen(true)}
-                  className="pointer-events-auto bg-white/90 backdrop-blur-sm text-slate-900 hover:bg-white text-xl font-bold px-12 py-6 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border-2 border-white/20"
-                >
-                  Find Your Fit
-                </Button>
-              </motion.div>
+              {/* Nexus Button - Centered on dividing line */}
+              <NexusButton onClick={() => setIsAIModalOpen(true)} />
             </div>
           </motion.div>
         ) : (
