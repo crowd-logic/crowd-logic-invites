@@ -47,7 +47,7 @@ const Index = () => {
                     Every great achievement starts with understanding the challenge. 
                     Tell us about your world, and we'll craft your perfect solution.
                   </p>
-                  <AINavigator onSolutionFound={handleSolutionFound} compact={true} />
+                  <AINavigator onSolutionFound={handleSolutionFound} />
                 </div>
               </div>
             </div>

@@ -1,207 +1,192 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { motion } from "framer-motion";
 
 interface AINavigatorProps {
   onSolutionFound: (solution: any) => void;
-  compact?: boolean;
 }
 
-export const AINavigator = ({ onSolutionFound, compact = false }: AINavigatorProps) => {
-  const [input, setInput] = useState("");
+export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
+  const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
+  const handleSubmit = async () => {
+    if (!userInput.trim()) return;
+    
     setIsLoading(true);
+    
     try {
-      console.log('🚀 AINavigator: Calling ai-navigator function with input:', input);
-      
       const { data, error } = await supabase.functions.invoke('ai-navigator', {
-        body: { userInput: input }
+        body: { userInput }
       });
 
-      if (error) {
-        console.error('❌ AINavigator: Error calling function:', error);
-        throw error;
-      }
-
-      console.log('✅ AINavigator: Received response:', data);
+      if (error) throw error;
       onSolutionFound(data);
-      
     } catch (error) {
-      console.error('❌ AINavigator: Error:', error);
+      console.error('Error getting solution:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  if (compact) {
+  if (isLoading) {
     return (
-      <motion.form
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="space-y-6 max-w-2xl mx-auto"
+      <motion.div 
+        className="h-screen flex flex-col justify-center items-center relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
       >
-        <div className="relative">
-          <Input
-            type="text"
-            placeholder="Describe your role, your goal, or your biggest challenge..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="w-full h-14 px-6 text-lg bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white placeholder:text-white/60 rounded-xl focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
-            disabled={isLoading}
+        {/* Animated background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-50">
+          <motion.div
+            className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           />
         </div>
-        
-        <Button 
-          type="submit" 
-          disabled={!input.trim() || isLoading}
-          size="lg"
-          className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
+
+        <motion.div
+          className="text-center z-10"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
-          {isLoading ? (
-            <>
-              <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-              Analyzing your mission...
-            </>
-          ) : (
-            <>
-              <Sparkles className="mr-3 h-5 w-5" />
-              Design My Solution
-            </>
-          )}
-        </Button>
-      </motion.form>
+          <motion.div
+            className="w-24 h-24 mx-auto mb-8 bg-gradient-to-r from-primary to-secondary rounded-full relative"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.7, 1, 0.7],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <motion.div
+              className="absolute inset-2 bg-gradient-to-r from-primary/50 to-secondary/50 rounded-full"
+              animate={{
+                scale: [0.8, 1.1, 0.8],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+            />
+          </motion.div>
+          
+          <motion.p 
+            className="text-xl text-muted-foreground"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            Designing your perfect solution...
+          </motion.p>
+        </motion.div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 flex items-center justify-center">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="grid grid-cols-8 grid-rows-8 h-full">
-            {Array.from({ length: 64 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="border border-emerald-400/20"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.3, 0] }}
-                transition={{
-                  duration: 3,
-                  delay: i * 0.1,
-                  repeat: Infinity,
-                  repeatDelay: 2
-                }}
-              />
-            ))}
-          </div>
-        </div>
-        
-        {/* Floating particles */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-emerald-400 rounded-full opacity-30"
-            initial={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-            }}
-            animate={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-            }}
-            transition={{
-              duration: 20 + Math.random() * 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
+    <motion.div 
+      className="h-screen flex flex-col justify-center items-center relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Rich animated background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5">
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        {/* Floating elements */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-secondary/10 to-primary/10 rounded-full blur-xl"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 60, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      {/* Content */}
+      <motion.div 
+        className="z-10 text-center max-w-2xl px-6"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <motion.h1 
+          className="text-6xl font-bold mb-8 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-8"
-          >
-            <Sparkles className="w-16 h-16 mx-auto text-emerald-400 mb-6" />
-          </motion.div>
+          What's your next mission?
+        </motion.h1>
+        
+        <motion.div 
+          className="space-y-6"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Input
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Describe your role, your goal, or your biggest challenge..."
+            className="text-lg p-6 bg-background/50 backdrop-blur-sm border-primary/20 focus:border-primary/40 rounded-xl"
+            onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+          />
           
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-6xl font-bold text-white mb-6"
+          <Button 
+            onClick={handleSubmit}
+            size="lg"
+            className="px-12 py-6 text-lg rounded-xl bg-primary hover:bg-primary/90 transform hover:scale-105 transition-all duration-200"
           >
-            What's your next mission?
-          </motion.h1>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="text-xl text-white/80 mb-12 max-w-2xl mx-auto"
-          >
-            Every great achievement starts with understanding the challenge. 
-            Tell us about your world, and we'll craft your perfect solution.
-          </motion.p>
-          
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="space-y-6 max-w-2xl mx-auto"
-          >
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder="Describe your role, your goal, or your biggest challenge..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="w-full h-14 px-6 text-lg bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white placeholder:text-white/60 rounded-xl focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
-                disabled={isLoading}
-              />
-            </div>
-            
-            <Button 
-              type="submit" 
-              disabled={!input.trim() || isLoading}
-              size="lg"
-              className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-3 h-5 w-5 animate-spin" />
-                  Analyzing your mission...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="mr-3 h-5 w-5" />
-                  Design My Solution
-                </>
-              )}
-            </Button>
-          </motion.form>
+            Design My Solution
+          </Button>
         </motion.div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };

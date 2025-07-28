@@ -13,35 +13,39 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const getSystemPrompt = (userJourneyRaw: string) => `You are "The Br.AI.n," an expert AI Solutions Architect and storyteller for the CrowdLogic ecosystem. You are a master at transforming detailed, technical user journeys into compelling, concise, and elegant narratives.
+const getSystemPrompt = () => `You are "The Br.AI.n," an expert AI Solutions Architect. Your task is to analyze a user's role/goal and generate a complete, personalized content package for our website's solution dashboard.
 
-Your Task: You will be given a raw user journey from our internal knowledge base. You must transform this journey into a 3-step story for our website's hero section. For each step in the story, you must also identify the single most impactful key phrase that should be visually highlighted.
+You must return ONLY a single, valid JSON object with the following keys: personaConfirmation, solutionProducts, dynamicCaseStudy, keyFeatures, and cta.
 
-You must return ONLY a single, valid JSON object with the key "story_flow", which contains an array of exactly three step objects. Each step object must have a "narrative" and a "highlight" key.
+Example Input: "I'm a brand manager trying to prove the value of our festival activations."
 
---
-
-RAW USER JOURNEY INPUT: ${userJourneyRaw}
-YOUR REQUIRED JSON OUTPUT:
+Example JSON Output:
 
 {
-  "story_flow": [
-    {
-      "step": 1,
-      "narrative": "First, you'll launch your campaign using our AI-powered Brand Command Center, turning a simple goal into a complete brief in minutes.",
-      "highlight": "AI-powered Brand Command Center"
-    },
-    {
-      "step": 2,
-      "narrative": "Next, you'll track live attendee engagement and sentiment in real-time with VibePass, getting instant feedback on your activation's impact.",
-      "highlight": "track live attendee engagement"
-    },
-    {
-      "step": 3,
-      "narrative": "Finally, you receive a comprehensive ROI report from Event Axis, giving you the hard data you need to prove the value of your experiential marketing spend.",
-      "highlight": "comprehensive ROI report"
-    }
-  ]
+  "personaConfirmation": {
+    "title": "For the Modern Brand Manager",
+    "challenge": "The challenge is clear: proving the value of every dollar spent on live events."
+  },
+  "solutionProducts": [
+    {"name": "Event Axis", "description": "Your command center for planning, executing, and analyzing events with precision."},
+    {"name": "VibePass", "description": "The social layer that connects you directly to your audience."}
+  ],
+  "dynamicCaseStudy": {
+    "title": "Case Study: Global Beverage Co.",
+    "scenario": "A global beverage brand needed to measure engagement for their new drink launch at a major music festival.",
+    "solution": "Using Event Axis to track metrics and VibePass to distribute digital collectibles, they gained real-time insight into attendee interactions.",
+    "result": "The result was a 30% increase in measured engagement and a comprehensive ROI report that secured future marketing budget."
+  },
+  "keyFeatures": [
+    {"feature": "Real-Time ROI Dashboard", "benefit": "Stop waiting for post-event reports. See your ROI develop live."},
+    {"feature": "AI-Powered Staffing", "benefit": "Ensure the best Brand Ambassadors are at your most critical locations."},
+    {"feature": "Digital Collectibles (POAPs)", "benefit": "Create lasting brand loyalty with unique, verifiable digital memorabilia."}
+  ],
+  "cta": {
+    "type": "waitlist",
+    "headline": "Ready to See Your True ROI?",
+    "buttonText": "Request a Personalized Demo"
+  }
 }`;
 
 serve(async (req) => {
@@ -142,10 +146,10 @@ serve(async (req) => {
       body: JSON.stringify({
         model: 'claude-3-5-sonnet-20241022',
         max_tokens: 500,
-        system: getSystemPrompt(matchedBlueprint.user_journey_raw),
+        system: getSystemPrompt(),
         messages: [{
           role: 'user',
-          content: `Transform this user journey for: ${matchedBlueprint.persona}`
+          content: `Generate a complete dashboard content package for: ${userInput}`
         }]
       }),
     });
@@ -158,37 +162,39 @@ serve(async (req) => {
     const aiResponse = data.content[0].text;
     
     // Parse the AI response as JSON
-    let storyFlow;
+    let dashboardContent;
     try {
-      const parsed = JSON.parse(aiResponse);
-      storyFlow = parsed.story_flow;
+      dashboardContent = JSON.parse(aiResponse);
     } catch (e) {
       console.error('Failed to parse AI response:', e);
-      // Fallback story flow
-      storyFlow = [
-        { step: 1, narrative: "First, you'll identify your challenge and explore our solution.", highlight: "explore our solution" },
-        { step: 2, narrative: "Next, you'll implement our tools to streamline your workflow.", highlight: "streamline your workflow" },
-        { step: 3, narrative: "Finally, you'll achieve your goals with measurable results.", highlight: "measurable results" }
-      ];
+      // Fallback dashboard content
+      dashboardContent = {
+        personaConfirmation: {
+          title: "For the Modern Professional",
+          challenge: "Navigate complex challenges with confidence and precision."
+        },
+        solutionProducts: [
+          { name: "Event Axis", description: "Your command center for comprehensive event management." }
+        ],
+        dynamicCaseStudy: {
+          title: "Case Study: Success Story",
+          scenario: "A client faced significant operational challenges.",
+          solution: "Our platform provided the tools and insights needed.",
+          result: "Achieved measurable improvements and exceeded goals."
+        },
+        keyFeatures: [
+          { feature: "Real-Time Analytics", benefit: "Monitor performance as it happens." },
+          { feature: "AI-Powered Insights", benefit: "Make data-driven decisions with confidence." }
+        ],
+        cta: {
+          type: "waitlist",
+          headline: "Ready to Transform Your Approach?",
+          buttonText: "Get Started Today"
+        }
+      };
     }
 
-    // Build response using blueprint data
-    const finalResponse = {
-      product: matchedBlueprint.solution_products?.[0]?.name || "escapade",
-      heroImage: "/images/escapade-adventure-bg.jpg",
-      challenge: matchedBlueprint.pain_point_headline,
-      tools: matchedBlueprint.solution_products?.[0]?.description || "Our comprehensive platform",
-      userFlow: storyFlow.map((step: any) => ({
-        step: step.step,
-        text: step.narrative,
-        highlight: step.highlight
-      })),
-      ctaType: matchedBlueprint.cta_type,
-      ctaText: matchedBlueprint.cta_text,
-      ctaLink: matchedBlueprint.cta_link
-    };
-
-    return new Response(JSON.stringify(finalResponse), {
+    return new Response(JSON.stringify(dashboardContent), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
 
