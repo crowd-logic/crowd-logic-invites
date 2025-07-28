@@ -70,12 +70,12 @@ export const DualPathHero = ({ onSolutionFound, initialPersona, onSignupClick }:
     },
     {
       title: "For Brand Managers", 
-      description: "Prove experiential marketing ROI with real-time data and insights",
+      description: "Need to prove your event worked? Get the real-time data and ROI you need to justify your budget and impress your boss.",
       target: "#brand-managers"
     },
     {
       title: "For Event Professionals",
-      description: "Streamline operations with comprehensive event management tools",
+      description: "Juggling a dozen different tools for staffing and logistics? This is your single command center to manage your entire event, from start to finish.",
       target: "#event-professionals"
     }
   ];

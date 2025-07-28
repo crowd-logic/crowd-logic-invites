@@ -44,7 +44,7 @@ export const ContentLibrary = ({ onSignupClick = () => {} }: ContentLibraryProps
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">Collaborative Planning</h3>
-                        <p className="text-muted-foreground">Everyone contributes ideas to the Idea Bucket, and the group votes on their favorites</p>
+                        <p className="text-muted-foreground">A shared space for every "what if?" Let the whole crew add ideas and champion the best ones directly into your plan.</p>
                       </div>
                     </div>
                     
@@ -54,7 +54,7 @@ export const ContentLibrary = ({ onSignupClick = () => {} }: ContentLibraryProps
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">Interactive Itineraries</h3>
-                        <p className="text-muted-foreground">Shared maps and schedules keep everyone on the same page throughout your adventure</p>
+                        <p className="text-muted-foreground">A living, interactive map and timeline that everyone shares. No more "What time is dinner again?" texts.</p>
                       </div>
                     </div>
                     
