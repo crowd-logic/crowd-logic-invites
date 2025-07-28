@@ -93,6 +93,26 @@ const Index = () => {
                 From personal trip planning with escapade™ to enterprise-level event logistics with EventOS™, 
                 our platform has a solution built for your needs.
               </p>
+              
+              {/* Feature highlights */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-2xl">
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Personal Planning</h3>
+                  <p className="text-emerald-100 text-sm">Individual and group trip coordination made simple</p>
+                </div>
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Brand Activations</h3>
+                  <p className="text-emerald-100 text-sm">Professional event and marketing tools</p>
+                </div>
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Enterprise Events</h3>
+                  <p className="text-emerald-100 text-sm">Large-scale event management platform</p>
+                </div>
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-emerald-300 mb-2">Custom Solutions</h3>
+                  <p className="text-emerald-100 text-sm">Tailored to your specific industry needs</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
