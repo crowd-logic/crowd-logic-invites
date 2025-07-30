@@ -3,32 +3,32 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { AINavigator } from "@/components/AINavigator";
-import { SolutionDossier } from "@/components/SolutionDossier";
+import { FragmentedWorld } from "@/components/FragmentedWorld";
+import { NexusTransformation } from "@/components/NexusTransformation";
+import { PersonalizedDashboard } from "@/components/PersonalizedDashboard";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isTransforming, setIsTransforming] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
   const handleSolutionFound = (newSolution: any) => {
     console.log('Solution found:', newSolution);
-    setIsLoading(true);
-    
-    // Simulate loading delay for smooth animation
-    setTimeout(() => {
-      setSolution(newSolution);
-      setIsLoading(false);
-    }, 1500);
+    setSolution(newSolution);
+    setIsTransforming(true);
   };
 
-  const handleBackToHero = () => {
+  const handleTransformationComplete = () => {
+    setIsTransforming(false);
+  };
+
+  const handleBackToStart = () => {
     setSolution(null);
-    setIsLoading(false);
+    setIsTransforming(false);
   };
 
   const handleChatResponse = (response: string) => {
@@ -50,19 +50,24 @@ const Index = () => {
         />
       )}
 
-      {/* Interactive Dossier Experience */}
+      {/* Interactive Experience Flow */}
       <AnimatePresence mode="wait">
-        {!solution && !isLoading ? (
-          <AINavigator 
-            key="navigator"
+        {!solution && !isTransforming ? (
+          <FragmentedWorld 
+            key="fragmented"
             onSolutionFound={handleSolutionFound}
           />
-        ) : solution && !isLoading ? (
-          <SolutionDossier
-            key="dossier"
+        ) : isTransforming ? (
+          <NexusTransformation
+            key="transformation"
+            onComplete={handleTransformationComplete}
+          />
+        ) : solution ? (
+          <PersonalizedDashboard
+            key="dashboard"
             solution={solution}
             onSignupClick={() => setIsSignupModalOpen(true)}
-            onBack={handleBackToHero}
+            onBack={handleBackToStart}
           />
         ) : null}
       </AnimatePresence>
