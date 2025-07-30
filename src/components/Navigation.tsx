@@ -10,7 +10,7 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/20 backdrop-blur-lg border-b border-border/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
@@ -21,27 +21,26 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
                 className="w-14 h-14"
               />
             </div>
-            <span className="text-2xl md:text-3xl font-black text-foreground font-lora">
+            <span className="text-2xl md:text-3xl font-black text-white">
               CrowdLogic
             </span>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#escapade" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg hover:scale-105 transform duration-200 font-inter">escapade</a>
-            <a href="#event-axis" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg hover:scale-105 transform duration-200 font-inter">Event Axis</a>
-            <a href="#vibepass" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg hover:scale-105 transform duration-200 font-inter">VibePass</a>
-            <a href="#kito-agency" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg hover:scale-105 transform duration-200 font-inter">KITO Agency</a>
+            <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">escapade</a>
+            <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Event Axis</a>
+            <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">KITO Agency</a>
             <button 
               onClick={onSignupClick} 
-              className="group relative bg-accent text-accent-foreground px-8 py-3 rounded-full font-semibold hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-accent/25 transform hover:scale-105 font-inter"
+              className="group relative bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 hover:glow"
             >
               <span className="relative z-10">Get Escapade™</span>
-              <div className="absolute inset-0 rounded-full bg-accent opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300"></div>
             </button>
           </div>
 
           <button
-            className="md:hidden text-foreground hover:scale-110 transition-transform duration-200"
+            className="md:hidden text-white hover:scale-110 transition-transform duration-200"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -50,18 +49,17 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
         
         {isOpen && (
           <div className="md:hidden">
-            <div className="bg-background/30 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-border/20">
+            <div className="bg-black/30 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-white/10">
               <div className="flex flex-col space-y-6">
-                <a href="#escapade" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg font-inter" onClick={() => setIsOpen(false)}>escapade</a>
-                <a href="#event-axis" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg font-inter" onClick={() => setIsOpen(false)}>Event Axis</a>
-                <a href="#vibepass" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg font-inter" onClick={() => setIsOpen(false)}>VibePass</a>
-                <a href="#kito-agency" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-lg font-inter" onClick={() => setIsOpen(false)}>KITO Agency</a>
+                <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>escapade</a>
+                <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Event Axis</a>
+                <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>KITO Agency</a>
                 <button 
                   onClick={() => { onSignupClick(); setIsOpen(false); }} 
-                  className="group relative bg-accent text-accent-foreground px-6 py-3 rounded-full font-semibold text-center hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-accent/25 font-inter"
+                  className="group relative bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
                 >
                   <span className="relative z-10">Get Escapade™</span>
-                  <div className="absolute inset-0 rounded-full bg-accent opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300"></div>
                 </button>
               </div>
             </div>

@@ -1,34 +1,35 @@
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { FragmentedWorld } from "@/components/FragmentedWorld";
-import { NexusTransformation } from "@/components/NexusTransformation";
-import { PersonalizedDashboard } from "@/components/PersonalizedDashboard";
+import { SolutionBuilderBar } from "@/components/SolutionBuilderBar";
+import { DynamicHero } from "@/components/DynamicHero";
+
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
+import { EcosystemOverview } from "@/components/EcosystemOverview";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
-  const [isTransforming, setIsTransforming] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [chatResponse, setChatResponse] = useState<string>('');
   const [isResponseModalOpen, setIsResponseModalOpen] = useState(false);
 
   const handleSolutionFound = (newSolution: any) => {
     console.log('Solution found:', newSolution);
-    setSolution(newSolution);
-    setIsTransforming(true);
+    setIsLoading(true);
+    
+    // Simulate loading delay for smooth animation
+    setTimeout(() => {
+      setSolution(newSolution);
+      setIsLoading(false);
+    }, 1500);
   };
 
-  const handleTransformationComplete = () => {
-    setIsTransforming(false);
-  };
-
-  const handleBackToStart = () => {
+  const handleBackToHero = () => {
     setSolution(null);
-    setIsTransforming(false);
+    setIsLoading(false);
   };
 
   const handleChatResponse = (response: string) => {
@@ -37,9 +38,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-900">
       {/* Main Header */}
       <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
+      
+      {/* Solution Builder Bar - always visible below header */}
+      <SolutionBuilderBar 
+        onSolutionFound={handleSolutionFound}
+        isLoading={isLoading}
+      />
       
       {/* Persistent Chat Bar - appears after solution is found */}
       {solution && (
@@ -50,27 +57,17 @@ const Index = () => {
         />
       )}
 
-      {/* Interactive Experience Flow */}
-      <AnimatePresence mode="wait">
-        {!solution && !isTransforming ? (
-          <FragmentedWorld 
-            key="fragmented"
-            onSolutionFound={handleSolutionFound}
-          />
-        ) : isTransforming ? (
-          <NexusTransformation
-            key="transformation"
-            onComplete={handleTransformationComplete}
-          />
-        ) : solution ? (
-          <PersonalizedDashboard
-            key="dashboard"
-            solution={solution}
-            onSignupClick={() => setIsSignupModalOpen(true)}
-            onBack={handleBackToStart}
-          />
-        ) : null}
-      </AnimatePresence>
+      {/* Dynamic Hero - transforms based on solution state */}
+      <DynamicHero 
+        solution={solution}
+        isLoading={isLoading}
+        onSignupClick={() => setIsSignupModalOpen(true)}
+        onBack={handleBackToHero}
+      />
+      
+      {/* Ecosystem Overview - always visible */}
+      <EcosystemOverview />
+      
 
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>
