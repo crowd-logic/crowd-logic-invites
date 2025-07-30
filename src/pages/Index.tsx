@@ -1,13 +1,12 @@
 
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { SolutionBuilderBar } from "@/components/SolutionBuilderBar";
-import { DynamicHero } from "@/components/DynamicHero";
-
+import { AINavigator } from "@/components/AINavigator";
+import { SolutionDossier } from "@/components/SolutionDossier";
 import { PersistentChatBar } from "@/components/PersistentChatBar";
 import { ChatResponseModal } from "@/components/ChatResponseModal";
-import { EcosystemOverview } from "@/components/EcosystemOverview";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
@@ -38,15 +37,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-background">
       {/* Main Header */}
       <Navigation onSignupClick={() => setIsSignupModalOpen(true)} />
-      
-      {/* Solution Builder Bar - always visible below header */}
-      <SolutionBuilderBar 
-        onSolutionFound={handleSolutionFound}
-        isLoading={isLoading}
-      />
       
       {/* Persistent Chat Bar - appears after solution is found */}
       {solution && (
@@ -57,17 +50,22 @@ const Index = () => {
         />
       )}
 
-      {/* Dynamic Hero - transforms based on solution state */}
-      <DynamicHero 
-        solution={solution}
-        isLoading={isLoading}
-        onSignupClick={() => setIsSignupModalOpen(true)}
-        onBack={handleBackToHero}
-      />
-      
-      {/* Ecosystem Overview - always visible */}
-      <EcosystemOverview />
-      
+      {/* Interactive Dossier Experience */}
+      <AnimatePresence mode="wait">
+        {!solution && !isLoading ? (
+          <AINavigator 
+            key="navigator"
+            onSolutionFound={handleSolutionFound}
+          />
+        ) : solution && !isLoading ? (
+          <SolutionDossier
+            key="dossier"
+            solution={solution}
+            onSignupClick={() => setIsSignupModalOpen(true)}
+            onBack={handleBackToHero}
+          />
+        ) : null}
+      </AnimatePresence>
 
       {/* Signup Modal */}
       <Dialog open={isSignupModalOpen} onOpenChange={setIsSignupModalOpen}>

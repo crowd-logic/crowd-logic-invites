@@ -38,15 +38,15 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-8rem)] relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Rich Branded Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-teal-800 to-emerald-700">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-background">
         {/* Animated Data Nebula Effect */}
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-emerald-400/30 rounded-full"
+              className="absolute w-2 h-2 bg-primary/30 rounded-full"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -72,7 +72,7 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
             stroke="currentColor"
             strokeWidth="2"
             fill="none"
-            className="text-emerald-300"
+            className="text-primary"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
@@ -82,7 +82,7 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
             stroke="currentColor"
             strokeWidth="1"
             fill="none"
-            className="text-teal-300"
+            className="text-secondary"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{ duration: 6, repeat: Infinity, repeatType: "reverse", delay: 1 }}
@@ -94,22 +94,22 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
       <div className="relative z-10 flex items-center justify-center h-full px-6">
         <div className="max-w-2xl mx-auto text-center">
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
+            className="text-4xl md:text-6xl font-bold text-foreground mb-6 font-lora"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Find your fit in the CrowdLogic ecosystem.
+            Welcome to CrowdLogic. Let's find your fit.
           </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl text-emerald-100 mb-12 leading-relaxed"
+            className="text-xl md:text-2xl text-muted-foreground mb-12 leading-relaxed font-inter"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            From personal trip planning with escapade™ to enterprise-level event logistics with EventOS™, 
-            our platform has a solution built for your needs. To see yours, tell us about your role or goal.
+            Our ecosystem serves a diverse range of needs, from personal trip planning to enterprise logistics. 
+            To connect you with the right solution, tell us about your role or goal.
           </motion.p>
           
           {isLoading ? (
@@ -119,12 +119,12 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
               className="text-center"
             >
               <motion.div
-                className="inline-block w-16 h-16 border-4 border-white/20 border-t-white rounded-full mb-6"
+                className="inline-block w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full mb-6"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               />
               <motion.p 
-                className="text-2xl text-white"
+                className="text-2xl text-foreground font-inter"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -143,13 +143,13 @@ export const AINavigator = ({ onSolutionFound }: AINavigatorProps) => {
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
                 placeholder="e.g., I plan family events, I manage brand activations..."
-                className="h-14 text-lg px-6 bg-white/10 border-white/20 text-white placeholder-emerald-200 backdrop-blur-sm"
+                className="h-14 text-lg px-6 bg-background/20 border-border/30 text-foreground placeholder-muted-foreground backdrop-blur-sm font-inter"
                 disabled={isLoading}
               />
               <Button 
                 type="submit" 
                 disabled={isLoading || !userInput.trim()}
-                className="h-14 px-8 text-lg bg-white text-emerald-900 hover:bg-emerald-50 transition-all duration-300"
+                className="h-14 px-8 text-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 font-inter font-semibold"
               >
                 Design My Solution
               </Button>
