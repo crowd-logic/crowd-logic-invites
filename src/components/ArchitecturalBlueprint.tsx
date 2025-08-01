@@ -1,6 +1,64 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import escapadeVignette from "@/assets/escapade-vignette.jpg";
+import ambassadorVignette from "@/assets/ambassador-vignette.jpg";
+import dashboardVignette from "@/assets/dashboard-vignette.jpg";
+import sentimentVignette from "@/assets/sentiment-vignette.jpg";
+
 interface ArchitecturalBlueprintProps {}
 
+interface NodeData {
+  id: string;
+  cx: number;
+  cy: number;
+  technicalLabel: string[];
+  humanLabel: string;
+  vignette: string;
+  lineEnd: { x: number; y: number };
+}
+
+const nodes: NodeData[] = [
+  {
+    id: "logistics",
+    cx: 200,
+    cy: 150,
+    technicalLabel: ["Personal Logistics", "Engine"],
+    humanLabel: "End Group Chat Chaos.",
+    vignette: escapadeVignette,
+    lineEnd: { x: 360, y: 260 }
+  },
+  {
+    id: "capital",
+    cx: 600,
+    cy: 150,
+    technicalLabel: ["Human Capital", "Network"],
+    humanLabel: "Your Experience is Your Superpower.",
+    vignette: ambassadorVignette,
+    lineEnd: { x: 440, y: 260 }
+  },
+  {
+    id: "analytics",
+    cx: 200,
+    cy: 450,
+    technicalLabel: ["Campaign Analytics", "Core"],
+    humanLabel: "Your Campaign's Command Center.",
+    vignette: dashboardVignette,
+    lineEnd: { x: 360, y: 340 }
+  },
+  {
+    id: "sentiment",
+    cx: 600,
+    cy: 450,
+    technicalLabel: ["Audience Sentiment", "Matrix"],
+    humanLabel: "Know What Your Audience Truly Loves.",
+    vignette: sentimentVignette,
+    lineEnd: { x: 440, y: 340 }
+  }
+];
+
 export const ArchitecturalBlueprint = ({}: ArchitecturalBlueprintProps) => {
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+
   return (
     <div className="h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1A1A1A' }}>
       <svg 
@@ -10,7 +68,12 @@ export const ArchitecturalBlueprint = ({}: ArchitecturalBlueprintProps) => {
         className="max-w-full max-h-full"
       >
         {/* Central Nexus Node */}
-        <g>
+        <motion.g
+          animate={{
+            opacity: hoveredNode ? 0.2 : 1
+          }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
           <circle 
             cx="400" 
             cy="300" 
@@ -27,151 +90,122 @@ export const ArchitecturalBlueprint = ({}: ArchitecturalBlueprintProps) => {
           >
             CrowdLogic Nexus
           </text>
-        </g>
+        </motion.g>
 
-        {/* Personal Logistics Engine - Top Left */}
-        <g>
-          <circle 
-            cx="200" 
-            cy="150" 
-            r="40" 
-            fill="none" 
-            stroke="#444444" 
-            strokeWidth="2"
-          />
-          <line 
-            x1="240" 
-            y1="150" 
-            x2="360" 
-            y2="260" 
-            stroke="#444444" 
-            strokeWidth="1"
-          />
-          <text 
-            x="200" 
-            y="155" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Personal Logistics
-          </text>
-          <text 
-            x="200" 
-            y="170" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Engine
-          </text>
-        </g>
+        {/* Outer Nodes */}
+        {nodes.map((node) => (
+          <g key={node.id}>
+            {/* Connecting Line */}
+            <motion.line 
+              x1={node.cx + (node.cx < 400 ? 40 : -40)} 
+              y1={node.cy} 
+              x2={node.lineEnd.x} 
+              y2={node.lineEnd.y} 
+              stroke={hoveredNode === node.id ? "hsl(var(--emerald))" : "#444444"}
+              strokeWidth="1"
+              animate={{
+                opacity: hoveredNode && hoveredNode !== node.id ? 0.2 : 1
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
+            
+            {/* Node Circle */}
+            <motion.circle 
+              cx={node.cx} 
+              cy={node.cy} 
+              r="40" 
+              fill="none" 
+              stroke={hoveredNode === node.id ? "hsl(var(--emerald))" : "#444444"}
+              strokeWidth="2"
+              onMouseEnter={() => setHoveredNode(node.id)}
+              onMouseLeave={() => setHoveredNode(null)}
+              className="cursor-pointer"
+              animate={{
+                opacity: hoveredNode && hoveredNode !== node.id ? 0.2 : 1,
+                filter: hoveredNode === node.id ? `drop-shadow(0 0 20px hsl(var(--emerald-glow)))` : "none"
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
 
-        {/* Human Capital Network - Top Right */}
-        <g>
-          <circle 
-            cx="600" 
-            cy="150" 
-            r="40" 
-            fill="none" 
-            stroke="#444444" 
-            strokeWidth="2"
-          />
-          <line 
-            x1="560" 
-            y1="150" 
-            x2="440" 
-            y2="260" 
-            stroke="#444444" 
-            strokeWidth="1"
-          />
-          <text 
-            x="600" 
-            y="155" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Human Capital
-          </text>
-          <text 
-            x="600" 
-            y="170" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Network
-          </text>
-        </g>
+            {/* Blooming Vignette */}
+            <AnimatePresence>
+              {hoveredNode === node.id && (
+                <motion.g>
+                  <motion.circle
+                    cx={node.cx}
+                    cy={node.cy}
+                    r="0"
+                    fill="url(#vignettePattern)"
+                    initial={{ r: 0, opacity: 0 }}
+                    animate={{ r: 80, opacity: 1 }}
+                    exit={{ r: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  />
+                  <defs>
+                    <pattern id="vignettePattern" patternUnits="objectBoundingBox" width="1" height="1">
+                      <image href={node.vignette} x="0" y="0" width="1" height="1" preserveAspectRatio="xMidYMid slice" />
+                    </pattern>
+                  </defs>
+                  <motion.circle
+                    cx={node.cx}
+                    cy={node.cy}
+                    r="80"
+                    fill="none"
+                    stroke="hsl(var(--emerald))"
+                    strokeWidth="3"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                  />
+                </motion.g>
+              )}
+            </AnimatePresence>
 
-        {/* Campaign Analytics Core - Bottom Left */}
-        <g>
-          <circle 
-            cx="200" 
-            cy="450" 
-            r="40" 
-            fill="none" 
-            stroke="#444444" 
-            strokeWidth="2"
-          />
-          <line 
-            x1="240" 
-            y1="450" 
-            x2="360" 
-            y2="340" 
-            stroke="#444444" 
-            strokeWidth="1"
-          />
-          <text 
-            x="200" 
-            y="455" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Campaign Analytics
-          </text>
-          <text 
-            x="200" 
-            y="470" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Core
-          </text>
-        </g>
+            {/* Technical Labels */}
+            <motion.g
+              animate={{
+                opacity: hoveredNode === node.id ? 0 : (hoveredNode && hoveredNode !== node.id ? 0.2 : 1)
+              }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <text 
+                x={node.cx} 
+                y={node.cy + 5} 
+                textAnchor="middle" 
+                className="font-inter text-xs fill-white"
+              >
+                {node.technicalLabel[0]}
+              </text>
+              <text 
+                x={node.cx} 
+                y={node.cy + 20} 
+                textAnchor="middle" 
+                className="font-inter text-xs fill-white"
+              >
+                {node.technicalLabel[1]}
+              </text>
+            </motion.g>
 
-        {/* Audience Sentiment Matrix - Bottom Right */}
-        <g>
-          <circle 
-            cx="600" 
-            cy="450" 
-            r="40" 
-            fill="none" 
-            stroke="#444444" 
-            strokeWidth="2"
-          />
-          <line 
-            x1="560" 
-            y1="450" 
-            x2="440" 
-            y2="340" 
-            stroke="#444444" 
-            strokeWidth="1"
-          />
-          <text 
-            x="600" 
-            y="455" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Audience Sentiment
-          </text>
-          <text 
-            x="600" 
-            y="470" 
-            textAnchor="middle" 
-            className="font-inter text-xs fill-white"
-          >
-            Matrix
-          </text>
-        </g>
+            {/* Human-Centric Headlines */}
+            <AnimatePresence>
+              {hoveredNode === node.id && (
+                <motion.text
+                  x={node.cx}
+                  y={node.cy + 120}
+                  textAnchor="middle"
+                  className="font-crimson text-lg fill-white font-semibold"
+                  initial={{ opacity: 0, y: node.cy + 100 }}
+                  animate={{ opacity: 1, y: node.cy + 120 }}
+                  exit={{ opacity: 0, y: node.cy + 100 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  {node.humanLabel}
+                </motion.text>
+              )}
+            </AnimatePresence>
+          </g>
+        ))}
       </svg>
     </div>
   );
