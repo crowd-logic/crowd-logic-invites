@@ -1,8 +1,8 @@
 
-import { ArchitecturalBlueprint } from "@/components/ArchitecturalBlueprint";
+import { CinematicExperience } from "@/components/CinematicExperience";
 
 const Index = () => {
-  return <ArchitecturalBlueprint />;
+  return <CinematicExperience />;
 };
 
 export default Index;
