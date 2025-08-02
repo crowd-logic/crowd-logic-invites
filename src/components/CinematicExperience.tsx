@@ -47,7 +47,7 @@ const panels: Panel[] = [
 
 export const CinematicExperience = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const phoneRef = useRef<HTMLVideoElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
   const ecosystemRef = useRef<HTMLDivElement>(null);
   const [selectedPanel, setSelectedPanel] = useState<Panel | null>(null);
 
@@ -103,19 +103,23 @@ export const CinematicExperience = () => {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Initial Scene - Phone Video */}
+      {/* Initial Scene - Phone Mockup */}
       <section className="h-screen w-full relative flex items-center justify-center" style={{ backgroundColor: '#1A1A1A' }}>
-        <video
+        <div
           ref={phoneRef}
-          className="w-80 h-auto object-contain"
-          autoPlay
-          muted
-          loop
-          playsInline
+          className="w-80 h-[600px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-[3rem] border-8 border-gray-700 relative shadow-2xl"
           style={{ transform: "perspective(1000px)" }}
         >
-          <source src="/lovable-uploads/escapade-phone-demo.mp4" type="video/mp4" />
-        </video>
+          {/* Phone Screen */}
+          <div className="absolute inset-4 bg-black rounded-[2rem] overflow-hidden">
+            <div className="w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center">
+              <div className="text-white text-center">
+                <div className="text-2xl font-bold mb-2">escapade</div>
+                <div className="text-sm opacity-75">Event Planning Reimagined</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Scroll Spacer for Animation */}
