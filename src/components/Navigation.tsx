@@ -28,7 +28,7 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
           
           <div className="hidden md:flex items-center space-x-8">
             <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">escapade</a>
-            <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Event Axis</a>
+            <a href="/event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Event Axis</a>
             <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">KITO Agency</a>
             <button 
               onClick={onSignupClick} 
@@ -52,7 +52,7 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
             <div className="bg-black/30 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-white/10">
               <div className="flex flex-col space-y-6">
                 <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>escapade</a>
-                <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Event Axis</a>
+                <a href="/event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Event Axis</a>
                 <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>KITO Agency</a>
                 <button 
                   onClick={() => { onSignupClick(); setIsOpen(false); }} 
