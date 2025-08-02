@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { SolutionArchitect } from "@/components/SolutionArchitect";
 import escapadeVignette from "@/assets/escapade-vignette.jpg";
 import ambassadorVignette from "@/assets/ambassador-vignette.jpg";
 import dashboardVignette from "@/assets/dashboard-vignette.jpg";
@@ -58,9 +60,24 @@ const nodes: NodeData[] = [
 
 export const ArchitecturalBlueprint = ({}: ArchitecturalBlueprintProps) => {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const [showSolutionArchitect, setShowSolutionArchitect] = useState(false);
+
+  if (showSolutionArchitect) {
+    return <SolutionArchitect onBack={() => setShowSolutionArchitect(false)} />;
+  }
 
   return (
-    <div className="h-screen w-full flex items-center justify-center" style={{ backgroundColor: '#1A1A1A' }}>
+    <div className="h-screen w-full relative flex items-center justify-center" style={{ backgroundColor: '#1A1A1A' }}>
+      {/* Solution Architect Entry Button */}
+      <div className="absolute top-8 right-8 z-10">
+        <Button 
+          variant="outline" 
+          onClick={() => setShowSolutionArchitect(true)}
+          className="bg-background/10 border-border/50 text-white hover:bg-background/20"
+        >
+          I'm looking for a solution
+        </Button>
+      </div>
       <svg 
         width="800" 
         height="600" 
