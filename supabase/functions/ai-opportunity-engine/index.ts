@@ -1,7 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
+const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY');
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,8 +15,8 @@ serve(async (req) => {
   }
 
   try {
-    if (!openAIApiKey) {
-      throw new Error('OpenAI API key not configured');
+    if (!anthropicApiKey) {
+      throw new Error('Anthropic API key not configured');
     }
 
     const { strength, hours } = await req.json();
@@ -49,32 +49,33 @@ serve(async (req) => {
 User's strength: ${strength}
 Activation hours: ${hours}`;
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${openAIApiKey}`,
+        'Authorization': `Bearer ${anthropicApiKey}`,
         'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
+        model: 'claude-3-5-haiku-20241022',
+        max_tokens: 500,
         messages: [
           { 
-            role: 'system', 
-            content: 'You are an encouraging career coach for the modern gig economy. Generate professional, inspiring, and realistic career guidance.' 
-          },
-          { role: 'user', content: masterPrompt }
-        ],
-        temperature: 0.7,
-        max_tokens: 500
+            role: 'user', 
+            content: `You are an encouraging career coach for the modern gig economy. Generate professional, inspiring, and realistic career guidance.
+
+${masterPrompt}`
+          }
+        ]
       }),
     });
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.status}`);
+      throw new Error(`Anthropic API error: ${response.status}`);
     }
 
     const data = await response.json();
-    const snapshot = data.choices[0].message.content;
+    const snapshot = data.content[0].text;
 
     return new Response(JSON.stringify({ snapshot }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
