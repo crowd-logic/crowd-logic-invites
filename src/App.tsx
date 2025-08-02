@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AdminSignups from "./pages/AdminSignups";
 import EventAxis from "./pages/EventAxis";
+import KitoAgency from "./pages/KitoAgency";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/event-axis" element={<EventAxis />} />
+          <Route path="/kito-agency" element={<KitoAgency />} />
           <Route path="/admin-secret-signups" element={<AdminSignups />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
