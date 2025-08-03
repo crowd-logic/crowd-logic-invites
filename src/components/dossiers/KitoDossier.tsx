@@ -15,6 +15,8 @@ const KitoDossier = () => {
     challenge: 'Brand Awareness'
   });
   const [isGenerating, setIsGenerating] = useState(false);
+  const [clarifyingQuestion, setClarifyingQuestion] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
   const [playbook, setPlaybook] = useState(null);
   
   const handleInputChange = (field, value) => {
@@ -29,6 +31,7 @@ const KitoDossier = () => {
 
     setIsGenerating(true);
     try {
+      // Step 1: Get clarifying question
       const { data, error } = await supabase.functions.invoke('ai-playbook-architect', {
         body: {
           user_type: formData.businessType,
@@ -38,7 +41,38 @@ const KitoDossier = () => {
       });
 
       if (error) throw error;
+      
+      if (data.clarifying_question) {
+        setClarifyingQuestion(data.clarifying_question);
+      } else {
+        setPlaybook(data);
+      }
+    } catch (error) {
+      console.error('Error generating playbook:', error);
+      alert('Failed to generate playbook. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const handleAnswerSelection = async (answer) => {
+    setSelectedAnswer(answer);
+    setIsGenerating(true);
+    
+    try {
+      // Step 2: Generate full playbook with the clarifying answer
+      const { data, error } = await supabase.functions.invoke('ai-playbook-architect', {
+        body: {
+          user_type: formData.businessType,
+          location: formData.location,
+          challenge: formData.challenge,
+          clarifying_answer: answer
+        }
+      });
+
+      if (error) throw error;
       setPlaybook(data);
+      setClarifyingQuestion(null); // Hide the clarifying question
     } catch (error) {
       console.error('Error generating playbook:', error);
       alert('Failed to generate playbook. Please try again.');
@@ -155,6 +189,32 @@ const KitoDossier = () => {
           </div>
         </motion.div>
 
+        {clarifyingQuestion && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="architect-tool glass-card w-full max-w-2xl mt-8"
+          >
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-emerald-400 mb-4">One Quick Question</h3>
+              <p className="text-gray-300 mb-6">{clarifyingQuestion.question}</p>
+              <div className="space-y-3">
+                {clarifyingQuestion.choices.map((choice, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswerSelection(choice)}
+                    disabled={isGenerating}
+                    className="w-full p-4 text-left bg-gray-700/50 hover:bg-gray-600/50 border border-gray-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <span className="text-white">{choice}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {playbook && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -165,11 +225,75 @@ const KitoDossier = () => {
             <div className="p-6">
               <h3 className="text-2xl font-semibold text-emerald-400 mb-6">Your Campaign Playbook</h3>
               <div className="space-y-6 text-gray-300">
-                {playbook.content && (
-                  <div dangerouslySetInnerHTML={{ __html: playbook.content.replace(/\n/g, '<br>') }} />
-                )}
-                {playbook.generatedText && (
-                  <div dangerouslySetInnerHTML={{ __html: playbook.generatedText.replace(/\n/g, '<br>') }} />
+                {playbook.playbook && (
+                  <div className="space-y-8">
+                    {/* Strategy Section */}
+                    <div>
+                      <h4 className="text-xl font-semibold text-emerald-400 mb-3">Strategy</h4>
+                      <p className="text-gray-300 mb-4">{playbook.playbook.strategy?.core_approach}</p>
+                      {playbook.playbook.strategy?.key_insights && (
+                        <ul className="list-disc list-inside space-y-2 text-gray-400">
+                          {playbook.playbook.strategy.key_insights.map((insight, index) => (
+                            <li key={index}>{insight}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+
+                    {/* Tactics Section */}
+                    {playbook.playbook.tactics && (
+                      <div>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Tactics</h4>
+                        <div className="space-y-4">
+                          {playbook.playbook.tactics.map((tactic, index) => (
+                            <div key={index} className="bg-gray-800/30 p-4 rounded-lg">
+                              <h5 className="font-semibold text-white mb-2">{tactic.name}</h5>
+                              <p className="text-gray-300 mb-2">{tactic.description}</p>
+                              <p className="text-gray-400 text-sm mb-2"><strong>Implementation:</strong> {tactic.implementation}</p>
+                              <p className="text-emerald-300 text-sm"><strong>Why this works:</strong> {tactic.why_this_works}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Impact Section */}
+                    {playbook.playbook.impact && (
+                      <div>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Expected Impact</h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-semibold text-white mb-2">Immediate Outcomes</h5>
+                            <ul className="list-disc list-inside space-y-1 text-gray-400">
+                              {playbook.playbook.impact.immediate_outcomes?.map((outcome, index) => (
+                                <li key={index}>{outcome}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-white mb-2">Long-term Benefits</h5>
+                            <ul className="list-disc list-inside space-y-1 text-gray-400">
+                              {playbook.playbook.impact.long_term_benefits?.map((benefit, index) => (
+                                <li key={index}>{benefit}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Investment Section */}
+                    {playbook.playbook.investment && (
+                      <div>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Investment</h4>
+                        <div className="bg-gray-800/30 p-4 rounded-lg space-y-2">
+                          <p><strong className="text-white">Budget Range:</strong> <span className="text-gray-300">{playbook.playbook.investment.budget_range}</span></p>
+                          <p><strong className="text-white">Timeline:</strong> <span className="text-gray-300">{playbook.playbook.investment.timeline}</span></p>
+                          <p><strong className="text-white">ROI Expectation:</strong> <span className="text-gray-300">{playbook.playbook.investment.roi_expectation}</span></p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
