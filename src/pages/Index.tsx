@@ -1,4 +1,6 @@
 
+import FoundersDossier from "@/components/FoundersDossier";
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -6,8 +8,8 @@ const Index = () => {
       <div id="spline-container" className="w-full h-screen"></div>
       
       {/* Bottom Section: Content Dossier Container (Initially Hidden) */}
-      <div id="dossier-container" className="hidden w-full min-h-screen p-8">
-        {/* Content will be dynamically populated based on Spline interactions */}
+      <div id="dossier-container" className="w-full min-h-screen">
+        <FoundersDossier />
       </div>
     </div>
   );
