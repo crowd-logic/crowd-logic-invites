@@ -1,35 +1,26 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Sparkles, ArrowRight, Store, Globe, ShoppingCart, Calendar } from 'lucide-react';
+import { Users, Sparkles, Store, Globe, ShoppingCart, Calendar, ArrowRight } from 'lucide-react';
 import { supabase } from '../../integrations/supabase/client';
 import './SharedDossier.css';
 
-const KitoDossier = () => {
+interface KitoDossierProps {
+  isVisible?: boolean;
+}
+
+const KitoDossier: React.FC<KitoDossierProps> = ({ isVisible = true }) => {
   const [currentWord, setCurrentWord] = useState(0);
   const words = ['Brand.', 'Nonprofit.', 'Business.', 'Launch.'];
   
-  // Multi-step form state
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
-    identity: '',
-    distributionModel: '',
-    challenge: ''
-  });
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [playbook, setPlaybook] = useState(null);
-
-  const identityOptions = [
-    { id: 'local_business', label: 'A Local Business', icon: Store },
-    { id: 'nonprofit', label: 'A Nonprofit', icon: Users },
-    { id: 'product_creator', label: 'A Product Creator', icon: Sparkles }
-  ];
-
-  const distributionOptions = [
-    { id: 'physical_location', label: 'At my physical location', icon: Store },
-    { id: 'online_only', label: 'Online only', icon: Globe },
-    { id: 'retail_stores', label: 'In retail stores', icon: ShoppingCart },
-    { id: 'events_markets', label: 'At events & markets', icon: Calendar }
-  ];
+  const [step, setStep] = useState(1);
+  const [userType, setUserType] = useState<string | null>(null);
+  const [distribution, setDistribution] = useState<string | null>(null);
+  const [location, setLocation] = useState('');
+  const [challenge, setChallenge] = useState('');
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [playbook, setPlaybook] = useState<any>(null);
+  const [error, setError] = useState('');
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -38,57 +29,74 @@ const KitoDossier = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleIdentitySelect = (identity) => {
-    setFormData(prev => ({ ...prev, identity }));
-    
-    // If they chose nonprofit, skip distribution step
-    if (identity === 'nonprofit') {
-      setCurrentStep(3);
+  const handleUserTypeSelect = (type: string) => {
+    setUserType(type);
+    if (type === 'A Nonprofit') {
+      setStep(3); // Nonprofits skip the distribution question
     } else {
-      setCurrentStep(2);
+      setStep(2);
     }
   };
 
-  const handleDistributionSelect = (distributionModel) => {
-    setFormData(prev => ({ ...prev, distributionModel }));
-    setCurrentStep(3);
+  const handleDistributionSelect = (dist: string) => {
+    setDistribution(dist);
+    setStep(3);
   };
 
-  const handleChallengeSubmit = async () => {
-    if (!formData.challenge.trim()) {
-      alert('Please describe your challenge or goal');
-      return;
-    }
-
-    setIsGenerating(true);
+  const handleGeneratePlaybook = async () => {
+    setIsLoading(true);
+    setPlaybook(null);
+    setError('');
+    
     try {
-      const { data, error } = await supabase.functions.invoke('ai-playbook-architect', {
+      const { data, error: functionError } = await supabase.functions.invoke('ai-playbook-architect', {
         body: {
-          user_type: formData.identity,
-          distribution_model: formData.distributionModel,
-          challenge: formData.challenge
+          user_type: userType,
+          distribution_model: distribution,
+          location: location,
+          challenge: challenge
         }
       });
 
-      if (error) throw error;
+      if (functionError) throw functionError;
+      if (data.error) throw new Error(data.error);
+      
       setPlaybook(data);
-    } catch (error) {
-      console.error('Error generating playbook:', error);
-      alert('Failed to generate playbook. Please try again.');
+
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Failed to generate playbook');
     } finally {
-      setIsGenerating(false);
+      setIsLoading(false);
     }
   };
 
   const resetForm = () => {
-    setCurrentStep(1);
-    setFormData({ identity: '', distributionModel: '', challenge: '' });
+    setStep(1);
+    setUserType(null);
+    setDistribution(null);
+    setLocation('');
+    setChallenge('');
     setPlaybook(null);
+    setError('');
   };
+
+  const userTypeOptions = [
+    { id: 'A Local Business', label: 'A Local Business', icon: Store },
+    { id: 'A Nonprofit', label: 'A Nonprofit', icon: Users },
+    { id: 'A Product Creator', label: 'A Product Creator', icon: Sparkles }
+  ];
+
+  const distributionOptions = [
+    { id: 'physical_location', label: 'At My Physical Location', icon: Store },
+    { id: 'in_retail_stores', label: 'In Retail Stores', icon: ShoppingCart },
+    { id: 'online_only', label: 'Online Only', icon: Globe },
+    { id: 'at_events', label: 'At Events & Markets', icon: Calendar }
+  ];
 
   return (
     <div 
-      className="dossier-wrapper visible" 
+      className={`dossier-wrapper ${isVisible ? 'visible' : ''}`}
       style={{ background: 'radial-gradient(circle at 0% 100%, rgba(0, 155, 119, 0.1), #1A1A1A 40%)' }}
     >
       <div className="dossier-content">
@@ -141,8 +149,8 @@ const KitoDossier = () => {
             </div>
 
             <AnimatePresence mode="wait">
-              {/* Step 1: Identity */}
-              {currentStep === 1 && (
+              {/* Step 1: User Type */}
+              {step === 1 && (
                 <motion.div
                   key="step1"
                   initial={{ opacity: 0, x: 50 }}
@@ -152,22 +160,26 @@ const KitoDossier = () => {
                   className="space-y-6"
                 >
                   <div className="text-center">
-                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">Tell us about yourself</h4>
-                    <p className="text-gray-300 text-sm">Step 1 of 3</p>
+                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">Step 1: Tell us who you are</h4>
+                    <p className="text-gray-300 text-sm">Choose the option that best describes you</p>
                   </div>
                   
                   <div className="grid gap-4">
-                    {identityOptions.map((option) => {
+                    {userTypeOptions.map((option) => {
                       const IconComponent = option.icon;
                       return (
                         <button
                           key={option.id}
-                          onClick={() => handleIdentitySelect(option.id)}
-                          className="flex items-center p-4 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-600 hover:border-emerald-500 rounded-lg transition-all duration-300 group"
+                          onClick={() => handleUserTypeSelect(option.id)}
+                          className={`flex items-center p-4 border rounded-lg transition-all duration-300 group ${
+                            userType === option.id 
+                              ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' 
+                              : 'bg-gray-800/50 hover:bg-gray-700/50 border-gray-600 hover:border-emerald-500 text-white'
+                          }`}
                         >
-                          <IconComponent className="w-6 h-6 text-emerald-400 mr-4 group-hover:scale-110 transition-transform" />
-                          <span className="text-white font-medium">{option.label}</span>
-                          <ArrowRight className="w-4 h-4 text-gray-400 ml-auto group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+                          <IconComponent className="w-6 h-6 mr-4 group-hover:scale-110 transition-transform" />
+                          <span className="font-medium">{option.label}</span>
+                          <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-all" />
                         </button>
                       );
                     })}
@@ -176,7 +188,7 @@ const KitoDossier = () => {
               )}
 
               {/* Step 2: Distribution Model (conditional) */}
-              {currentStep === 2 && (
+              {step >= 2 && userType !== 'A Nonprofit' && (
                 <motion.div
                   key="step2"
                   initial={{ opacity: 0, x: 50 }}
@@ -186,8 +198,8 @@ const KitoDossier = () => {
                   className="space-y-6"
                 >
                   <div className="text-center">
-                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">Where do you connect with your customers?</h4>
-                    <p className="text-gray-300 text-sm">Step 2 of 3</p>
+                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">Step 2: Where do you connect with customers?</h4>
+                    <p className="text-gray-300 text-sm">Choose your primary connection point</p>
                   </div>
                   
                   <div className="grid gap-4">
@@ -197,18 +209,22 @@ const KitoDossier = () => {
                         <button
                           key={option.id}
                           onClick={() => handleDistributionSelect(option.id)}
-                          className="flex items-center p-4 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-600 hover:border-emerald-500 rounded-lg transition-all duration-300 group"
+                          className={`flex items-center p-4 border rounded-lg transition-all duration-300 group ${
+                            distribution === option.id 
+                              ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' 
+                              : 'bg-gray-800/50 hover:bg-gray-700/50 border-gray-600 hover:border-emerald-500 text-white'
+                          }`}
                         >
-                          <IconComponent className="w-6 h-6 text-emerald-400 mr-4 group-hover:scale-110 transition-transform" />
-                          <span className="text-white font-medium">{option.label}</span>
-                          <ArrowRight className="w-4 h-4 text-gray-400 ml-auto group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+                          <IconComponent className="w-6 h-6 mr-4 group-hover:scale-110 transition-transform" />
+                          <span className="font-medium">{option.label}</span>
+                          <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-all" />
                         </button>
                       );
                     })}
                   </div>
                   
                   <button
-                    onClick={() => setCurrentStep(1)}
+                    onClick={() => setStep(1)}
                     className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors"
                   >
                     ← Back
@@ -216,8 +232,8 @@ const KitoDossier = () => {
                 </motion.div>
               )}
 
-              {/* Step 3: Challenge */}
-              {currentStep === 3 && (
+              {/* Step 3: Location & Challenge */}
+              {step >= 3 && (
                 <motion.div
                   key="step3"
                   initial={{ opacity: 0, x: 50 }}
@@ -226,43 +242,70 @@ const KitoDossier = () => {
                   transition={{ duration: 0.3 }}
                   className="space-y-6"
                 >
-                  <div className="text-center">
-                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">In your own words, what is your biggest challenge or goal right now?</h4>
-                    <p className="text-gray-300 text-sm">Step 3 of 3</p>
+                  <div className="space-y-4">
+                    {/* Conditional Location Input */}
+                    {distribution === 'physical_location' && (
+                      <div>
+                        <h4 className="text-lg font-semibold text-emerald-400 mb-2">Step 3: Where is your community?</h4>
+                        <input 
+                          type="text" 
+                          placeholder="e.g., 'Brooklyn, NY' or '90210'"
+                          value={location}
+                          onChange={(e) => setLocation(e.target.value)}
+                          className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none"
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Challenge Input */}
+                    <div>
+                      <h4 className="text-lg font-semibold text-emerald-400 mb-2">
+                        {distribution === 'physical_location' ? 'Step 4' : 'Step 3'}: What is your biggest challenge or goal?
+                      </h4>
+                      <textarea
+                        placeholder="In your own words, e.g., 'I need more foot traffic,' or 'I'm launching a new skincare line...'"
+                        value={challenge}
+                        onChange={(e) => setChallenge(e.target.value)}
+                        rows={4}
+                        className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none resize-none"
+                      />
+                    </div>
                   </div>
                   
-                  <div className="space-y-4">
-                    <textarea
-                      value={formData.challenge}
-                      onChange={(e) => setFormData(prev => ({ ...prev, challenge: e.target.value }))}
-                      placeholder="Describe your challenge, goal, or what you're trying to achieve..."
-                      rows={4}
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none resize-none"
-                    />
+                  <div className="flex justify-between items-center">
+                    <button
+                      onClick={() => userType === 'A Nonprofit' ? setStep(1) : setStep(2)}
+                      className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors"
+                    >
+                      ← Back
+                    </button>
                     
-                    <div className="flex justify-between items-center">
-                      <button
-                        onClick={() => formData.identity === 'nonprofit' ? setCurrentStep(1) : setCurrentStep(2)}
-                        className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors"
-                      >
-                        ← Back
-                      </button>
-                      
-                      <button
-                        onClick={handleChallengeSubmit}
-                        disabled={isGenerating || !formData.challenge.trim()}
-                        className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {isGenerating ? 'Generating...' : 'Generate Campaign Playbook'}
-                      </button>
-                    </div>
+                    <button
+                      onClick={handleGeneratePlaybook}
+                      disabled={isLoading || !challenge.trim() || (distribution === 'physical_location' && !location.trim())}
+                      className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isLoading ? 'Building Your Playbook...' : 'Build My Playbook'}
+                    </button>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Error Display */}
+            {error && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-4 p-4 bg-red-500/20 border border-red-500 rounded-lg"
+              >
+                <p className="text-red-400 text-sm">{error}</p>
+              </motion.div>
+            )}
           </motion.div>
         )}
 
+        {/* Playbook Results */}
         {playbook && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -297,7 +340,7 @@ const KitoDossier = () => {
                       <div>
                         <h4 className="text-xl font-semibold text-emerald-400 mb-3">Local Opportunities</h4>
                         <ul className="list-disc list-inside space-y-2 text-gray-300">
-                          {playbook.playbook.opportunities.map((opportunity, index) => (
+                          {playbook.playbook.opportunities.map((opportunity: string, index: number) => (
                             <li key={index}>{opportunity}</li>
                           ))}
                         </ul>
@@ -330,10 +373,10 @@ const KitoDossier = () => {
                           ) : (
                             <div className="space-y-2">
                               {Object.entries(playbook.playbook.investment).map(([key, value]) => (
-                                 <p key={key}>
-                                   <strong className="text-white capitalize">{key.replace('_', ' ')}:</strong>{' '}
-                                   <span className="text-gray-300">{String(value)}</span>
-                                 </p>
+                                <p key={key}>
+                                  <strong className="text-white capitalize">{key.replace('_', ' ')}:</strong>{' '}
+                                  <span className="text-gray-300">{String(value)}</span>
+                                </p>
                               ))}
                             </div>
                           )}
