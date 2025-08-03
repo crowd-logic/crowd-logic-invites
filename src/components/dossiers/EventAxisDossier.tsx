@@ -1,97 +1,43 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Box, BarChart3, TrendingUp } from 'lucide-react';
-import './SharedDossier.css';
+import './SharedDossier.css'; // Uses the shared styles we already defined
 
-const EventAxisDossier = () => {
-  return (
-    <div 
-      className="dossier-wrapper visible" 
-      style={{ background: 'radial-gradient(circle at 100% 0%, rgba(0, 155, 119, 0.1), #1A1A1A 40%)' }}
-    >
-      <div className="dossier-content">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Box className="dossier-icon" />
-        </motion.div>
-        
-        <motion.h1 
-          className="dossier-headline"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Your Campaign's Command Center.
-        </motion.h1>
-        
-        <motion.p 
-          className="dossier-subheadline"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          Stop guessing. Start knowing. EventAxis is our upcoming platform that connects your event operations, 
-          staffing, and real-time audience data into a single, intelligent, unified view.
-        </motion.p>
-        
-        <motion.div 
-          className="dashboard-showcase glass-card w-full max-w-4xl h-96 mb-8"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="flex items-center justify-center h-full relative">
-            <div className="grid grid-cols-3 gap-6 w-full max-w-md">
-              <motion.div 
-                className="text-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0 }}
-              >
-                <BarChart3 className="w-12 h-12 text-emerald-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-300">Analytics</p>
-              </motion.div>
-              <motion.div 
-                className="text-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-              >
-                <TrendingUp className="w-12 h-12 text-emerald-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-300">Insights</p>
-              </motion.div>
-              <motion.div 
-                className="text-center"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              >
-                <Box className="w-12 h-12 text-emerald-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-300">Operations</p>
-              </motion.div>
+const EventAxisDossier = () => (
+    <div className="dossier-wrapper visible" style={{ background: 'radial-gradient(circle at 100% 0%, rgba(0, 155, 119, 0.05), #1A1A1A 40%)' }}>
+        <div className="dossier-content">
+            {/* Icon: Data Crystal */}
+            <svg className="dossier-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            
+            <h1 className="dossier-headline">Your Campaign's Command Center.</h1>
+            <p className="dossier-subheadline">Stop guessing. Start knowing. EventAxis is our upcoming platform that connects your event operations, staffing, and real-time audience data into a single, intelligent, unified view.</p>
+            
+            <div style={styles.showcaseBox}>
+                <span style={styles.comingSoonTag}>Coming Soon</span>
+                <div style={styles.featuresGrid}>
+                    <div style={styles.featureItem}>
+                        <svg viewBox="0 0 24 24" style={styles.featureIcon} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        <span>Analytics</span>
+                    </div>
+                    <div style={styles.featureItem}>
+                        <svg viewBox="0 0 24 24" style={styles.featureIcon} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        <span>Insights</span>
+                    </div>
+                    <div style={styles.featureItem}>
+                        <svg viewBox="0 0 24 24" style={styles.featureIcon} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v6l4 2"></path></svg>
+                        <span>Operations</span>
+                    </div>
+                </div>
             </div>
-            <div className="absolute top-4 right-4">
-              <div className="px-3 py-1 bg-emerald-500/20 backdrop-blur-sm rounded-full">
-                <span className="text-sm text-emerald-400">Coming Soon</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        
-        <motion.a
-          href="#connect"
-          className="cta-button"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Join the Waitlist
-        </motion.a>
-      </div>
+            
+            <a href="#join-form" className="cta-button">Join the Waitlist</a>
+        </div>
     </div>
-  );
-};
-
+);
 export default EventAxisDossier;
+
+const styles = {
+    showcaseBox: { position: 'relative' as const, maxWidth: '700px', margin: '0 auto 3rem auto', background: '#242424', borderRadius: '12px', padding: '4rem', border: '1px solid rgba(255,255,255,0.1)' },
+    comingSoonTag: { position: 'absolute' as const, top: '1.5rem', right: '1.5rem', background: 'rgba(0, 155, 119, 0.2)', color: '#009B77', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem', fontWeight: '500' },
+    featuresGrid: { display: 'flex', justifyContent: 'space-around' as const, alignItems: 'center', gap: '2rem' },
+    featureItem: { display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: '0.5rem', color: '#A0A0A0' },
+    featureIcon: { width: '32px', height: '32px' }
+};
