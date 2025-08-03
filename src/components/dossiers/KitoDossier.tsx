@@ -1,12 +1,52 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Users, Sparkles } from 'lucide-react';
+import { supabase } from '../../integrations/supabase/client';
 import './SharedDossier.css';
 
 const KitoDossier = () => {
   const [currentWord, setCurrentWord] = useState(0);
   const words = ['Brand.', 'Nonprofit.', 'Business.', 'Launch.'];
   
+  // Form state
+  const [formData, setFormData] = useState({
+    businessType: 'Small Business',
+    location: '',
+    challenge: 'Brand Awareness'
+  });
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [playbook, setPlaybook] = useState(null);
+  
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleGeneratePlaybook = async () => {
+    if (!formData.location.trim()) {
+      alert('Please enter your location');
+      return;
+    }
+
+    setIsGenerating(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('ai-playbook-architect', {
+        body: {
+          user_type: formData.businessType,
+          location: formData.location,
+          challenge: formData.challenge
+        }
+      });
+
+      if (error) throw error;
+      setPlaybook(data);
+    } catch (error) {
+      console.error('Error generating playbook:', error);
+      alert('Failed to generate playbook. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   React.useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
@@ -70,7 +110,11 @@ const KitoDossier = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-gray-800/50 rounded-lg">
                 <label className="block text-sm font-medium text-gray-300 mb-2">Business Type</label>
-                <select className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white">
+                <select 
+                  value={formData.businessType}
+                  onChange={(e) => handleInputChange('businessType', e.target.value)}
+                  className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                >
                   <option>Small Business</option>
                   <option>Nonprofit</option>
                   <option>Startup</option>
@@ -81,23 +125,56 @@ const KitoDossier = () => {
                 <input 
                   type="text" 
                   placeholder="City, State"
+                  value={formData.location}
+                  onChange={(e) => handleInputChange('location', e.target.value)}
                   className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
                 />
               </div>
               <div className="p-4 bg-gray-800/50 rounded-lg">
                 <label className="block text-sm font-medium text-gray-300 mb-2">Challenge</label>
-                <select className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white">
+                <select 
+                  value={formData.challenge}
+                  onChange={(e) => handleInputChange('challenge', e.target.value)}
+                  className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                >
                   <option>Brand Awareness</option>
                   <option>Lead Generation</option>
                   <option>Event Promotion</option>
+                  <option>More Sales/Revenue</option>
+                  <option>Customer Traffic</option>
                 </select>
               </div>
             </div>
-            <button className="w-full py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300">
-              Generate Campaign Playbook
+            <button 
+              onClick={handleGeneratePlaybook}
+              disabled={isGenerating}
+              className="w-full py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isGenerating ? 'Generating...' : 'Generate Campaign Playbook'}
             </button>
           </div>
         </motion.div>
+
+        {playbook && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="architect-tool glass-card w-full max-w-4xl mt-8"
+          >
+            <div className="p-6">
+              <h3 className="text-2xl font-semibold text-emerald-400 mb-6">Your Campaign Playbook</h3>
+              <div className="space-y-6 text-gray-300">
+                {playbook.content && (
+                  <div dangerouslySetInnerHTML={{ __html: playbook.content.replace(/\n/g, '<br>') }} />
+                )}
+                {playbook.generatedText && (
+                  <div dangerouslySetInnerHTML={{ __html: playbook.generatedText.replace(/\n/g, '<br>') }} />
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
