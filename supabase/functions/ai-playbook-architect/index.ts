@@ -57,7 +57,7 @@ Return this as a JSON object with the following structure:
           'anthropic-version': '2023-06-01',
         },
         body: JSON.stringify({
-          model: 'claude-3-5-haiku-20241022',
+          model: 'claude-3-5-sonnet-20241022',
           max_tokens: 1000,
           messages: [
             {
@@ -166,7 +166,7 @@ Generate the full playbook with the following structure:
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-5-haiku-20241022',
+        model: 'claude-3-5-sonnet-20241022',
         max_tokens: 4000,
         messages: [
           {
