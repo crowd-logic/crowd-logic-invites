@@ -19,8 +19,11 @@ serve(async (req) => {
     console.log('Request received:', body);
 
     if (!anthropicApiKey) {
+      console.error('ANTHROPIC_API_KEY is not configured');
       throw new Error('ANTHROPIC_API_KEY is not configured');
     }
+
+    console.log('API key exists, length:', anthropicApiKey.length);
 
     // Step 1: Generate clarifying question (when clarifying_answer is not provided)
     if (!body.clarifying_answer) {
@@ -68,10 +71,17 @@ Return this as a JSON object with the following structure:
         }),
       });
 
+      console.log('Anthropic API response status:', response.status);
+      
       if (!response.ok) {
         const errorData = await response.text();
-        console.error('Anthropic API error:', errorData);
-        throw new Error(`Anthropic API error: ${response.status}`);
+        console.error('Anthropic API error response:', errorData);
+        console.error('Request was:', JSON.stringify({
+          model: 'claude-3-5-sonnet-20241022',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: clarifyingPrompt }]
+        }));
+        throw new Error(`Anthropic API error: ${response.status} - ${errorData}`);
       }
 
       const data = await response.json();
@@ -177,10 +187,12 @@ Generate the full playbook with the following structure:
       }),
     });
 
+    console.log('Anthropic API response status (step 2):', response.status);
+    
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Anthropic API error:', errorData);
-      throw new Error(`Anthropic API error: ${response.status}`);
+      console.error('Anthropic API error response (step 2):', errorData);
+      throw new Error(`Anthropic API error: ${response.status} - ${errorData}`);
     }
 
     const data = await response.json();
