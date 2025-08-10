@@ -1,10 +1,9 @@
 // src/components/SplineExperience.tsx
 import React, { Suspense, useState, useEffect } from 'react';
 
+import KitoAgencyDossier from './KitoAgencyDossier';
 // Lazy load the Spline viewer to improve initial page load
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
-
-const KitoAgencyDossier: React.FC = () => { /* We will build this in a later prompt */ return null; };
 
 const SplineExperience: React.FC = () => {
     const [activePanel, setActivePanel] = useState<string | null>(null);
