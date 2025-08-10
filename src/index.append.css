@@ -1,0 +1,83 @@
+
+/* === Brand foundation overrides per prompt === */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Inter:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg-dark: #1A1A1A;
+  --text-primary: #EAEAEA;
+  --text-secondary: #A0A0A0;
+  --accent-emerald: #009B77;
+  --surface-color: #242424;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --font-heading: 'Crimson Text', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Spline & Dossier Styles */
+.spline-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.fallback-image {
+  width: 100%;
+  height: 100%;
+  background-image: url('/fallback.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.dossier-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dossier-container.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dossier-panel {
+  width: 90%;
+  max-width: 900px;
+  padding: 3rem;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  transform: scale(0.95);
+  animation: fadeInPanel 0.5s ease forwards;
+}
+
+@keyframes fadeInPanel {
+  to {
+    transform: scale(1);
+  }
+}
