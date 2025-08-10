@@ -28,8 +28,8 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
           
           <div className="hidden md:flex items-center space-x-8">
             <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">escapade</a>
-            <a href="/event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Event Axis</a>
-            <a href="/kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">KITO Agency</a>
+            <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Event Axis</a>
+            <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">KITO Agency</a>
             <button 
               onClick={onSignupClick} 
               className="group relative bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 hover:glow"
@@ -52,8 +52,8 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
             <div className="bg-black/30 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-white/10">
               <div className="flex flex-col space-y-6">
                 <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>escapade</a>
-                <a href="/event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Event Axis</a>
-                <a href="/kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>KITO Agency</a>
+                <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Event Axis</a>
+                <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>KITO Agency</a>
                 <button 
                   onClick={() => { onSignupClick(); setIsOpen(false); }} 
                   className="group relative bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/25"

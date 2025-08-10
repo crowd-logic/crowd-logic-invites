@@ -28,10 +28,6 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
-				emerald: {
-					DEFAULT: 'hsl(var(--emerald))',
-					glow: 'hsl(var(--emerald-glow))'
-				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
