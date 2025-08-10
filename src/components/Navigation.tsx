@@ -2,15 +2,11 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-interface NavigationProps {
-  onSignupClick: () => void;
-}
-
-export const Navigation = ({ onSignupClick }: NavigationProps) => {
+export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
+    <nav className="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-3">
@@ -26,17 +22,13 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
             </span>
           </div>
           
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">escapade</a>
-            <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Event Axis</a>
-            <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">KITO Agency</a>
-            <button 
-              onClick={onSignupClick} 
-              className="group relative bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 hover:glow"
-            >
+          <div className="hidden md:flex space-x-8">
+            <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Vision</a>
+            <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Services</a>
+            <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Leadership</a>
+            <a href="#contact" className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
               <span className="relative z-10">Get Escapade™</span>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300"></div>
-            </button>
+            </a>
           </div>
 
           <button
@@ -49,18 +41,12 @@ export const Navigation = ({ onSignupClick }: NavigationProps) => {
         
         {isOpen && (
           <div className="md:hidden">
-            <div className="bg-black/30 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-white/10">
+            <div className="bg-slate-800/95 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-white/10">
               <div className="flex flex-col space-y-6">
-                <a href="#escapade" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>escapade</a>
-                <a href="#event-axis" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Event Axis</a>
-                <a href="#kito-agency" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>KITO Agency</a>
-                <button 
-                  onClick={() => { onSignupClick(); setIsOpen(false); }} 
-                  className="group relative bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold text-center hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
-                >
-                  <span className="relative z-10">Get Escapade™</span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-30 blur-lg transition-opacity duration-300"></div>
-                </button>
+                <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Vision</a>
+                <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Services</a>
+                <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Leadership</a>
+                <a href="#contact" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold text-center hover:from-purple-700 hover:to-pink-700 transition-all duration-300" onClick={() => setIsOpen(false)}>Get Escapade™</a>
               </div>
             </div>
           </div>

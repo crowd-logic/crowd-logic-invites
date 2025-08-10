@@ -749,30 +749,6 @@ export type Database = {
           },
         ]
       }
-      personas: {
-        Row: {
-          created_at: string | null
-          description: string | null
-          id: string
-          keywords: string[] | null
-          name: string
-        }
-        Insert: {
-          created_at?: string | null
-          description?: string | null
-          id?: string
-          keywords?: string[] | null
-          name: string
-        }
-        Update: {
-          created_at?: string | null
-          description?: string | null
-          id?: string
-          keywords?: string[] | null
-          name?: string
-        }
-        Relationships: []
-      }
       poi_status_reports: {
         Row: {
           condition_rating: number | null
@@ -810,30 +786,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      products: {
-        Row: {
-          created_at: string | null
-          faq: Json | null
-          id: string
-          name: string
-          tagline: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          faq?: Json | null
-          id?: string
-          name: string
-          tagline?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          faq?: Json | null
-          id?: string
-          name?: string
-          tagline?: string | null
-        }
-        Relationships: []
       }
       profiles: {
         Row: {
@@ -1067,41 +1019,6 @@ export type Database = {
           srtext?: string | null
         }
         Relationships: []
-      }
-      story_modules: {
-        Row: {
-          content: string
-          created_at: string | null
-          id: string
-          module_type: string
-          persona_id: string
-          product_name: string | null
-        }
-        Insert: {
-          content: string
-          created_at?: string | null
-          id?: string
-          module_type: string
-          persona_id: string
-          product_name?: string | null
-        }
-        Update: {
-          content?: string
-          created_at?: string | null
-          id?: string
-          module_type?: string
-          persona_id?: string
-          product_name?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "story_modules_persona_id_fkey"
-            columns: ["persona_id"]
-            isOneToOne: false
-            referencedRelation: "personas"
-            referencedColumns: ["id"]
-          },
-        ]
       }
     }
     Views: {

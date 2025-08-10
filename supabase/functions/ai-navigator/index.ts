@@ -1,120 +1,147 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.50.2'
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const ANTHROPIC_API_KEY = Deno.env.get('ANTHROPIC_API_KEY');
+const SUPABASE_URL = Deno.env.get('SUPABASE_URL') ?? '';
+const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY') ?? '';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+};
 
-const anthropicApiKey = Deno.env.get('ANTHROPIC_API_KEY')
+const getSystemPrompt = () => `Your ONLY task is to find the single most relevant record in the solution_blueprints knowledge base that matches the user's input. You must then return the entire, unmodified JSON object from that record. Do NOT invent, create, or summarize any content. You are a data retrieval engine, not a creative writer.
+
+When you find the matching record, return it exactly as stored in the database, including all fields: persona, pain_point_headline, solution_products, user_journey_raw, case_study, cta_type, cta_text, and cta_link.
+
+Your response must be a single JSON object containing the exact data from the database record.`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders })
+    return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { userInput } = await req.json()
-    
-    console.log('User input received:', userInput)
-    console.log('Using Anthropic API with key present:', !!anthropicApiKey)
+    const { userInput } = await req.json();
 
-    // Initialize Supabase client
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    const supabase = createClient(supabaseUrl, supabaseKey)
+    if (!ANTHROPIC_API_KEY) {
+      throw new Error('ANTHROPIC_API_KEY not configured');
+    }
 
-    // Fetch solution blueprints for context
-    const { data: blueprints, error: blueprintError } = await supabase
+    console.log('🔍 Searching for blueprint with input:', userInput);
+
+    // Search for matching blueprint in the database
+    // First try keyword search (more flexible)
+    const { data: keywordBlueprints, error: keywordError } = await supabase
       .from('solution_blueprints')
       .select('*')
+      .overlaps('keywords', [userInput.toLowerCase()]);
 
-    if (blueprintError) {
-      console.error('Error fetching blueprints:', blueprintError)
-      throw blueprintError
-    }
+    console.log('📊 Keyword search results:', keywordBlueprints?.length || 0, 'blueprints found');
+    if (keywordError) console.error('❌ Keyword search error:', keywordError);
 
-    console.log('Fetched blueprints:', blueprints?.length)
+    let matchedBlueprint = keywordBlueprints?.[0];
 
-    // STRICT AI PROMPT - The AI is now a retrieval engine, not a creative writer
-    const systemPrompt = `You are a data retrieval engine for the CrowdLogic ecosystem. Your ONLY task is to find the single most relevant record in the solution_blueprints knowledge base that matches the user's input. 
+    // If no keyword match, try partial persona match
+    if (!matchedBlueprint || keywordBlueprints?.length === 0) {
+      console.log('🔄 Trying persona search...');
+      const { data: personaBlueprints, error: personaError } = await supabase
+        .from('solution_blueprints')
+        .select('*')
+        .ilike('persona', `%${userInput}%`);
 
-You must then return the entire, unmodified JSON object from that record. Do NOT invent, create, or summarize any content, especially product names like 'TripHarmony' or 'FamilySync'. You are a data retrieval engine, not a creative writer.
-
-Available solution blueprints:
-${JSON.stringify(blueprints, null, 2)}
-
-Your response must be a valid JSON object that exactly matches one of the blueprint records above. If no good match exists, return the closest match but never invent new content.`
-
-    // Call Anthropic with the strict retrieval prompt
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${anthropicApiKey}`,
-        'Content-Type': 'application/json',
-        'x-api-key': anthropicApiKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-3-5-haiku-20241022',
-        max_tokens: 1000,
-        temperature: 0.1,
-        messages: [
-          { role: 'user', content: `${systemPrompt}\n\nUser input: ${userInput}` }
-        ],
-      }),
-    })
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error('Anthropic API error:', errorText)
-      throw new Error(`Anthropic API error: ${response.status}`)
-    }
-
-    const aiResponse = await response.json()
-    console.log('AI response received')
-
-    let solutionData
-    try {
-      // Extract and parse the AI's response
-      const aiContent = aiResponse.content[0].text
-      console.log('AI content:', aiContent)
-      
-      // Clean up the response and parse as JSON
-      const cleanedContent = aiContent.replace(/```json\n?|\n?```/g, '').trim()
-      solutionData = JSON.parse(cleanedContent)
-      
-      console.log('Parsed solution data:', solutionData)
-
-      // Validate that this is actually from our blueprints
-      const matchingBlueprint = blueprints?.find(bp => bp.id === solutionData.id)
-      if (matchingBlueprint) {
-        // Use the exact blueprint from the database to prevent hallucinations
-        solutionData = matchingBlueprint
-        console.log('Using exact blueprint match:', solutionData.id)
+      console.log('👤 Persona search results:', personaBlueprints?.length || 0, 'blueprints found');
+      if (personaError) {
+        console.error('❌ Persona search error:', personaError);
       } else {
-        console.log('No exact match found, using AI selection')
+        matchedBlueprint = personaBlueprints?.[0];
       }
-
-    } catch (parseError) {
-      console.error('Error parsing AI response:', parseError)
-      // Fallback to first blueprint if parsing fails
-      solutionData = blueprints?.[0] || {}
     }
 
-    return new Response(JSON.stringify(solutionData), {
+    // If still no match, try searching for common terms
+    if (!matchedBlueprint) {
+      console.log('🔄 Trying individual term search...');
+      const searchTerms = userInput.toLowerCase().split(' ');
+      console.log('🔤 Search terms:', searchTerms);
+      
+      for (const term of searchTerms) {
+        if (term.length < 3) continue; // Skip very short terms
+        
+        const { data: termBlueprints } = await supabase
+          .from('solution_blueprints')
+          .select('*')
+          .overlaps('keywords', [term]);
+        
+        console.log(`📝 Term "${term}" found:`, termBlueprints?.length || 0, 'blueprints');
+        
+        if (termBlueprints && termBlueprints.length > 0) {
+          matchedBlueprint = termBlueprints[0];
+          console.log('✅ Matched blueprint:', matchedBlueprint.persona);
+          break;
+        }
+      }
+    }
+
+    if (!matchedBlueprint) {
+      console.log('⚠️ No match found, using fallback blueprint');
+      // Fallback to a random blueprint instead of always the same one
+      const { data: allBlueprints } = await supabase
+        .from('solution_blueprints')
+        .select('*');
+      
+      if (allBlueprints && allBlueprints.length > 0) {
+        // Select a random blueprint instead of always the first one
+        const randomIndex = Math.floor(Math.random() * allBlueprints.length);
+        matchedBlueprint = allBlueprints[randomIndex];
+        console.log('🎲 Using random blueprint:', matchedBlueprint.persona);
+      }
+    } else {
+      console.log('✅ Final matched blueprint:', matchedBlueprint.persona);
+    }
+
+    if (!matchedBlueprint) {
+      throw new Error('No solution blueprints found in database');
+    }
+
+    // Return the exact blueprint record as structured data
+    const dashboardContent = {
+      persona: matchedBlueprint.persona,
+      pain_point_headline: matchedBlueprint.pain_point_headline,
+      solution_products: matchedBlueprint.solution_products,
+      user_journey_raw: matchedBlueprint.user_journey_raw,
+      case_study: matchedBlueprint.case_study,
+      cta_type: matchedBlueprint.cta_type,
+      cta_text: matchedBlueprint.cta_text,
+      cta_link: matchedBlueprint.cta_link,
+      keywords: matchedBlueprint.keywords
+    };
+
+    return new Response(JSON.stringify(dashboardContent), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
+    });
 
   } catch (error) {
-    console.error('Error in ai-navigator function:', error)
+    console.error('Error in ai-navigator function:', error);
     return new Response(JSON.stringify({ 
-      error: 'Internal server error',
-      details: error.message 
+      error: error.message,
+      product: "escapade",
+      heroImage: "/images/escapade-adventure-bg.jpg",
+      challenge: "Tired of the Group Chat Chaos?",
+      tools: "The app for authoring unforgettable adventures with your crew.",
+      userFlow: [
+        { step: 1, text: "First, you capture inspiration from social media and websites into your personal 'Stash' using our AI parsing tool.", highlight: "AI parsing tool" },
+        { step: 2, text: "Next, you propose your best ideas to your crew's 'Idea Bucket.'", highlight: "Idea Bucket" },
+        { step: 3, text: "Finally, the winning ideas are automatically promoted to a beautiful, interactive Itinerary & Map Hub.", highlight: "interactive Itinerary & Map Hub" }
+      ],
+      ctaType: "signup",
+      ctaText: "Start Your First Escapade",
+      ctaLink: "https://escapade.accesscrowdlogic.com"
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    })
+    });
   }
-})
+});
