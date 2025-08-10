@@ -5,119 +5,93 @@
 
 @layer base {
   :root {
-    /* Base dark theme - sophisticated and architectural */
-    --background: 218 23% 8%;  /* Deep charcoal */
-    --foreground: 218 11% 92%; /* Soft white */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 218 23% 11%;       /* Slightly lighter than background */
-    --card-foreground: 218 11% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 218 23% 11%;
-    --popover-foreground: 218 11% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    /* Primary emerald accent - your signature color */
-    --primary: 160 84% 39%;     /* Deep emerald #009B77 */
-    --primary-foreground: 218 11% 92%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
     
-    /* Emerald system colors */
-    --emerald: 160 84% 39%;     /* Base emerald */
-    --emerald-glow: 160 84% 49%; /* Brighter for glows */
-    --accent-emerald: 160 84% 49%; /* For highlights */
+    --emerald: 160 84% 39%;
+    --emerald-glow: 160 84% 49%;
+    --accent-emerald: 160 84% 49%;
 
-    /* Secondary grays - architectural palette */
-    --secondary: 218 23% 15%;   /* Medium gray */
-    --secondary-foreground: 218 11% 88%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 218 23% 13%;       /* Subtle background */
-    --muted-foreground: 218 11% 65%; /* Subdued text */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 218 23% 15%;
-    --accent-foreground: 218 11% 92%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-    /* System colors */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 218 11% 92%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 218 23% 20%;      /* Subtle borders */
-    --input: 218 23% 15%;
-    --ring: 160 84% 49%;        /* Emerald focus rings */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
-    --radius: 0.75rem;          /* Slightly more rounded for modern feel */
+    --radius: 0.5rem;
 
-    /* Service-specific gradient stops for unique atmospheres */
-    /* CrowdLogic Foundation - Deep purple to emerald */
-    --gradient-foundation-start: 260 40% 15%;
-    --gradient-foundation-end: 160 84% 25%;
+    --sidebar-background: 0 0% 98%;
 
-    /* Event Axis - Deep blue to cyan */
-    --gradient-event-start: 220 60% 15%;
-    --gradient-event-end: 190 80% 25%;
+    --sidebar-foreground: 240 5.3% 26.1%;
 
-    /* Sentiment - Deep rose to amber */
-    --gradient-sentiment-start: 340 40% 15%;
-    --gradient-sentiment-end: 35 80% 25%;
+    --sidebar-primary: 240 5.9% 10%;
 
-    /* Escapade - Deep violet to magenta */
-    --gradient-escapade-start: 280 50% 15%;
-    --gradient-escapade-end: 320 70% 25%;
+    --sidebar-primary-foreground: 0 0% 98%;
 
-    /* Ambassador - Deep teal to emerald */
-    --gradient-ambassador-start: 180 50% 15%;
-    --gradient-ambassador-end: 160 84% 25%;
+    --sidebar-accent: 240 4.8% 95.9%;
 
-    /* Dashboard - Deep navy to blue */
-    --gradient-dashboard-start: 220 80% 12%;
-    --gradient-dashboard-end: 210 85% 25%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
 
-    /* Sidebar colors */
-    --sidebar-background: 218 23% 10%;
-    --sidebar-foreground: 218 11% 85%;
-    --sidebar-primary: 160 84% 39%;
-    --sidebar-primary-foreground: 218 11% 92%;
-    --sidebar-accent: 218 23% 13%;
-    --sidebar-accent-foreground: 218 11% 88%;
-    --sidebar-border: 218 23% 18%;
-    --sidebar-ring: 160 84% 49%;
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Dark mode uses the same sophisticated palette */
-    --background: 218 23% 8%;
-    --foreground: 218 11% 92%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 218 23% 11%;
-    --card-foreground: 218 11% 92%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 218 23% 11%;
-    --popover-foreground: 218 11% 92%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 160 84% 39%;
-    --primary-foreground: 218 11% 92%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 218 23% 15%;
-    --secondary-foreground: 218 11% 88%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 218 23% 13%;
-    --muted-foreground: 218 11% 65%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 218 23% 15%;
-    --accent-foreground: 218 11% 92%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 218 11% 92%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 218 23% 20%;
-    --input: 218 23% 15%;
-    --ring: 160 84% 49%;
-
-    --sidebar-background: 218 23% 10%;
-    --sidebar-foreground: 218 11% 85%;
-    --sidebar-primary: 160 84% 39%;
-    --sidebar-primary-foreground: 218 11% 92%;
-    --sidebar-accent: 218 23% 13%;
-    --sidebar-accent-foreground: 218 11% 88%;
-    --sidebar-border: 218 23% 18%;
-    --sidebar-ring: 160 84% 49%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -138,85 +112,6 @@
   
   .font-crimson {
     font-family: 'Crimson Text', serif;
-  }
-
-  /* Architectural Typography Hierarchy */
-  .dossier-title {
-    @apply font-crimson text-5xl font-semibold text-foreground leading-tight;
-  }
-
-  .dossier-subtitle {
-    @apply font-crimson text-3xl font-normal text-muted-foreground leading-relaxed;
-  }
-
-  .dossier-section-title {
-    @apply font-crimson text-2xl font-semibold text-foreground;
-  }
-
-  .dossier-body {
-    @apply font-inter text-lg text-muted-foreground leading-relaxed;
-  }
-
-  .dossier-caption {
-    @apply font-inter text-sm text-muted-foreground uppercase tracking-wider;
-  }
-
-  .dossier-accent {
-    @apply text-primary;
-  }
-
-  /* Service-specific gradient backgrounds */
-  .gradient-foundation {
-    background: linear-gradient(135deg, hsl(var(--gradient-foundation-start)), hsl(var(--gradient-foundation-end)));
-  }
-
-  .gradient-event {
-    background: linear-gradient(135deg, hsl(var(--gradient-event-start)), hsl(var(--gradient-event-end)));
-  }
-
-  .gradient-sentiment {
-    background: linear-gradient(135deg, hsl(var(--gradient-sentiment-start)), hsl(var(--gradient-sentiment-end)));
-  }
-
-  .gradient-escapade {
-    background: linear-gradient(135deg, hsl(var(--gradient-escapade-start)), hsl(var(--gradient-escapade-end)));
-  }
-
-  .gradient-ambassador {
-    background: linear-gradient(135deg, hsl(var(--gradient-ambassador-start)), hsl(var(--gradient-ambassador-end)));
-  }
-
-  .gradient-dashboard {
-    background: linear-gradient(135deg, hsl(var(--gradient-dashboard-start)), hsl(var(--gradient-dashboard-end)));
-  }
-
-  /* Emerald glow effects for icons and accents */
-  .emerald-glow {
-    filter: drop-shadow(0 0 8px hsl(var(--accent-emerald) / 0.4));
-  }
-
-  .emerald-glow-strong {
-    filter: drop-shadow(0 0 12px hsl(var(--accent-emerald) / 0.6));
-  }
-
-  /* Architectural grid lines for blueprint aesthetic */
-  .blueprint-grid {
-    background-image: 
-      radial-gradient(circle at 1px 1px, hsl(var(--border)) 1px, transparent 0);
-    background-size: 20px 20px;
-    opacity: 0.3;
-  }
-
-  /* Subtle animation for sophisticated interactions */
-  .architect-transition {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Glass morphism for modern cards */
-  .glass-card {
-    background: hsl(var(--card) / 0.8);
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--border) / 0.5);
   }
 }
 

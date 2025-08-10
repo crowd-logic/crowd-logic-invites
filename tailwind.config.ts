@@ -32,7 +32,6 @@ export default {
 					DEFAULT: 'hsl(var(--emerald))',
 					glow: 'hsl(var(--emerald-glow))'
 				},
-				'accent-emerald': 'hsl(var(--accent-emerald))',
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
@@ -67,18 +66,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
-			},
-			fontFamily: {
-				crimson: ['Crimson Text', 'serif'],
-				inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
-			},
-			backgroundImage: {
-				'gradient-foundation': 'linear-gradient(135deg, hsl(var(--gradient-foundation-start)), hsl(var(--gradient-foundation-end)))',
-				'gradient-event': 'linear-gradient(135deg, hsl(var(--gradient-event-start)), hsl(var(--gradient-event-end)))',
-				'gradient-sentiment': 'linear-gradient(135deg, hsl(var(--gradient-sentiment-start)), hsl(var(--gradient-sentiment-end)))',
-				'gradient-escapade': 'linear-gradient(135deg, hsl(var(--gradient-escapade-start)), hsl(var(--gradient-escapade-end)))',
-				'gradient-ambassador': 'linear-gradient(135deg, hsl(var(--gradient-ambassador-start)), hsl(var(--gradient-ambassador-end)))',
-				'gradient-dashboard': 'linear-gradient(135deg, hsl(var(--gradient-dashboard-start)), hsl(var(--gradient-dashboard-end)))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
