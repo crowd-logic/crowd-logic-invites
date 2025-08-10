@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 
+import SplineBackground from '../components/SplineBackground';
+import fallbackVisual from '@/assets/dashboard-vignette.jpg';
 // Import all the dossier components
 import EscapadeDossier from '../components/EscapadesDossier';
 import KitoDossier from '../components/dossiers/KitoDossier';
@@ -111,11 +113,14 @@ const Index = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#1A1A1A', color: '#EAEAEA', fontFamily: "'Inter', sans-serif", minHeight: '100vh' }}>
+    <div style={{ color: '#EAEAEA', fontFamily: "'Inter', sans-serif", minHeight: '100vh', position: 'relative', zIndex: 10 }}>
       <style>{`
         .center-node:hover { transform: scale(1.1) !important; }
         .outer-node:hover { background-color: #009B77 !important; color: #1A1A1A !important; transform: scale(1.1) !important; }
       `}</style>
+
+      {/* Background Spline scene with graceful fallback */}
+      <SplineBackground url="[PLACEHOLDER_SPLINE_URL]" fallbackImage={fallbackVisual} />
 
       <main>
         {/* Placeholder section that will be replaced by Spline later */}
