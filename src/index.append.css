@@ -13,18 +13,61 @@
   --font-body: 'Inter', sans-serif;
 }
 
+html { 
+  scroll-behavior: smooth; 
+}
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: var(--bg-dark);
   font-family: var(--font-body);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Landing utility classes */
+.emerald-text { color: var(--accent-emerald); }
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-emerald);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.cta-button:hover {
+  background-color: #00C29B;
+  transform: scale(1.05);
+}
+
+.cta-button-outline {
+  display: inline-block;
+  background-color: transparent;
+  border: 2px solid var(--accent-emerald);
+  color: var(--accent-emerald);
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.cta-button-outline:hover {
+  background-color: var(--accent-emerald);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
 
 /* Spline & Dossier Styles */
 .spline-container {
