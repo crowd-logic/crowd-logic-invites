@@ -1,26 +1,85 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Sparkles, Store, Globe, ShoppingCart, Calendar, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Users, Sparkles } from 'lucide-react';
 import { supabase } from '../../integrations/supabase/client';
 import './SharedDossier.css';
 
-interface KitoDossierProps {
-  isVisible?: boolean;
-}
-
-const KitoDossier: React.FC<KitoDossierProps> = ({ isVisible = true }) => {
+const KitoDossier = () => {
   const [currentWord, setCurrentWord] = useState(0);
   const words = ['Brand.', 'Nonprofit.', 'Business.', 'Launch.'];
   
-  const [step, setStep] = useState(1);
-  const [userType, setUserType] = useState<string | null>(null);
-  const [distribution, setDistribution] = useState<string | null>(null);
-  const [location, setLocation] = useState('');
-  const [challenge, setChallenge] = useState('');
+  // Form state
+  const [formData, setFormData] = useState({
+    businessType: 'Small Business',
+    location: '',
+    challenge: 'Brand Awareness'
+  });
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [clarifyingQuestion, setClarifyingQuestion] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [playbook, setPlaybook] = useState(null);
   
-  const [isLoading, setIsLoading] = useState(false);
-  const [playbook, setPlaybook] = useState<any>(null);
-  const [error, setError] = useState('');
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleGeneratePlaybook = async () => {
+    if (!formData.location.trim()) {
+      alert('Please enter your location');
+      return;
+    }
+
+    setIsGenerating(true);
+    try {
+      // Step 1: Get clarifying question
+      const { data, error } = await supabase.functions.invoke('ai-playbook-architect', {
+        body: {
+          user_type: formData.businessType,
+          location: formData.location,
+          challenge: formData.challenge
+        }
+      });
+
+      if (error) throw error;
+      
+      if (data.clarifying_question) {
+        setClarifyingQuestion(data.clarifying_question);
+      } else {
+        setPlaybook(data);
+      }
+    } catch (error) {
+      console.error('Error generating playbook:', error);
+      alert('Failed to generate playbook. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const handleAnswerSelection = async (answer) => {
+    setSelectedAnswer(answer);
+    setIsGenerating(true);
+    
+    try {
+      // Step 2: Generate full playbook with the clarifying answer
+      const { data, error } = await supabase.functions.invoke('ai-playbook-architect', {
+        body: {
+          user_type: formData.businessType,
+          location: formData.location,
+          challenge: formData.challenge,
+          clarifying_answer: answer
+        }
+      });
+
+      if (error) throw error;
+      setPlaybook(data);
+      setClarifyingQuestion(null); // Hide the clarifying question
+    } catch (error) {
+      console.error('Error generating playbook:', error);
+      alert('Failed to generate playbook. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -29,74 +88,9 @@ const KitoDossier: React.FC<KitoDossierProps> = ({ isVisible = true }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleUserTypeSelect = (type: string) => {
-    setUserType(type);
-    if (type === 'A Nonprofit') {
-      setStep(3); // Nonprofits skip the distribution question
-    } else {
-      setStep(2);
-    }
-  };
-
-  const handleDistributionSelect = (dist: string) => {
-    setDistribution(dist);
-    setStep(3);
-  };
-
-  const handleGeneratePlaybook = async () => {
-    setIsLoading(true);
-    setPlaybook(null);
-    setError('');
-    
-    try {
-      const { data, error: functionError } = await supabase.functions.invoke('ai-playbook-architect', {
-        body: {
-          user_type: userType,
-          distribution_model: distribution,
-          location: location,
-          challenge: challenge
-        }
-      });
-
-      if (functionError) throw functionError;
-      if (data.error) throw new Error(data.error);
-      
-      setPlaybook(data);
-
-    } catch (err: any) {
-      console.error(err);
-      setError(err.message || 'Failed to generate playbook');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const resetForm = () => {
-    setStep(1);
-    setUserType(null);
-    setDistribution(null);
-    setLocation('');
-    setChallenge('');
-    setPlaybook(null);
-    setError('');
-  };
-
-  const userTypeOptions = [
-    { id: 'A Local Business', label: 'A Local Business', icon: Store },
-    { id: 'A Nonprofit', label: 'A Nonprofit', icon: Users },
-    { id: 'A Product Creator', label: 'A Product Creator', icon: Sparkles }
-  ];
-
-  const distributionOptions = [
-    { id: 'physical_location', label: 'At My Physical Location', icon: Store },
-    { id: 'in_retail_stores', label: 'In Retail Stores', icon: ShoppingCart },
-    { id: 'online_only', label: 'Online Only', icon: Globe },
-    { id: 'at_events', label: 'At Events & Markets', icon: Calendar }
-  ];
-
   return (
     <div 
-      className={`dossier-wrapper ${isVisible ? 'visible' : ''}`}
+      className="dossier-wrapper visible" 
       style={{ background: 'radial-gradient(circle at 0% 100%, rgba(0, 155, 119, 0.1), #1A1A1A 40%)' }}
     >
       <div className="dossier-content">
@@ -135,177 +129,92 @@ const KitoDossier: React.FC<KitoDossierProps> = ({ isVisible = true }) => {
         >
           Demystify the power of Brand Ambassadors. Get a custom, location-aware campaign playbook in 60 seconds.
         </motion.p>
+        
+        <motion.div 
+          className="architect-tool glass-card w-full max-w-2xl"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <div className="flex items-center justify-center mb-6">
+            <Sparkles className="w-8 h-8 text-emerald-400 mr-3" />
+            <h3 className="text-xl font-semibold text-white">AI Campaign Architect</h3>
+          </div>
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 bg-gray-800/50 rounded-lg">
+                <label className="block text-sm font-medium text-gray-300 mb-2">Business Type</label>
+                <select 
+                  value={formData.businessType}
+                  onChange={(e) => handleInputChange('businessType', e.target.value)}
+                  className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                >
+                  <option>Small Business</option>
+                  <option>Nonprofit</option>
+                  <option>Startup</option>
+                </select>
+              </div>
+              <div className="p-4 bg-gray-800/50 rounded-lg">
+                <label className="block text-sm font-medium text-gray-300 mb-2">Location</label>
+                <input 
+                  type="text" 
+                  placeholder="City, State"
+                  value={formData.location}
+                  onChange={(e) => handleInputChange('location', e.target.value)}
+                  className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                />
+              </div>
+              <div className="p-4 bg-gray-800/50 rounded-lg">
+                <label className="block text-sm font-medium text-gray-300 mb-2">Challenge</label>
+                <select 
+                  value={formData.challenge}
+                  onChange={(e) => handleInputChange('challenge', e.target.value)}
+                  className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white"
+                >
+                  <option>Brand Awareness</option>
+                  <option>Lead Generation</option>
+                  <option>Event Promotion</option>
+                  <option>More Sales/Revenue</option>
+                  <option>Customer Traffic</option>
+                </select>
+              </div>
+            </div>
+            <button 
+              onClick={handleGeneratePlaybook}
+              disabled={isGenerating}
+              className="w-full py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isGenerating ? 'Generating...' : 'Generate Campaign Playbook'}
+            </button>
+          </div>
+        </motion.div>
 
-        {!playbook && (
-          <motion.div 
-            className="architect-tool glass-card w-full max-w-2xl"
+        {clarifyingQuestion && (
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8 }}
+            className="architect-tool glass-card w-full max-w-2xl mt-8"
           >
-            <div className="flex items-center justify-center mb-6">
-              <Sparkles className="w-8 h-8 text-emerald-400 mr-3" />
-              <h3 className="text-xl font-semibold text-white">Guided Conversation</h3>
-            </div>
-
-            <AnimatePresence mode="wait">
-              {/* Step 1: User Type */}
-              {step === 1 && (
-                <motion.div
-                  key="step1"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-6"
-                >
-                  <div className="text-center">
-                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">Step 1: Tell us who you are</h4>
-                    <p className="text-gray-300 text-sm">Choose the option that best describes you</p>
-                  </div>
-                  
-                  <div className="grid gap-4">
-                    {userTypeOptions.map((option) => {
-                      const IconComponent = option.icon;
-                      return (
-                        <button
-                          key={option.id}
-                          onClick={() => handleUserTypeSelect(option.id)}
-                          className={`flex items-center p-4 border rounded-lg transition-all duration-300 group ${
-                            userType === option.id 
-                              ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' 
-                              : 'bg-gray-800/50 hover:bg-gray-700/50 border-gray-600 hover:border-emerald-500 text-white'
-                          }`}
-                        >
-                          <IconComponent className="w-6 h-6 mr-4 group-hover:scale-110 transition-transform" />
-                          <span className="font-medium">{option.label}</span>
-                          <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-all" />
-                        </button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Step 2: Distribution Model (conditional) */}
-              {step >= 2 && userType !== 'A Nonprofit' && (
-                <motion.div
-                  key="step2"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-6"
-                >
-                  <div className="text-center">
-                    <h4 className="text-lg font-semibold text-emerald-400 mb-2">Step 2: Where do you connect with customers?</h4>
-                    <p className="text-gray-300 text-sm">Choose your primary connection point</p>
-                  </div>
-                  
-                  <div className="grid gap-4">
-                    {distributionOptions.map((option) => {
-                      const IconComponent = option.icon;
-                      return (
-                        <button
-                          key={option.id}
-                          onClick={() => handleDistributionSelect(option.id)}
-                          className={`flex items-center p-4 border rounded-lg transition-all duration-300 group ${
-                            distribution === option.id 
-                              ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' 
-                              : 'bg-gray-800/50 hover:bg-gray-700/50 border-gray-600 hover:border-emerald-500 text-white'
-                          }`}
-                        >
-                          <IconComponent className="w-6 h-6 mr-4 group-hover:scale-110 transition-transform" />
-                          <span className="font-medium">{option.label}</span>
-                          <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-all" />
-                        </button>
-                      );
-                    })}
-                  </div>
-                  
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-emerald-400 mb-4">One Quick Question</h3>
+              <p className="text-gray-300 mb-6">{clarifyingQuestion.question}</p>
+              <div className="space-y-3">
+                {clarifyingQuestion.choices.map((choice, index) => (
                   <button
-                    onClick={() => setStep(1)}
-                    className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors"
+                    key={index}
+                    onClick={() => handleAnswerSelection(choice)}
+                    disabled={isGenerating}
+                    className="w-full p-4 text-left bg-gray-700/50 hover:bg-gray-600/50 border border-gray-600 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    ← Back
+                    <span className="text-white">{choice}</span>
                   </button>
-                </motion.div>
-              )}
-
-              {/* Step 3: Location & Challenge */}
-              {step >= 3 && (
-                <motion.div
-                  key="step3"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-6"
-                >
-                  <div className="space-y-4">
-                    {/* Conditional Location Input */}
-                    {distribution === 'physical_location' && (
-                      <div>
-                        <h4 className="text-lg font-semibold text-emerald-400 mb-2">Step 3: Where is your community?</h4>
-                        <input 
-                          type="text" 
-                          placeholder="e.g., 'Brooklyn, NY' or '90210'"
-                          value={location}
-                          onChange={(e) => setLocation(e.target.value)}
-                          className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none"
-                        />
-                      </div>
-                    )}
-                    
-                    {/* Challenge Input */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-emerald-400 mb-2">
-                        {distribution === 'physical_location' ? 'Step 4' : 'Step 3'}: What is your biggest challenge or goal?
-                      </h4>
-                      <textarea
-                        placeholder="In your own words, e.g., 'I need more foot traffic,' or 'I'm launching a new skincare line...'"
-                        value={challenge}
-                        onChange={(e) => setChallenge(e.target.value)}
-                        rows={4}
-                        className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-emerald-500 focus:outline-none resize-none"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => userType === 'A Nonprofit' ? setStep(1) : setStep(2)}
-                      className="text-emerald-400 text-sm hover:text-emerald-300 transition-colors"
-                    >
-                      ← Back
-                    </button>
-                    
-                    <button
-                      onClick={handleGeneratePlaybook}
-                      disabled={isLoading || !challenge.trim() || (distribution === 'physical_location' && !location.trim())}
-                      className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:from-emerald-400 hover:to-emerald-500 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isLoading ? 'Building Your Playbook...' : 'Build My Playbook'}
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Error Display */}
-            {error && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mt-4 p-4 bg-red-500/20 border border-red-500 rounded-lg"
-              >
-                <p className="text-red-400 text-sm">{error}</p>
-              </motion.div>
-            )}
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
 
-        {/* Playbook Results */}
         {playbook && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -314,52 +223,62 @@ const KitoDossier: React.FC<KitoDossierProps> = ({ isVisible = true }) => {
             className="architect-tool glass-card w-full max-w-4xl mt-8"
           >
             <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-semibold text-emerald-400">Your Campaign Playbook</h3>
-                <button
-                  onClick={resetForm}
-                  className="text-gray-400 hover:text-emerald-400 text-sm transition-colors"
-                >
-                  Start Over
-                </button>
-              </div>
-              
+              <h3 className="text-2xl font-semibold text-emerald-400 mb-6">Your Campaign Playbook</h3>
               <div className="space-y-6 text-gray-300">
                 {playbook.playbook && (
                   <div className="space-y-8">
                     {/* Strategy Section */}
-                    {playbook.playbook.strategy && (
-                      <div>
-                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Strategy</h4>
-                        <p className="text-gray-300">{playbook.playbook.strategy}</p>
-                      </div>
-                    )}
-
-                    {/* Opportunities Section */}
-                    {playbook.playbook.opportunities && (
-                      <div>
-                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Local Opportunities</h4>
-                        <ul className="list-disc list-inside space-y-2 text-gray-300">
-                          {playbook.playbook.opportunities.map((opportunity: string, index: number) => (
-                            <li key={index}>{opportunity}</li>
+                    <div>
+                      <h4 className="text-xl font-semibold text-emerald-400 mb-3">Strategy</h4>
+                      <p className="text-gray-300 mb-4">{playbook.playbook.strategy?.core_approach}</p>
+                      {playbook.playbook.strategy?.key_insights && (
+                        <ul className="list-disc list-inside space-y-2 text-gray-400">
+                          {playbook.playbook.strategy.key_insights.map((insight, index) => (
+                            <li key={index}>{insight}</li>
                           ))}
                         </ul>
+                      )}
+                    </div>
+
+                    {/* Tactics Section */}
+                    {playbook.playbook.tactics && (
+                      <div>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Tactics</h4>
+                        <div className="space-y-4">
+                          {playbook.playbook.tactics.map((tactic, index) => (
+                            <div key={index} className="bg-gray-800/30 p-4 rounded-lg">
+                              <h5 className="font-semibold text-white mb-2">{tactic.name}</h5>
+                              <p className="text-gray-300 mb-2">{tactic.description}</p>
+                              <p className="text-gray-400 text-sm mb-2"><strong>Implementation:</strong> {tactic.implementation}</p>
+                              <p className="text-emerald-300 text-sm"><strong>Why this works:</strong> {tactic.why_this_works}</p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
 
-                    {/* Team & Tactics Section */}
-                    {playbook.playbook.team_tactics && (
+                    {/* Impact Section */}
+                    {playbook.playbook.impact && (
                       <div>
-                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Team & Tactics</h4>
-                        <p className="text-gray-300">{playbook.playbook.team_tactics}</p>
-                      </div>
-                    )}
-
-                    {/* Projected Impact Section */}
-                    {playbook.playbook.projected_impact && (
-                      <div>
-                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Projected Impact</h4>
-                        <p className="text-gray-300">{playbook.playbook.projected_impact}</p>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Expected Impact</h4>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="font-semibold text-white mb-2">Immediate Outcomes</h5>
+                            <ul className="list-disc list-inside space-y-1 text-gray-400">
+                              {playbook.playbook.impact.immediate_outcomes?.map((outcome, index) => (
+                                <li key={index}>{outcome}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-white mb-2">Long-term Benefits</h5>
+                            <ul className="list-disc list-inside space-y-1 text-gray-400">
+                              {playbook.playbook.impact.long_term_benefits?.map((benefit, index) => (
+                                <li key={index}>{benefit}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     )}
 
@@ -367,19 +286,10 @@ const KitoDossier: React.FC<KitoDossierProps> = ({ isVisible = true }) => {
                     {playbook.playbook.investment && (
                       <div>
                         <h4 className="text-xl font-semibold text-emerald-400 mb-3">Investment</h4>
-                        <div className="bg-gray-800/30 p-4 rounded-lg">
-                          {typeof playbook.playbook.investment === 'string' ? (
-                            <p className="text-gray-300">{playbook.playbook.investment}</p>
-                          ) : (
-                            <div className="space-y-2">
-                              {Object.entries(playbook.playbook.investment).map(([key, value]) => (
-                                <p key={key}>
-                                  <strong className="text-white capitalize">{key.replace('_', ' ')}:</strong>{' '}
-                                  <span className="text-gray-300">{String(value)}</span>
-                                </p>
-                              ))}
-                            </div>
-                          )}
+                        <div className="bg-gray-800/30 p-4 rounded-lg space-y-2">
+                          <p><strong className="text-white">Budget Range:</strong> <span className="text-gray-300">{playbook.playbook.investment.budget_range}</span></p>
+                          <p><strong className="text-white">Timeline:</strong> <span className="text-gray-300">{playbook.playbook.investment.timeline}</span></p>
+                          <p><strong className="text-white">ROI Expectation:</strong> <span className="text-gray-300">{playbook.playbook.investment.roi_expectation}</span></p>
                         </div>
                       </div>
                     )}
