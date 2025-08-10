@@ -2,6 +2,7 @@
 import React, { Suspense, useState, useEffect } from 'react';
 
 import KitoAgencyDossier from './KitoAgencyDossier';
+import ErrorBoundary from './ErrorBoundary';
 // Lazy load the Spline viewer to improve initial page load
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
@@ -65,13 +66,15 @@ const SplineExperience: React.FC = () => {
     return (
         <>
             <div className="spline-container">
-                <Suspense fallback={<div className="fallback-image"></div>}>
-                    <Spline
-                        scene="[PLACEHOLDER_SPLINE_URL]"
-                        onLoad={onSplineLoad}
-                        onMouseDown={handleMouseDown}
-                    />
-                </Suspense>
+                <ErrorBoundary fallback={<div className="fallback-image"></div>}>
+                    <Suspense fallback={<div className="fallback-image"></div>}>
+                        <Spline
+                            scene="[PLACEHOLDER_SPLINE_URL]"
+                            onLoad={onSplineLoad}
+                            onMouseDown={handleMouseDown}
+                        />
+                    </Suspense>
+                </ErrorBoundary>
             </div>
             <div className={`dossier-container ${activePanel ? 'visible' : ''}`}>
                 {activePanel && dossierPanels[activePanel]}
