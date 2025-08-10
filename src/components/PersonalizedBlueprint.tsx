@@ -18,6 +18,14 @@ interface PersonalizedBlueprintProps {
 }
 
 export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) => {
+  // Defensive defaults to avoid runtime errors when parts of the solution are missing
+  const persona = solution?.persona ?? "Professional";
+  const headline = solution?.pain_point_headline ?? "A tailored plan to reach your goals.";
+  const caseStudy = solution?.case_study ?? null;
+  const ctaText = solution?.cta_text ?? "Learn more";
+  const ctaLink = solution?.cta_link ?? "#";
+  const hasCtaLink = Boolean(solution?.cta_link);
+
   return (
     <div className="h-full bg-white p-12 overflow-y-auto">
       <div className="max-w-2xl">
@@ -32,10 +40,10 @@ export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) 
             Personalized Solution
           </p>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            {solution.persona}
+            {persona}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            {solution.pain_point_headline}
+            {headline}
           </p>
         </motion.div>
 
@@ -47,31 +55,37 @@ export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) 
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            {solution.case_study.title}
+            {caseStudy?.title || "Case Study"}
           </h2>
-          
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">The Challenge</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {solution.case_study.scenario}
-              </p>
+
+          {caseStudy ? (
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">The Challenge</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {caseStudy.scenario}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">The Solution</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {caseStudy.solution}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-800 mb-2">The Result</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {caseStudy.result}
+                </p>
+              </div>
             </div>
-            
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">The Solution</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {solution.case_study.solution}
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-gray-800 mb-2">The Result</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {solution.case_study.result}
-              </p>
-            </div>
-          </div>
+          ) : (
+            <p className="text-gray-600 leading-relaxed">
+              A relevant case study will appear here once available.
+            </p>
+          )}
         </motion.div>
 
         {/* CTA */}
@@ -85,14 +99,19 @@ export const PersonalizedBlueprint = ({ solution }: PersonalizedBlueprintProps) 
             Ready to get started?
           </h3>
           <p className="text-gray-600 mb-6">
-            Join the thousands of {solution.persona.toLowerCase()}s who have already transformed their approach.
+            Join the thousands of {persona.toLowerCase()}s who have already transformed their approach.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-emerald-600 hover:bg-emerald-700 text-white"
-            onClick={() => window.open(solution.cta_link, '_blank')}
+          <Button
+            size="lg"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={!hasCtaLink}
+            onClick={() => {
+              if (hasCtaLink) {
+                window.open(ctaLink, "_blank", "noopener,noreferrer");
+              }
+            }}
           >
-            {solution.cta_text}
+            {ctaText}
           </Button>
         </motion.div>
       </div>
