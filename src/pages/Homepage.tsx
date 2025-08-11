@@ -26,6 +26,22 @@ const Homepage = () => {
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center px-6 relative">
         <div className="max-w-5xl mx-auto text-center pt-20">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative mx-auto mb-8 inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-5 py-4 shadow-[0_0_50px_rgba(16,185,129,0.15)]"
+            aria-label="CrowdLogic logo"
+          >
+            <span className="absolute inset-0 -z-10 rounded-2xl bg-emerald-500/20 blur-2xl" aria-hidden="true" />
+            <img
+              src="/lovable-uploads/53bff6ea-6c8a-4d48-9921-3afdeb9300ef.png"
+              alt="CrowdLogic logo"
+              className="h-12 w-auto md:h-14"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </motion.div>
           <motion.h1 initial={{
           opacity: 0,
           y: 20
