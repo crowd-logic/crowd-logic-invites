@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { MotionBackground } from "@/components/MotionBackground";
 import { EmailCapture } from "@/components/EmailCapture";
-import { FloatingCards } from "@/components/FloatingCards";
+
 const Homepage = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -66,7 +66,7 @@ const Homepage = () => {
               Talk to us
             </a>
           </motion.div>
-          <FloatingCards />
+          
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
           <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
