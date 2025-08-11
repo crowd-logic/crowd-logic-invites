@@ -142,9 +142,12 @@ const Homepage = () => {
       {/* Founder */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center fade-up opacity-0 translate-y-10 transition-all duration-1000">
-          <img src="/lovable-uploads/c766932b-adcc-4235-aefc-890c82644d6d.png"
+          <img
+               src="/lovable-uploads/c766932b-adcc-4235-aefc-890c82644d6d.png"
                alt="Founder portrait"
-               className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-emerald-500/30 object-cover" />
+               className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-emerald-500/30 object-cover"
+               style={{ objectPosition: 'center 22%' }}
+          />
           <h2 className="text-3xl font-bold mb-4">Built by Experience</h2>
           <p className="text-xl text-gray-300 mb-8 leading-relaxed">
             Kito Johorri brings 20+ years orchestrating 500+ events. From Ghostown DJs ("My Boo" - Gold Record) 
