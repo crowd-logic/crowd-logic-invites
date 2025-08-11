@@ -25,7 +25,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
       <Navigation />
       <MotionBackground />
       <h1 className="sr-only">CrowdLogic — Integrated Intelligence for Events</h1>
