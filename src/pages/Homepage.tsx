@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { MotionBackground } from "@/components/MotionBackground";
 import { EmailCapture } from "@/components/EmailCapture";
+import { FloatingCards } from "@/components/FloatingCards";
+import { Users, Sparkles, Target } from "lucide-react";
 const Homepage = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -24,7 +26,7 @@ const Homepage = () => {
 
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center px-6 relative">
-        <div className="max-w-5xl mx-auto text-center pt-20">
+        <div className="relative z-10 max-w-5xl mx-auto text-center pt-20">
           <motion.h1 initial={{
           opacity: 0,
           y: 20
@@ -66,6 +68,7 @@ const Homepage = () => {
             </a>
           </motion.div>
         </div>
+        <FloatingCards />
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
           <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -150,25 +153,69 @@ const Homepage = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 fade-up opacity-0 translate-y-10 transition-all duration-1000">
-              <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-8">
-                <h3 className="text-lg font-semibold mb-4 text-purple-400">AI Campaign Architect</h3>
-                <p className="text-sm text-white/70 mb-6">
-                  Answer 3 questions. Get a custom campaign playbook in 60 seconds.
-                </p>
-                <div className="space-y-4">
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-                    <p className="text-sm text-white/60">✓ Local market analysis</p>
+              <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 overflow-hidden">
+                {/* Animated background gradient */}
+                <motion.div
+                  className="absolute inset-0 opacity-30"
+                  animate={{
+                    background: [
+                      "radial-gradient(circle at 20% 50%, purple 0%, transparent 50%)",
+                      "radial-gradient(circle at 80% 50%, purple 0%, transparent 50%)",
+                      "radial-gradient(circle at 20% 50%, purple 0%, transparent 50%)",
+                    ],
+                  }}
+                  transition={{ duration: 10, repeat: Infinity }}
+                />
+                
+                <div className="relative z-10">
+                  <h3 className="text-lg font-semibold mb-4 text-purple-400">
+                    AI Campaign Architect
+                  </h3>
+                  
+                  <div className="mb-6 p-4 rounded-lg bg-black/30 border border-purple-500/20">
+                    <p className="text-white/90 font-medium mb-2">Launching August 18</p>
+                    <p className="text-white/60 text-sm">Get your personalized campaign playbook in 60 seconds</p>
                   </div>
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-                    <p className="text-sm text-white/60">✓ Ambassador deployment strategy</p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <motion.div 
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      <Target className="w-5 h-5 text-purple-400" />
+                      <span className="text-white/70 text-sm">Hyper-local market analysis</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      <Users className="w-5 h-5 text-purple-400" />
+                      <span className="text-white/70 text-sm">Ambassador deployment strategy</span>
+                    </motion.div>
+                    
+                    <motion.div 
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <Sparkles className="w-5 h-5 text-purple-400" />
+                      <span className="text-white/70 text-sm">ROI projections & timeline</span>
+                    </motion.div>
                   </div>
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-                    <p className="text-sm text-white/60">✓ ROI projections</p>
-                  </div>
+                  
+                  <button 
+                    onClick={() => window.location.href = '#architect-waitlist'}
+                    className="w-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-3 text-white font-medium hover:from-purple-400 hover:to-pink-400 transition-colors"
+                  >
+                    Join the Early Access List
+                  </button>
                 </div>
-                <button className="mt-6 w-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-3 text-white font-medium">
-                  Try It Now (Launching August 18)
-                </button>
               </div>
             </div>
             
