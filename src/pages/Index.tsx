@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
-import { AINavigator } from "@/components/AINavigator";
+import { EmailCapture } from "@/components/EmailCapture";
 import { SolutionBlueprint } from "@/components/SolutionBlueprint";
 import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
@@ -38,17 +38,10 @@ const Index = () => {
         <>
           {showInputSection && (
             <div className="pt-20 pb-8 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
-              <div className="max-w-4xl mx-auto px-6 text-center">
-                <div className="mb-8">
-                  <h1 className="text-4xl font-bold text-white mb-4">
-                    What's your next mission?
-                  </h1>
-                  <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-                    Every great achievement starts with understanding the challenge. 
-                    Tell us about your world, and we'll craft your perfect solution.
-                  </p>
-                  <AINavigator onSolutionFound={handleSolutionFound} />
-                </div>
+              <div className="max-w-xl mx-auto px-6 text-center">
+                <h2 className="text-2xl font-semibold text-white mb-3">Get early access</h2>
+                <p className="text-white/80 mb-6">Join the waitlist and we'll notify you when case studies are ready.</p>
+                <EmailCapture className="mx-auto max-w-md" placeholder="you@company.com" buttonText="Notify me" />
               </div>
             </div>
           )}
