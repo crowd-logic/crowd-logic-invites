@@ -30,13 +30,13 @@ const Homepage = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative mx-auto mb-10"
+            className="relative mx-auto mb-0"
             aria-label="CrowdLogic logo"
           >
             <img
               src="/lovable-uploads/53bff6ea-6c8a-4d48-9921-3afdeb9300ef.png"
               alt="CrowdLogic logo"
-              className="mx-auto w-auto h-72 md:h-[27rem] lg:h-[30rem]"
+              className="mx-auto w-auto h-[21.6rem] md:h-[32.4rem] lg:h-[36rem] drop-shadow-[0_0_24px_rgba(255,255,255,0.28)]"
               decoding="async"
               fetchPriority="high"
             />
