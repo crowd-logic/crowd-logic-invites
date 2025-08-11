@@ -23,8 +23,8 @@ export const Navigation = () => {
           </div>
           
           <div className="hidden md:flex items-center gap-6">
-            <a href="#vision" className="nav-link">Vision</a>
-            <a href="#services" className="nav-link">Services</a>
+            <a href="#proof" className="nav-link">Proof</a>
+            <a href="#service" className="nav-link">Service</a>
             <a href="#founder" className="nav-link">Leadership</a>
             <a href="#contact" className="btn-pill-dark">Request Access</a>
           </div>
@@ -41,8 +41,8 @@ export const Navigation = () => {
           <div className="md:hidden">
             <div className="bg-background/70 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-border">
               <div className="flex flex-col space-y-6">
-                <a href="#vision" className="nav-link" onClick={() => setIsOpen(false)}>Vision</a>
-                <a href="#services" className="nav-link" onClick={() => setIsOpen(false)}>Services</a>
+                <a href="#proof" className="nav-link" onClick={() => setIsOpen(false)}>Proof</a>
+                <a href="#service" className="nav-link" onClick={() => setIsOpen(false)}>Service</a>
                 <a href="#founder" className="nav-link" onClick={() => setIsOpen(false)}>Leadership</a>
                 <a href="#contact" className="btn-pill-dark text-center" onClick={() => setIsOpen(false)}>Request Access</a>
               </div>

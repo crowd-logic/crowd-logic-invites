@@ -8,10 +8,11 @@ import { Vision } from "@/components/Vision";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
 import { Contact } from "@/components/Contact";
+import { MotionBackground } from "@/components/MotionBackground";
 
 const Index = () => {
   const [solution, setSolution] = useState(null);
-  const [showInputSection, setShowInputSection] = useState(true);
+  const [showInputSection, setShowInputSection] = useState(false);
 
   const handleSolutionFound = (newSolution: any) => {
     setSolution(newSolution);
@@ -24,9 +25,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      
+      <MotionBackground />
+      <h1 className="sr-only">CrowdLogic — Integrated Intelligence for Events</h1>
       {solution ? (
         <div className="pt-20">
           <SolutionBlueprint 
@@ -53,14 +55,22 @@ const Index = () => {
             </div>
           )}
           
-          <div className="perspective-1000">
+          <div className="perspective-1000 text-center">
             <Hero />
           </div>
           
-          <Vision />
-          <Services />
-          <Founder />
-          <Contact />
+          <section id="proof">
+            <Vision />
+          </section>
+          <section id="service">
+            <Services />
+          </section>
+          <section id="founder">
+            <Founder />
+          </section>
+          <section id="contact">
+            <Contact />
+          </section>
         </>
       )}
     </div>
