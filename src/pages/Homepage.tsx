@@ -36,7 +36,7 @@ const Homepage = () => {
             <img
               src="/lovable-uploads/53bff6ea-6c8a-4d48-9921-3afdeb9300ef.png"
               alt="CrowdLogic logo"
-              className="mx-auto h-24 w-auto md:h-36 lg:h-40"
+              className="mx-auto w-auto h-72 md:h-[27rem] lg:h-[30rem]"
               decoding="async"
               fetchPriority="high"
             />
