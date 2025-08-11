@@ -3,55 +3,61 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { MotionBackground } from "@/components/MotionBackground";
 import { EmailCapture } from "@/components/EmailCapture";
-
 const Homepage = () => {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.classList.remove("opacity-0", "translate-y-10");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("opacity-100", "translate-y-0");
+          entry.target.classList.remove("opacity-0", "translate-y-10");
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+  return <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <MotionBackground />
       <Navigation />
 
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center px-6 relative">
         <div className="max-w-5xl mx-auto text-center pt-20">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent"
-          >
+          <motion.h1 initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.8
+        }} className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">
             We orchestrate unforgettable experiences with intelligence and heart
           </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
+          <motion.p initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.8,
+          delay: 0.2
+        }} className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
             An AI-native ecosystem unifying group planning, brand ambassadors, and attendee engagement—so your moments feel effortless, not chaotic
           </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.8,
+          delay: 0.4
+        }} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#proof" className="px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 transition-all transform hover:scale-105 font-medium">
               See it in action
             </a>
@@ -80,8 +86,7 @@ const Homepage = () => {
                 Our live app serves as both a consumer solution and the data engine for our AI-powered ecosystem. Over 1,000 beta users are already capturing inspiration, coordinating seamlessly, and creating memories together.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="https://escapadeapp.accesscrowdlogic.com" target="_blank" rel="noopener noreferrer"
-                   className="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 transition-all text-center font-medium">
+                <a href="https://escapadeapp.accesscrowdlogic.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 transition-all text-center font-medium">
                   Experience escapade
                 </a>
                 <a href="#vision" className="px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-center font-medium">
@@ -95,12 +100,7 @@ const Homepage = () => {
                 {/* Phone frame */}
                 <div className="relative rounded-[3rem] border-8 border-gray-800 bg-gray-800 p-2 shadow-2xl">
                   <div className="aspect-[9/19.5] w-full rounded-[2.5rem] bg-black overflow-hidden">
-                    <iframe
-                      src="https://escapadeapp.accesscrowdlogic.com"
-                      title="escapade app"
-                      className="w-full h-full"
-                      loading="lazy"
-                    />
+                    <iframe src="https://escapadeapp.accesscrowdlogic.com" title="escapade app" className="w-full h-full" loading="lazy" />
                   </div>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 blur-3xl -z-10" />
@@ -213,17 +213,17 @@ const Homepage = () => {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Kito */}
             <div className="text-center">
-              <img src="/lovable-uploads/c766932b-adcc-4235-aefc-890c82644d6d.png" 
-                   alt="Kito Williams" 
-                   className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-emerald-500/30 object-cover" 
-                   style={{ objectPosition: '50% 10%' }} />
-              <h3 className="text-2xl font-bold mb-2">Kito Williams</h3>
+              <img src="/lovable-uploads/c766932b-adcc-4235-aefc-890c82644d6d.png" alt="Kito Williams" className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-emerald-500/30 object-cover" style={{
+              objectPosition: '50% 10%'
+            }} />
+              <h3 className="text-2xl font-bold mb-2">Kito
+
+            </h3>
               <p className="text-emerald-400 mb-4">The Alchemist</p>
               <p className="text-gray-300 leading-relaxed">
                 A renaissance creator who transforms experiences across mediums. From touring the world as an artist to mastering chemistry in labs, from producing thousands of live experiences to pioneering digital innovation—Kito brings the soul and vision that makes moments unforgettable.
               </p>
-              <a href="https://linkedin.com/in/kitowilliams" target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-all mt-4">
+              <a href="https://linkedin.com/in/kitowilliams" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-all mt-4">
                 LinkedIn
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -265,8 +265,6 @@ const Homepage = () => {
           © 2025 CrowdLogic. Orchestrating unforgettable experiences with intelligence and heart.
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Homepage;
