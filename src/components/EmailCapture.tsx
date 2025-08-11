@@ -37,11 +37,11 @@ export const EmailCapture = ({
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        className={`text-center p-6 bg-emerald-900/20 rounded-lg border border-emerald-500/30 ${className}`}
+        className={`text-center p-6 bg-accent/10 rounded-lg border border-accent/30 ${className}`}
       >
-        <Check className="w-8 h-8 mx-auto mb-4 text-emerald-400" />
-        <h3 className="text-lg font-semibold text-white mb-2">You're In!</h3>
-        <p className="text-emerald-300">We'll notify you when it's ready.</p>
+        <Check className="w-8 h-8 mx-auto mb-4 text-accent" />
+        <h3 className="text-lg font-semibold text-foreground mb-2">You're in!</h3>
+        <p className="text-muted-foreground">Thanks! We’ll be in touch soon.</p>
       </motion.div>
     );
   }
