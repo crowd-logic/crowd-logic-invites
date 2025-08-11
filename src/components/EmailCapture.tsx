@@ -54,14 +54,14 @@ export const EmailCapture = ({
       transition={{ duration: 0.5 }}
       className={`space-y-4 ${className}`}
     >
-      <div className="flex items-center space-x-2 p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
-        <Mail className="w-5 h-5 text-slate-400 flex-shrink-0" />
+      <div className="flex items-center space-x-2 p-4 bg-secondary/50 rounded-lg border border-border">
+        <Mail className="w-5 h-5 text-muted-foreground flex-shrink-0" />
         <Input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={placeholder}
-          className="flex-1 bg-transparent border-none text-white placeholder-slate-400 focus:ring-0"
+          className="flex-1 bg-transparent border-none text-foreground placeholder:text-muted-foreground focus:ring-0"
           required
         />
       </div>
@@ -69,7 +69,7 @@ export const EmailCapture = ({
       <Button
         type="submit"
         disabled={!email || isLoading}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+        className="w-full"
       >
         {isLoading ? "Adding you..." : buttonText}
       </Button>
