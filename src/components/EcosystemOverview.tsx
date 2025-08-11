@@ -8,7 +8,7 @@ export const EcosystemOverview = () => {
   return (
     <motion.section 
       id="ecosystem"
-      className="min-h-screen bg-transparent py-20 px-6"
+      className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-20 px-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -48,7 +48,7 @@ export const EcosystemOverview = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="soft-card overflow-hidden">
+              <Card className="overflow-hidden">
                 <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                   <div className="flex items-center gap-3">
                     <Compass className="h-8 w-8 text-primary" />
@@ -108,7 +108,7 @@ export const EcosystemOverview = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="grid lg:grid-cols-2 gap-6">
-                <Card className="soft-card">
+                <Card>
                   <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
                       <BarChart3 className="h-8 w-8 text-primary" />
@@ -133,7 +133,7 @@ export const EcosystemOverview = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="soft-card">
+                <Card>
                   <CardHeader className="bg-gradient-to-r from-secondary/10 to-primary/10">
                     <div className="flex items-center gap-3">
                       <Users className="h-8 w-8 text-secondary" />
@@ -173,7 +173,7 @@ export const EcosystemOverview = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="grid lg:grid-cols-2 gap-6">
-                <Card className="soft-card">
+                <Card>
                   <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
                       <Building2 className="h-8 w-8 text-primary" />
@@ -198,7 +198,7 @@ export const EcosystemOverview = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="soft-card">
+                <Card>
                   <CardHeader className="bg-gradient-to-r from-secondary/10 to-primary/10">
                     <div className="flex items-center gap-3">
                       <BarChart3 className="h-8 w-8 text-secondary" />

@@ -563,58 +563,6 @@
   animation-delay: 5s;
 }
 
-  .delay-6 {
-    animation-delay: 6s;
-  }
-
-/* --- Synthetic-style glass + soft surfaces + animated background --- */
-.motion-bg {
-  background:
-    radial-gradient(1200px 600px at 20% 10%, hsl(var(--primary) / 0.06), transparent 60%),
-    radial-gradient(900px 400px at 80% 20%, hsl(var(--accent-foreground) / 0.05), transparent 60%),
-    radial-gradient(1000px 600px at 50% 120%, hsl(var(--muted-foreground) / 0.05), transparent 60%),
-    hsl(var(--background));
-  animation: bg-pan 20s linear infinite;
-}
-.motion-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.03'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: .5;
-  mix-blend-mode: soft-light;
-}
-@keyframes bg-pan {
-  0%   { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
-  50%  { background-position: 50% 20%, 80% 10%, 60% 80%, 0 0; }
-  100% { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
-}
-
-.glass-nav {
-  backdrop-filter: blur(12px);
-  background: hsl(var(--background) / 0.65);
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 10px 25px hsl(var(--foreground) / 0.08);
-}
-
-.nav-link {
-  @apply text-sm md:text-base font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-2 rounded-full hover:bg-muted/40;
-}
-
-.btn-pill-dark {
-  background: hsl(var(--foreground));
-  color: hsl(var(--background));
-  padding: 0.6rem 1rem;
-  border-radius: 9999px;
-  box-shadow: 0 8px 20px hsl(var(--foreground) / 0.25);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.btn-pill-dark:hover { transform: translateY(-1px); box-shadow: 0 12px 30px hsl(var(--foreground) / 0.3); }
-
-.soft-card {
-  background: hsl(var(--card));
-  border: 1px solid hsl(var(--border));
-  border-radius: 1rem;
-  box-shadow: 0 15px 40px hsl(var(--foreground) / 0.06), 0 1px 0 hsl(var(--foreground) / 0.04) inset;
+.delay-6 {
+  animation-delay: 6s;
 }

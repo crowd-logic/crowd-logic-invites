@@ -7,7 +7,7 @@ export const Hero = () => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div className="relative min-h-[90vh] overflow-hidden bg-transparent">
+    <div className="relative min-h-[90vh] overflow-hidden bg-slate-900">
       {/* 3D Book Container */}
       <div 
         className="relative w-full h-full"
@@ -125,7 +125,7 @@ export const Hero = () => {
                     intelligent ecosystem. Built for brands and agencies who demand results.
                   </p>
                   <button 
-                    onClick={() => document.getElementById('service')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                     className="group border-2 border-gray-400/30 text-gray-200 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-700/50 hover:border-gray-400/50 transition-all duration-300 backdrop-blur-sm"
                   >
                     <span className="flex items-center gap-2">
