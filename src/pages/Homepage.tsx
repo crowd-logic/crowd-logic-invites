@@ -146,7 +146,7 @@ const Homepage = () => {
                src="/lovable-uploads/c766932b-adcc-4235-aefc-890c82644d6d.png"
                alt="Founder portrait"
                className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-emerald-500/30 object-cover"
-               style={{ objectPosition: 'center 22%' }}
+               style={{ objectPosition: 'center 15%' }}
           />
           <h2 className="text-3xl font-bold mb-4">Built by Experience</h2>
           <p className="text-xl text-gray-300 mb-8 leading-relaxed">
