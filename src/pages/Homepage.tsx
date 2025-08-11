@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { MotionBackground } from "@/components/MotionBackground";
 import { EmailCapture } from "@/components/EmailCapture";
+import { FloatingCards } from "@/components/FloatingCards";
 const Homepage = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -65,6 +66,7 @@ const Homepage = () => {
               Talk to us
             </a>
           </motion.div>
+          <FloatingCards />
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
           <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,9 +215,9 @@ const Homepage = () => {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Kito */}
             <div className="text-center">
-              <img src="/lovable-uploads/c766932b-adcc-4235-aefc-890c82644d6d.png" alt="Kito Williams" className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-emerald-500/30 object-cover" style={{
-              objectPosition: '50% 10%'
-            }} />
+              <div className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-emerald-500/30 bg-gradient-to-br from-emerald-900/20 to-green-900/20 flex items-center justify-center">
+                <span className="text-4xl font-bold text-emerald-400">K</span>
+              </div>
               <h3 className="text-2xl font-bold mb-2">Kito
 
             </h3>
