@@ -23,12 +23,10 @@ export const Navigation = () => {
           </div>
           
           <div className="hidden md:flex space-x-8">
+            <a href="#proof" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Proof</a>
             <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Vision</a>
-            <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Services</a>
-            <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Leadership</a>
-            <a href="#contact" className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-              <span className="relative z-10">Get Escapade™</span>
-            </a>
+            <a href="#founders" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Founders</a>
+            <a href="#contact" className="text-gray-300 hover:text-white transition-colors font-medium text-lg hover:scale-105 transform duration-200">Contact</a>
           </div>
 
           <button
@@ -43,10 +41,10 @@ export const Navigation = () => {
           <div className="md:hidden">
             <div className="bg-slate-800/95 backdrop-blur-xl rounded-2xl mt-4 mb-4 p-6 border border-white/10">
               <div className="flex flex-col space-y-6">
+                <a href="#proof" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Proof</a>
                 <a href="#vision" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Vision</a>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Services</a>
-                <a href="#founder" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Leadership</a>
-                <a href="#contact" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold text-center hover:from-purple-700 hover:to-pink-700 transition-all duration-300" onClick={() => setIsOpen(false)}>Get Escapade™</a>
+                <a href="#founders" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Founders</a>
+                <a href="#contact" className="text-gray-300 hover:text-white transition-colors font-medium text-lg" onClick={() => setIsOpen(false)}>Contact</a>
               </div>
             </div>
           </div>
