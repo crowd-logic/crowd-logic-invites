@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AINavigator } from "@/components/AINavigator";
+import { EmailCapture } from "@/components/EmailCapture";
 import { EcosystemOverview } from "@/components/EcosystemOverview";
 import { StoryFlipbook } from "@/components/StoryFlipbook";
 
@@ -17,9 +17,12 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Top Section - AI Navigator with constrained height */}
-      <div className="min-h-[60vh]">
-        <AINavigator onSolutionFound={handleSolutionFound} />
+      <div className="pt-20 pb-8 bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <h2 className="text-2xl font-semibold text-white mb-3">Get early access</h2>
+          <p className="text-white/80 mb-6">Join the waitlist and we'll notify you when case studies are ready.</p>
+          <EmailCapture className="mx-auto max-w-md" placeholder="you@company.com" buttonText="Notify me" />
+        </div>
       </div>
       
       {/* Bottom Section - Dynamic Content */}
