@@ -1,5 +1,5 @@
 
-import { Brain, Network, Zap, ChevronDown } from "lucide-react";
+import { Brain, Network, Lightning, CaretDown } from "@phosphor-icons/react";
 
 export const Vision = () => {
   return (
@@ -15,7 +15,7 @@ export const Vision = () => {
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
             <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
-            <ChevronDown className="w-6 h-6 text-emerald-400 animate-bounce" />
+            <CaretDown className="w-6 h-6 text-emerald-400 animate-bounce" />
             <div className="w-12 h-px bg-gradient-to-l from-transparent to-emerald-500"></div>
           </div>
           
@@ -79,7 +79,7 @@ export const Vision = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Zap className="w-10 h-10 text-white" />
+                  <Lightning className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">Missed Opportunities</h3>
               </div>

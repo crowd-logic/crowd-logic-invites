@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Compass, BarChart3, Users, MapPin, Heart, Zap, Target, Building2 } from "lucide-react";
+import { Compass, ChartBar, Users, MapPin, Heart, Lightning, Target, Buildings } from "@phosphor-icons/react";
 
 export const EcosystemOverview = () => {
   return (
@@ -70,7 +70,7 @@ export const EcosystemOverview = () => {
                       </p>
                     </div>
                     <div className="text-center">
-                      <Zap className="h-12 w-12 text-primary mx-auto mb-3" />
+                      <Lightning className="h-12 w-12 text-primary mx-auto mb-3" />
                       <h4 className="font-semibold mb-2">Idea Bucket</h4>
                       <p className="text-sm text-muted-foreground">
                         AI-powered suggestions based on your preferences
@@ -111,7 +111,7 @@ export const EcosystemOverview = () => {
                 <Card>
                   <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
-                      <BarChart3 className="h-8 w-8 text-primary" />
+                      <ChartBar className="h-8 w-8 text-primary" />
                       <div>
                         <CardTitle>Event Axis</CardTitle>
                         <CardDescription>
@@ -176,7 +176,7 @@ export const EcosystemOverview = () => {
                 <Card>
                   <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
                     <div className="flex items-center gap-3">
-                      <Building2 className="h-8 w-8 text-primary" />
+                      <Buildings className="h-8 w-8 text-primary" />
                       <div>
                         <CardTitle>KITO Agency</CardTitle>
                         <CardDescription>
@@ -201,7 +201,7 @@ export const EcosystemOverview = () => {
                 <Card>
                   <CardHeader className="bg-gradient-to-r from-secondary/10 to-primary/10">
                     <div className="flex items-center gap-3">
-                      <BarChart3 className="h-8 w-8 text-secondary" />
+                      <ChartBar className="h-8 w-8 text-secondary" />
                       <div>
                         <CardTitle>Event Axis</CardTitle>
                         <CardDescription>

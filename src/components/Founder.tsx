@@ -1,5 +1,5 @@
 
-import { Mail, Star, Crown, Zap } from "lucide-react";
+import { Envelope, Star, Crown, Lightning } from "@phosphor-icons/react";
 
 export const Founder = () => {
   return (
@@ -29,9 +29,9 @@ export const Founder = () => {
             <div className="space-y-4">
               <div className="inline-flex items-center space-x-3 mb-3">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-emerald-500"></div>
-                <Zap className="w-6 h-6 text-emerald-400 animate-pulse" />
+                <Lightning className="w-6 h-6 text-emerald-400 animate-pulse" />
                 <span className="text-emerald-400 font-semibold text-xl">VISIONARY LEADERSHIP</span>
-                <Zap className="w-6 h-6 text-emerald-400 animate-pulse" />
+                <Lightning className="w-6 h-6 text-emerald-400 animate-pulse" />
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-emerald-500"></div>
               </div>
               
@@ -52,7 +52,7 @@ export const Founder = () => {
                   href="#contact"
                   className="relative bg-gradient-to-r from-emerald-600 to-amber-600 text-white px-8 py-4 rounded-full font-semibold hover:from-emerald-700 hover:to-amber-700 transition-all duration-300 flex items-center space-x-3 group"
                 >
-                  <Mail className="w-5 h-5" />
+                  <Envelope className="w-5 h-5" />
                   <span>Connect</span>
                 </a>
               </div>

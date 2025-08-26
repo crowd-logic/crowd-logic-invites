@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Sparkles } from "lucide-react";
+import { ArrowClockwise, Sparkle } from "@phosphor-icons/react";
 import { useQuote } from "@/hooks/useQuote";
 import { useState, useEffect } from "react";
 
@@ -35,7 +35,7 @@ const InspirationalMessage = () => {
       <Card className="bg-slate-800/50 border-slate-700">
         <CardContent className="p-6">
           <div className="flex items-center justify-center text-emerald-300">
-            <RefreshCw className="animate-spin h-5 w-5 mr-2" />
+            <ArrowClockwise className="animate-spin h-5 w-5 mr-2" />
             Loading inspiration...
           </div>
         </CardContent>
@@ -47,7 +47,7 @@ const InspirationalMessage = () => {
     <Card className="bg-slate-800/50 border-slate-700">
       <CardHeader className="pb-4">
         <CardTitle className="text-emerald-300 text-lg flex items-center gap-2">
-          <Sparkles className="h-5 w-5" />
+          <Sparkle className="h-5 w-5" />
           Daily Inspiration for Your Journey
         </CardTitle>
       </CardHeader>
@@ -65,7 +65,7 @@ const InspirationalMessage = () => {
                 size="sm"
                 className="text-emerald-300 hover:text-white hover:bg-emerald-700/50"
               >
-                <RefreshCw className="h-4 w-4 mr-1" />
+                <ArrowClockwise className="h-4 w-4 mr-1" />
                 New Quote
               </Button>
             </div>

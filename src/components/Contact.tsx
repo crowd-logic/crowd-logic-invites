@@ -1,5 +1,5 @@
 
-import { Mail, MessageSquare, ArrowRight, Sparkles, Heart } from "lucide-react";
+import { Envelope, ChatCircle, ArrowRight, Sparkle, Heart } from "@phosphor-icons/react";
 
 export const Contact = () => {
   return (
@@ -15,9 +15,9 @@ export const Contact = () => {
         {/* Dramatic Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-4 mb-6">
-            <Sparkles className="w-6 h-6 text-yellow-400 animate-spin" />
+            <Sparkle className="w-6 h-6 text-yellow-400 animate-spin" />
             <span className="text-emerald-400 font-semibold text-xl">JOIN THE REVOLUTION</span>
-            <Sparkles className="w-6 h-6 text-yellow-400 animate-spin" />
+            <Sparkle className="w-6 h-6 text-yellow-400 animate-spin" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
@@ -43,7 +43,7 @@ export const Contact = () => {
             <div className="relative bg-gradient-to-br from-purple-900/80 to-pink-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full">
               <div className="mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Sparkles className="w-10 h-10 text-white" />
+                  <Sparkle className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-3">Start Your Adventure</h3>
               </div>
@@ -68,7 +68,7 @@ export const Contact = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full">
               <div className="mb-6">
                 <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-amber-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Mail className="w-10 h-10 text-white" />
+                  <Envelope className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-3">Shape the Future</h3>
               </div>
@@ -97,9 +97,9 @@ export const Contact = () => {
           <div className="relative bg-slate-900/60 backdrop-blur-2xl border border-white/20 rounded-3xl p-12 text-center">
             <div className="mb-6">
               <div className="inline-flex items-center space-x-4 mb-4">
-                <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
-                <span className="text-yellow-400 font-bold text-2xl">LAUNCHING LATE 2025</span>
-                <Sparkles className="w-8 h-8 text-yellow-400 animate-pulse" />
+                <Sparkle className="w-8 h-8 text-yellow-400 animate-pulse" />
+                <span className="text-yellow-400 font-bold text-2xl">LAUNCHING Q4 2025</span>
+                <Sparkle className="w-8 h-8 text-yellow-400 animate-pulse" />
               </div>
               
               <h3 className="text-4xl md:text-5xl font-black text-white mb-6">

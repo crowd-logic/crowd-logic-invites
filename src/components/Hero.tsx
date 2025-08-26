@@ -1,4 +1,4 @@
-import { ArrowRight, Compass, BarChart3 } from "lucide-react";
+import { ArrowRight, Compass, ChartBar } from "@phosphor-icons/react";
 import { AnimatedLandscape } from "./AnimatedLandscape";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -116,7 +116,7 @@ export const Hero = () => {
                 
                 {/* Content */}
                 <div className="relative z-10 max-w-md">
-                  <BarChart3 className="w-12 h-12 mb-6 mx-auto text-gray-300" />
+                  <ChartBar className="w-12 h-12 mb-6 mx-auto text-gray-300" />
                   <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                     The Operating System for Experiential Marketing.
                   </h1>

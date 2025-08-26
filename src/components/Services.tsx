@@ -1,5 +1,5 @@
 
-import { Calendar, Users, BarChart3, Zap, Star, Sparkles, Compass, ArrowRight } from "lucide-react";
+import { Calendar, Users, ChartBar, Lightning, Star, Sparkle, Compass, ArrowRight } from "@phosphor-icons/react";
 
 export const Services = () => {
   return (
@@ -14,9 +14,9 @@ export const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center space-x-4 mb-8">
-            <Sparkles className="w-6 h-6 text-emerald-400 animate-spin" />
+            <Sparkle className="w-6 h-6 text-emerald-400 animate-spin" />
             <span className="text-emerald-400 font-semibold text-xl">OUR ECOSYSTEM</span>
-            <Sparkles className="w-6 h-6 text-emerald-400 animate-spin" />
+            <Sparkle className="w-6 h-6 text-emerald-400 animate-spin" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
@@ -120,7 +120,7 @@ export const Services = () => {
             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-12 h-full hover:transform hover:-translate-y-2 transition-all duration-500">
               <div className="mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Zap className="w-10 h-10 text-white" />
+                  <Lightning className="w-10 h-10 text-white" />
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-6">VibePass™</h3>
                 <div className="w-12 h-px bg-gradient-to-r from-cyan-400 to-transparent mb-6"></div>

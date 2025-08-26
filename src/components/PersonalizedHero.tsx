@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Compass, BarChart3 } from "lucide-react";
+import { Compass, ChartBar } from "@phosphor-icons/react";
 import { AnimatedLandscape } from "./AnimatedLandscape";
 import { EmailCapture } from "./EmailCapture";
 
@@ -112,7 +112,7 @@ export const PersonalizedHero = ({ solution }: PersonalizedHeroProps) => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center"
             >
-              <BarChart3 className="w-16 h-16 mx-auto mb-6 text-blue-300" />
+              <ChartBar className="w-16 h-16 mx-auto mb-6 text-blue-300" />
               <h2 className="text-5xl font-bold mb-6">EventOS™</h2>
               <p className="text-xl mb-8 max-w-md leading-relaxed">
                 The operating system for experiential marketing. Streamline operations, maximize impact.
