@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "@/components/marketing/Hero";
 import FeatureCard from "@/components/marketing/FeatureCard";
 import CTASection from "@/components/marketing/CTASection";
+import FAQ from "@/components/marketing/FAQ";
 import { Bookmark, Share2, Layers } from "lucide-react";
 
 export default function MarketingStashPage() {
@@ -25,6 +26,20 @@ export default function MarketingStashPage() {
           <FeatureCard icon={<Layers className="h-5 w-5" />} title="Bulk import pack" description="Power-user ZIP imports with priority parsing." items={["Up to 1,000 images","Priority queue","Review & confirm"]}/>
         </div>
       </section>
+      <FAQ items={[
+        {
+          question: "How accurate is the screenshot parsing?",
+          answer: "Our AI extracts venue names, addresses, and details with 95%+ accuracy. You can review and edit all parsed information before saving."
+        },
+        {
+          question: "Can I import from Instagram and TikTok?",
+          answer: "Yes! On mobile, use 'Share to Escapade' directly from the apps. No screenshots needed - we parse the original content."
+        },
+        {
+          question: "What's the bulk import limit?",
+          answer: "Up to 1,000 images per ZIP upload with priority processing. Perfect for clearing years of saved places at once."
+        }
+      ]} />
       <CTASection
         title="Ready to clear your screenshot backlog?"
         subtitle="Start with 10 free screenshot parses. Keep places synced with Escapade Pro."

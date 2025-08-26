@@ -6,6 +6,7 @@ import AddonCard from "@/components/marketing/AddonCard";
 import HowItWorks from "@/components/marketing/HowItWorks";
 import Testimonials from "@/components/marketing/Testimonials";
 import CTASection from "@/components/marketing/CTASection";
+import FAQ from "@/components/marketing/FAQ";
 import { MapPin, Users, Megaphone, Timer, Scan, MessageSquare, Layers3 } from "lucide-react";
 
 export default function MarketingOrganizerPage() {
@@ -117,6 +118,7 @@ export default function MarketingOrganizerPage() {
       ]} />
 
       <Testimonials />
+      <FAQ />
       <CTASection />
     </div>
   );

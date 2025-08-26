@@ -20,10 +20,10 @@ export default function PlanCard({
   highlight?: boolean;
 }) {
   return (
-    <div className={`rounded-xl border border-border p-5 shadow-sm ${highlight ? "bg-primary/5 border-primary/20" : "bg-card/80 backdrop-blur"}`}>
+    <div className={`rounded-xl border p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 ${highlight ? "bg-gradient-to-br from-primary/10 to-primary/5 border-primary/30 ring-2 ring-primary/20" : "bg-gradient-to-br from-card/90 to-card/70 backdrop-blur border-border"}`}>
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-card-foreground">{name}</h3>
-        {highlight && <span className="text-xs font-semibold bg-primary text-primary-foreground px-2 py-1 rounded">Popular</span>}
+        <h3 className="text-lg font-bold text-card-foreground">{name}</h3>
+        {highlight && <span className="text-xs font-bold bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-3 py-1 rounded-full shadow-sm">Popular</span>}
       </div>
       <p className="text-sm text-muted-foreground mt-1">{audience}</p>
       <div className="mt-4">
@@ -38,8 +38,8 @@ export default function PlanCard({
           </li>
         ))}
       </ul>
-      <Link to={ctaHref} className="mt-5 inline-flex items-center justify-center w-full rounded-md px-4 py-2 text-sm font-medium border border-border hover:bg-background bg-card text-card-foreground transition">
-        {ctaText} <Plus className="h-4 w-4 ml-2" />
+      <Link to={ctaHref} className="mt-6 inline-flex items-center justify-center w-full rounded-lg px-5 py-3 text-sm font-semibold border border-border hover:bg-primary hover:text-primary-foreground bg-card text-card-foreground transition-all duration-300 hover:shadow-md group">
+        {ctaText} <Plus className="h-4 w-4 ml-2 group-hover:scale-110 transition-transform" />
       </Link>
     </div>
   );

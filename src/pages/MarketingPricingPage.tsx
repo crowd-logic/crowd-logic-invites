@@ -4,6 +4,7 @@ import PricingCalculator from "@/components/PricingCalculator";
 import AddonCard from "@/components/marketing/AddonCard";
 import HowItWorks from "@/components/marketing/HowItWorks";
 import CTASection from "@/components/marketing/CTASection";
+import FAQ from "@/components/marketing/FAQ";
 
 export default function MarketingPricingPage() {
   return (
@@ -32,6 +33,20 @@ export default function MarketingPricingPage() {
         </div>
       </section>
       <HowItWorks />
+      <FAQ items={[
+        {
+          question: "How does the pricing calculator work?",
+          answer: "Our calculator automatically finds the best price for your event size. It includes seat top-ups and auto-upgrades when a bigger plan costs less than overages."
+        },
+        {
+          question: "What's included in each add-on?",
+          answer: "Each add-on is a complete feature set: Team Pack includes facilitation tools, Photo Wall includes moderation, Analytics includes detailed reports with export options."
+        },
+        {
+          question: "Can I change my plan after starting?",
+          answer: "Yes! You can upgrade or add features anytime. Downgrades apply to your next event. We always optimize for the best price."
+        }
+      ]} />
       <CTASection />
     </div>
   );

@@ -27,17 +27,17 @@ export default function Hero({
         style={{ backgroundImage: `url(${backgroundImage})` }}
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90 backdrop-blur-sm" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/60 to-secondary/20 backdrop-blur-sm" aria-hidden />
       <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
         <div className="max-w-3xl">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground">{eyebrow}</p>
-          <h1 className="mt-2 text-3xl md:text-5xl font-bold text-foreground leading-tight">{title}</h1>
-          <p className="mt-3 md:mt-4 text-muted-foreground text-base md:text-lg">{subtitle}</p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">{eyebrow}</p>
+          <h1 className="mt-2 text-3xl md:text-5xl font-bold text-foreground leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{title}</h1>
+          <p className="mt-3 md:mt-4 text-muted-foreground text-base md:text-lg leading-relaxed">{subtitle}</p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            <Link to={ctaPrimaryHref} className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-5 py-3 text-sm font-medium shadow hover:shadow-md transition hover:bg-primary/90">
+            <Link to={ctaPrimaryHref} className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-6 py-3 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ring-2 ring-primary/20">
               {ctaPrimaryText}
             </Link>
-            <Link to={ctaSecondaryHref} className="inline-flex items-center justify-center rounded-md bg-background/70 backdrop-blur px-5 py-3 text-sm font-medium text-foreground border border-border hover:bg-background">
+            <Link to={ctaSecondaryHref} className="inline-flex items-center justify-center rounded-lg bg-background/70 backdrop-blur px-6 py-3 text-sm font-medium text-foreground border border-border hover:bg-background/90 transition-all duration-300 hover:shadow-md">
               {ctaSecondaryText}
             </Link>
           </div>
