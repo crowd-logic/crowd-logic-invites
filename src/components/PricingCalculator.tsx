@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import { CaretDown, CaretUp } from "@phosphor-icons/react";
 
 const bands = [
   { max: 150, price: 299 },
@@ -38,10 +39,19 @@ export default function PricingCalculator({ onAddonsChange }: { onAddonsChange?:
   const [attendees, setAttendees] = useState(300);
   const [nonprofit, setNonprofit] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
+  const [expanded, setExpanded] = useState<string[]>([]);
 
   const handleAddonChange = (newSelected: string[]) => {
     setSelected(newSelected);
     onAddonsChange?.(newSelected);
+  };
+
+  const toggleExpanded = (key: string) => {
+    setExpanded(prev => 
+      prev.includes(key) 
+        ? prev.filter(k => k !== key)
+        : [...prev, key]
+    );
   };
 
   const base = useMemo(() => {
@@ -86,34 +96,49 @@ export default function PricingCalculator({ onAddonsChange }: { onAddonsChange?:
           <h3 className="text-lg font-semibold text-foreground">Add-ons</h3>
           <div className="grid gap-3">
             {addons.map((a) => (
-              <div key={a.key} className="border border-border/50 rounded-lg overflow-hidden">
-                <label className="flex items-center justify-between p-3 hover:bg-accent/5 transition-colors cursor-pointer group">
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      checked={selected.includes(a.key)}
-                      onChange={(e) => {
-                        const newSelected = e.target.checked 
-                          ? [...selected, a.key] 
-                          : selected.filter((k) => k !== a.key);
-                        handleAddonChange(newSelected);
-                      }}
-                      className="w-4 h-4 text-primary bg-background border-border rounded focus:ring-primary focus:ring-2"
-                    />
-                    <span className="font-medium text-foreground group-hover:text-primary transition-colors">{a.name}</span>
+              <div key={a.key} className="border border-border/50 rounded-lg overflow-hidden bg-card/50">
+                <div className="flex items-center gap-3 p-3">
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(a.key)}
+                    onChange={(e) => {
+                      const newSelected = e.target.checked 
+                        ? [...selected, a.key] 
+                        : selected.filter((k) => k !== a.key);
+                      handleAddonChange(newSelected);
+                    }}
+                    className="w-4 h-4 text-primary bg-background border-border rounded focus:ring-primary focus:ring-2"
+                  />
+                  <div className="flex-1 flex items-center justify-between">
+                    <span className="font-medium text-foreground">{a.name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-semibold text-foreground">${a.price}</span>
+                      <button
+                        type="button"
+                        onClick={() => toggleExpanded(a.key)}
+                        className="p-1 hover:bg-accent/20 rounded transition-colors"
+                      >
+                        {expanded.includes(a.key) ? 
+                          <CaretUp className="h-4 w-4 text-muted-foreground" /> : 
+                          <CaretDown className="h-4 w-4 text-muted-foreground" />
+                        }
+                      </button>
+                    </div>
                   </div>
-                  <span className="font-semibold text-foreground">${a.price}</span>
-                </label>
-                {selected.includes(a.key) && (
-                  <div className="px-3 pb-3 pt-0">
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {a.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <div className="h-1.5 w-1.5 rounded-full bg-primary"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                </div>
+                {expanded.includes(a.key) && (
+                  <div className="px-3 pb-3 border-t border-border/30 bg-accent/5">
+                    <div className="pt-3">
+                      <p className="text-xs text-muted-foreground mb-2 font-medium">What's included:</p>
+                      <ul className="text-sm text-muted-foreground space-y-1">
+                        {a.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-center gap-2">
+                            <div className="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 )}
               </div>
