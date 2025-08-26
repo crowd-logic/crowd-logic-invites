@@ -5,20 +5,6 @@ import { ArrowRight, Sparkle } from "@phosphor-icons/react";
 
 const scenarios = [
   {
-    key: "festival",
-    emoji: "🎪",
-    name: "Festival",
-    description: "Multi-day events with stages and vendors",
-    color: "from-purple-500/20 to-pink-500/20"
-  },
-  {
-    key: "retreat",
-    emoji: "🏖️",
-    name: "Retreat",
-    description: "Team building and offsite experiences",
-    color: "from-blue-500/20 to-cyan-500/20"
-  },
-  {
     key: "conference",
     emoji: "🏢",
     name: "Conference",
@@ -26,10 +12,24 @@ const scenarios = [
     color: "from-emerald-500/20 to-teal-500/20"
   },
   {
-    key: "sports",
-    emoji: "🏆",
-    name: "Tournament",
-    description: "Sports events and competitions",
+    key: "training",
+    emoji: "📚",
+    name: "Training",
+    description: "Corporate workshops and learning events",
+    color: "from-blue-500/20 to-cyan-500/20"
+  },
+  {
+    key: "alumni",
+    emoji: "🎓",
+    name: "Alumni",
+    description: "Reunions and networking gatherings",
+    color: "from-purple-500/20 to-pink-500/20"
+  },
+  {
+    key: "association",
+    emoji: "🤝",
+    name: "Association",
+    description: "Professional organization meetings",
     color: "from-amber-500/20 to-orange-500/20"
   }
 ];

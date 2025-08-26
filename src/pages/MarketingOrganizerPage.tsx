@@ -118,7 +118,7 @@ export default function MarketingOrganizerPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <PlanCard
               name="Up to 150"
-              audience="Small retreats / regional meetups"
+              audience="Corporate training / small conferences"
               price="$299"
               features={["Scoped chat","Floorplan pins","Admin banners","No app required"]}
               ctaText="Start"
@@ -199,7 +199,7 @@ export default function MarketingOrganizerPage() {
           transition={{ duration: 0.6, delay: 1.2 }}
         >
           <HowItWorks steps={[
-            { title: "Pick your scenario", desc: "Choose from festival, retreat, conference, or tournament templates." },
+            { title: "Pick your scenario", desc: "Choose from conference, training, alumni, or association templates." },
             { title: "Try in sandbox", desc: "Build your event with real features and see instant results." },
             { title: "Launch with one link", desc: "No app required—post the QR, and it just works." }
           ]} />

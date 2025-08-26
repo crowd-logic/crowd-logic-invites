@@ -82,10 +82,10 @@ export default function EscapePricingPage() {
               Create your event
             </Link>
             <Link 
-              to="/book/walkthrough" 
+              to="/escapade" 
               className="inline-flex items-center justify-center rounded-md border border-primary-foreground/30 px-5 py-3 text-sm font-medium hover:bg-primary-foreground/10 transition-colors"
             >
-              Book a demo
+              Try sandbox
             </Link>
           </div>
         </div>
