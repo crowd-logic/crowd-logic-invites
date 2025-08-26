@@ -140,7 +140,7 @@ const Homepage = () => {
         <div className="max-w-6xl mx-auto relative">
           <div className="text-center mb-16 fade-up opacity-0 translate-y-10 transition-all duration-1000">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              From weekend trips to 10,000 person conferences
+              From weekend trips to 1,000 person conferences
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               One unified ecosystem. One seamless experience. Powered by AI that understands context, not just commands.
