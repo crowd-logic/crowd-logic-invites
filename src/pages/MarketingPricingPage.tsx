@@ -5,11 +5,23 @@ import AddonCard from "@/components/marketing/AddonCard";
 import HowItWorks from "@/components/marketing/HowItWorks";
 import CTASection from "@/components/marketing/CTASection";
 import FAQ from "@/components/marketing/FAQ";
+import Footer from "@/components/marketing/Footer";
+import { Link } from "react-router-dom";
 
 export default function MarketingPricingPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 space-y-8">
-      <Hero
+    <div className="min-h-screen">
+      {/* Navigation back to main site */}
+      <div className="px-6 py-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-b border-border">
+        <div className="max-w-6xl mx-auto">
+          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            ← Back to CrowdLogic
+          </Link>
+        </div>
+      </div>
+      
+      <div className="mx-auto max-w-6xl px-4 py-8 space-y-8">
+        <Hero
         eyebrow="Pricing"
         title="Transparent pricing—buy it on a card"
         subtitle="No procurement hassle. Plans scale to your headcount; add-ons unlock exactly what you need."
@@ -32,22 +44,24 @@ export default function MarketingPricingPage() {
           <AddonCard title="Sponsored Spaces & Analytics" price="$499" description="Organizer-controlled room/activity skins." bullets={["Agenda badge","Map label","Signage overlay"]}/>
         </div>
       </section>
-      <HowItWorks />
-      <FAQ items={[
-        {
-          question: "How does the pricing calculator work?",
-          answer: "Our calculator automatically finds the best price for your event size. It includes seat top-ups and auto-upgrades when a bigger plan costs less than overages."
-        },
-        {
-          question: "What's included in each add-on?",
-          answer: "Each add-on is a complete feature set: Team Pack includes facilitation tools, Photo Wall includes moderation, Analytics includes detailed reports with export options."
-        },
-        {
-          question: "Can I change my plan after starting?",
-          answer: "Yes! You can upgrade or add features anytime. Downgrades apply to your next event. We always optimize for the best price."
-        }
-      ]} />
-      <CTASection />
+        <HowItWorks />
+        <FAQ items={[
+          {
+            question: "How does the pricing calculator work?",
+            answer: "Our calculator automatically finds the best price for your event size. It includes seat top-ups and auto-upgrades when a bigger plan costs less than overages."
+          },
+          {
+            question: "What's included in each add-on?",
+            answer: "Each add-on is a complete feature set: Team Pack includes facilitation tools, Photo Wall includes moderation, Analytics includes detailed reports with export options."
+          },
+          {
+            question: "Can I change my plan after starting?",
+            answer: "Yes! You can upgrade or add features anytime. Downgrades apply to your next event. We always optimize for the best price."
+          }
+        ]} />
+        <CTASection />
+      </div>
+      <Footer />
     </div>
   );
 }

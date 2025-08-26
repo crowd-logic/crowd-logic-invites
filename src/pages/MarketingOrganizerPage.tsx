@@ -7,12 +7,24 @@ import HowItWorks from "@/components/marketing/HowItWorks";
 import Testimonials from "@/components/marketing/Testimonials";
 import CTASection from "@/components/marketing/CTASection";
 import FAQ from "@/components/marketing/FAQ";
-import { MapPin, Users, Megaphone, Timer, Scan, MessageSquare, Layers3 } from "lucide-react";
+import Footer from "@/components/marketing/Footer";
+import { MapPin, Users, Megaphone, Timer, QrCode, ChatCircle, Stack } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 export default function MarketingOrganizerPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 space-y-10">
-      <Hero />
+    <div className="min-h-screen">
+      {/* Navigation back to main site */}
+      <div className="px-6 py-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-b border-border">
+        <div className="max-w-6xl mx-auto">
+          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            ← Back to CrowdLogic
+          </Link>
+        </div>
+      </div>
+      
+      <div className="mx-auto max-w-6xl px-4 py-8 space-y-10">
+        <Hero />
       <section>
         <h2 className="text-xl md:text-2xl font-semibold text-foreground">Why organizers choose Escapade</h2>
         <div className="grid md:grid-cols-3 gap-3 mt-3">
@@ -111,15 +123,17 @@ export default function MarketingOrganizerPage() {
         </div>
       </section>
 
-      <HowItWorks steps={[
-        { title: "Pick your plan", desc: "Choose 150 / 500 / 1000 based on your headcount." },
-        { title: "Customize add-ons", desc: "Enable Team Pack, Photo Wall, Explore, Analytics, or Sponsored Spaces." },
-        { title: "Launch with one link", desc: "No app required—post the QR, and it just works." }
-      ]} />
+        <HowItWorks steps={[
+          { title: "Pick your plan", desc: "Choose 150 / 500 / 1000 based on your headcount." },
+          { title: "Customize add-ons", desc: "Enable Team Pack, Photo Wall, Explore, Analytics, or Sponsored Spaces." },
+          { title: "Launch with one link", desc: "No app required—post the QR, and it just works." }
+        ]} />
 
-      <Testimonials />
-      <FAQ />
-      <CTASection />
+        <Testimonials />
+        <FAQ />
+        <CTASection />
+      </div>
+      <Footer />
     </div>
   );
 }

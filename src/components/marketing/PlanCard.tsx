@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, Plus } from "lucide-react";
+import { Check, Plus } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
 export default function PlanCard({

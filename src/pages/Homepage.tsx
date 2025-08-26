@@ -88,9 +88,9 @@ const Homepage = () => {
           
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+          <div className="w-6 h-6 text-white/50">
+            ↓
+          </div>
         </div>
       </section>
 
@@ -109,6 +109,9 @@ const Homepage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="https://escapadeapp.accesscrowdlogic.com" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 transition-all text-center font-medium">
                   Experience escapade
+                </a>
+                <a href="/marketing/organizer" className="px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-center font-medium">
+                  Organize events
                 </a>
                 <a href="#vision" className="px-6 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-center font-medium">
                   Explore our ecosystem
@@ -145,11 +148,12 @@ const Homepage = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 fade-up opacity-0 translate-y-10 transition-all duration-1000 hover:bg-white/10 hover:scale-105 transform hover:border-emerald-500/50">
+            <a href="/marketing/stash" className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 fade-up opacity-0 translate-y-10 transition-all duration-1000 hover:bg-white/10 hover:scale-105 transform hover:border-emerald-500/50 block">
               <div className="text-emerald-400 text-sm uppercase tracking-wide mb-2 font-semibold">Live Now</div>
               <h3 className="text-2xl font-bold mb-4">escapade</h3>
               <p className="text-gray-300">Social trip planning that captures inspiration and coordinates groups effortlessly</p>
-            </div>
+              <div className="mt-4 text-emerald-400 text-sm font-medium">Learn more →</div>
+            </a>
             
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 fade-up opacity-0 translate-y-10 transition-all duration-1000 delay-100 hover:bg-white/10 hover:scale-105 transform hover:border-purple-500/50">
               <div className="text-purple-400 text-sm uppercase tracking-wide mb-2 font-semibold">Q3 2025</div>
@@ -282,8 +286,41 @@ const Homepage = () => {
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-          © 2025 CrowdLogic. Orchestrating unforgettable experiences with intelligence and heart.
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="font-semibold text-white mb-4">Products</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="/marketing/organizer" className="hover:text-white transition">Escapade for Events</a></li>
+                <li><a href="/marketing/stash" className="hover:text-white transition">Stash for Personal Use</a></li>
+                <li><a href="/marketing/pricing" className="hover:text-white transition">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-white mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#vision" className="hover:text-white transition">Vision</a></li>
+                <li><a href="#service" className="hover:text-white transition">Services</a></li>
+                <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-white mb-4">Support</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="/admin-secret-signups" className="hover:text-white transition">Early Access</a></li>
+                <li><a href="https://escapadeapp.accesscrowdlogic.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Try Escapade</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-white mb-4">Connect</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="https://linkedin.com/in/kitowilliams" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">LinkedIn</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="text-center text-sm text-gray-500 pt-8 border-t border-white/10">
+            © 2025 CrowdLogic. Orchestrating unforgettable experiences with intelligence and heart.
+          </div>
         </div>
       </footer>
     </div>;
