@@ -57,18 +57,48 @@ export default function OrganizerLandingPage() {
       </section>
 
       {/* Pricing bands */}
-      <section className="px-4 py-8 max-w-3xl mx-auto">
-        <div className="rounded-xl border border-border p-6 text-center bg-muted">
-          <h3 className="text-lg font-semibold text-foreground">Transparent pricing</h3>
-          <p className="mt-2 text-sm text-muted-foreground">
-            150: $299 • 151–500: $599 • 501–1,000: $999 &nbsp; <span className="text-muted-foreground/70">(nonprofit −15%)</span>
-          </p>
-          <div className="mt-4">
+      <section className="px-4 py-8 max-w-4xl mx-auto">
+        <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10"></div>
+          <div className="relative p-8 text-center">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
+              <span className="text-xs font-medium text-primary uppercase tracking-wider">Transparent Pricing</span>
+            </div>
+            <h3 className="text-2xl font-bold text-card-foreground mb-2">Simple, predictable costs</h3>
+            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+              No surprises, no hidden fees. One price for your entire event.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              <div className="p-4 rounded-lg bg-background/50 border border-border/30">
+                <div className="text-lg font-bold text-card-foreground">≤150</div>
+                <div className="text-2xl font-bold text-primary">$299</div>
+              </div>
+              <div className="p-4 rounded-lg bg-background/50 border border-border/30 ring-2 ring-primary/20">
+                <div className="text-lg font-bold text-card-foreground">151–500</div>
+                <div className="text-2xl font-bold text-primary">$599</div>
+                <div className="text-xs text-muted-foreground mt-1">Most popular</div>
+              </div>
+              <div className="p-4 rounded-lg bg-background/50 border border-border/30">
+                <div className="text-lg font-bold text-card-foreground">501–1,000</div>
+                <div className="text-2xl font-bold text-primary">$999</div>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <span className="text-sm text-muted-foreground">Nonprofit discount:</span>
+              <span className="bg-primary/10 text-primary px-2 py-1 rounded-md text-sm font-medium">-15%</span>
+            </div>
+            
             <Link 
               to="/escapade/pricing" 
-              className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-5 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-6 py-3 font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Open calculator
+              Calculate your price
+              <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </Link>
           </div>
         </div>
