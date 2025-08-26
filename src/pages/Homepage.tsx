@@ -291,7 +291,7 @@ const Homepage = () => {
             <div>
               <h3 className="font-semibold text-white mb-4">Products</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="/marketing/organizer" className="hover:text-white transition">Escapade for Events</a></li>
+                <li><a href="/escapade" className="hover:text-white transition">Escapade for Ventures</a></li>
                 <li><a href="/marketing/stash" className="hover:text-white transition">Stash for Personal Use</a></li>
                 <li><a href="/marketing/pricing" className="hover:text-white transition">Pricing</a></li>
               </ul>
