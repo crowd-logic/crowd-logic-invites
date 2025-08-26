@@ -192,7 +192,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <button className="mt-6 w-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-3 text-white font-medium">
-                  Try It Now (Launching August 18)
+                  Try It Now (Launching Q4 2025)
                 </button>
               </div>
             </div>
