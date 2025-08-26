@@ -1,8 +1,36 @@
 import { Link } from "react-router-dom";
 import PricingCalculator from "@/components/PricingCalculator";
 import { TrackPage } from "@/components/Track";
+import { useState } from "react";
 
 export default function EscapePricingPage() {
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
+
+  const baseFeatures = [
+    "Segmented announcements",
+    "Indoor floorplan mapping", 
+    "Scoped chat channels",
+    "Graphic banner system",
+    "Mobile-first PWA",
+    "Real-time updates",
+    "Basic analytics", 
+    "24/7 email support"
+  ];
+
+  const addonFeatures = {
+    team: ["Icebreakers & Speed Networking", "Polls & Q&A", "Session timers", "Leaderboards"],
+    wall: ["Moderated photo uploads", "Signage feeds", "Sponsor frames", "Real-time gallery"],
+    explore: ["Curated POIs", "Indoor pin drops", "Scavenger games", "Group formation tools"],
+    analytics: ["Attendance curves", "Communication reach", "Signage impressions", "CSV/PDF exports"]
+  };
+
+  const getAllFeatures = () => {
+    let allFeatures = [...baseFeatures];
+    selectedAddons.forEach(addon => {
+      allFeatures = [...allFeatures, ...addonFeatures[addon as keyof typeof addonFeatures]];
+    });
+    return allFeatures;
+  };
   return (
     <main className="min-h-screen bg-background text-foreground">
       <TrackPage name="escapade_pricing" />
@@ -27,7 +55,7 @@ export default function EscapePricingPage() {
 
       {/* Pricing Calculator */}
       <section className="px-4 py-8 max-w-2xl mx-auto">
-        <PricingCalculator />
+        <PricingCalculator onAddonsChange={setSelectedAddons} />
       </section>
 
       {/* Pricing Details */}
@@ -55,16 +83,21 @@ export default function EscapePricingPage() {
           </div>
 
           <div className="rounded-lg border border-border p-6 bg-card">
-            <h3 className="text-lg font-semibold text-card-foreground mb-4">What's Included</h3>
+            <h3 className="text-lg font-semibold text-card-foreground mb-4">
+              What's Included {selectedAddons.length > 0 && <span className="text-primary">({getAllFeatures().length} features)</span>}
+            </h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Segmented announcements</li>
-              <li>• Indoor floorplan mapping</li>
-              <li>• Scoped chat channels</li>
-              <li>• Graphic banner system</li>
-              <li>• Mobile-first PWA</li>
-              <li>• Real-time updates</li>
-              <li>• Basic analytics</li>
-              <li>• 24/7 email support</li>
+              {getAllFeatures().map((feature, idx) => (
+                <li key={idx} className={`flex items-center gap-2 ${
+                  baseFeatures.includes(feature) ? '' : 'text-primary font-medium'
+                }`}>
+                  <div className={`h-1.5 w-1.5 rounded-full ${
+                    baseFeatures.includes(feature) ? 'bg-muted-foreground' : 'bg-primary'
+                  }`}></div>
+                  {feature}
+                  {!baseFeatures.includes(feature) && <span className="text-xs text-primary/70">(add-on)</span>}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

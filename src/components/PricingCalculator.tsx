@@ -8,16 +8,41 @@ const bands = [
 ];
 
 const addons = [
-  { key: "team", name: "Team Pack", price: 149 },
-  { key: "wall", name: "Photo Wall Pro", price: 149 },
-  { key: "explore", name: "Explore Pack", price: 199 },
-  { key: "analytics", name: "Analytics Pack", price: 199 },
+  { 
+    key: "team", 
+    name: "Team Pack", 
+    price: 149, 
+    features: ["Icebreakers & Speed Networking", "Polls & Q&A", "Session timers", "Leaderboards"] 
+  },
+  { 
+    key: "wall", 
+    name: "Photo Wall Pro", 
+    price: 149, 
+    features: ["Moderated photo uploads", "Signage feeds", "Sponsor frames", "Real-time gallery"] 
+  },
+  { 
+    key: "explore", 
+    name: "Explore Pack", 
+    price: 199, 
+    features: ["Curated POIs", "Indoor pin drops", "Scavenger games", "Group formation tools"] 
+  },
+  { 
+    key: "analytics", 
+    name: "Analytics Pack", 
+    price: 199, 
+    features: ["Attendance curves", "Communication reach", "Signage impressions", "CSV/PDF exports"] 
+  },
 ];
 
-export default function PricingCalculator() {
+export default function PricingCalculator({ onAddonsChange }: { onAddonsChange?: (addons: string[]) => void }) {
   const [attendees, setAttendees] = useState(300);
   const [nonprofit, setNonprofit] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
+
+  const handleAddonChange = (newSelected: string[]) => {
+    setSelected(newSelected);
+    onAddonsChange?.(newSelected);
+  };
 
   const base = useMemo(() => {
     const band = bands.find(b => attendees <= b.max) ?? bands[bands.length - 1];
@@ -61,22 +86,37 @@ export default function PricingCalculator() {
           <h3 className="text-lg font-semibold text-foreground">Add-ons</h3>
           <div className="grid gap-3">
             {addons.map((a) => (
-              <label key={a.key} className="flex items-center justify-between p-3 rounded-lg border border-border/50 hover:border-border transition-colors cursor-pointer group">
-                <div className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(a.key)}
-                    onChange={(e) =>
-                      setSelected((prev) =>
-                        e.target.checked ? [...prev, a.key] : prev.filter((k) => k !== a.key)
-                      )
-                    }
-                    className="w-4 h-4 text-primary bg-background border-border rounded focus:ring-primary focus:ring-2"
-                  />
-                  <span className="font-medium text-foreground group-hover:text-primary transition-colors">{a.name}</span>
-                </div>
-                <span className="font-semibold text-foreground">${a.price}</span>
-              </label>
+              <div key={a.key} className="border border-border/50 rounded-lg overflow-hidden">
+                <label className="flex items-center justify-between p-3 hover:bg-accent/5 transition-colors cursor-pointer group">
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selected.includes(a.key)}
+                      onChange={(e) => {
+                        const newSelected = e.target.checked 
+                          ? [...selected, a.key] 
+                          : selected.filter((k) => k !== a.key);
+                        handleAddonChange(newSelected);
+                      }}
+                      className="w-4 h-4 text-primary bg-background border-border rounded focus:ring-primary focus:ring-2"
+                    />
+                    <span className="font-medium text-foreground group-hover:text-primary transition-colors">{a.name}</span>
+                  </div>
+                  <span className="font-semibold text-foreground">${a.price}</span>
+                </label>
+                {selected.includes(a.key) && (
+                  <div className="px-3 pb-3 pt-0">
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      {a.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <div className="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
