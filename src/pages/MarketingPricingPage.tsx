@@ -22,14 +22,14 @@ export default function MarketingPricingPage() {
       
       <div className="mx-auto max-w-6xl px-4 py-8 space-y-8">
         <Hero
-        eyebrow="Pricing"
-        title="Transparent pricing—buy it on a card"
-        subtitle="No procurement hassle. Plans scale to your headcount; add-ons unlock exactly what you need."
-        ctaPrimaryText="Start your event"
-        ctaPrimaryHref="/escapade"
-        ctaSecondaryText="Organizer overview"
-        ctaSecondaryHref="/marketing/organizer"
-      />
+          eyebrow="Pricing"
+          title="Transparent pricing—buy it on a card"
+          subtitle="No procurement hassle. Plans scale to your headcount; add-ons unlock exactly what you need."
+          ctaPrimaryText="Start your event"
+          ctaPrimaryHref="/escapade"
+          ctaSecondaryText="Organizer overview"
+          ctaSecondaryHref="/marketing/organizer"
+        />
       <section className="space-y-3">
         <h2 className="text-xl md:text-2xl font-semibold text-foreground">Estimate your event</h2>
         <PricingCalculator />
