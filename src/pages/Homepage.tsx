@@ -5,12 +5,8 @@ import { MotionBackground } from "@/components/MotionBackground";
 import { EmailCapture } from "@/components/EmailCapture";
 import { Link } from "react-router-dom";
 import { Users, Archive, Sparkle } from "phosphor-react";
-import { PersonaDoors } from "@/components/PersonaDoors";
-import { usePersona } from "@/contexts/PersonaContext";
 
 const Homepage = () => {
-  const { hasPersona } = usePersona();
-
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -25,12 +21,6 @@ const Homepage = () => {
     document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  // Show persona selection if user hasn't selected one yet
-  if (!hasPersona) {
-    return <PersonaDoors />;
-  }
-
   return <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <MotionBackground />
       <Navigation />
