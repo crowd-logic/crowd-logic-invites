@@ -26,8 +26,10 @@ const Homepage = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Show persona selection if user hasn't selected one yet
-  if (!hasPersona) {
+  // Always show persona selection on homepage unless explicitly choosing to see full site
+  const showFullSite = new URLSearchParams(window.location.search).get('full') === 'true';
+  
+  if (!showFullSite) {
     return <PersonaDoors />;
   }
 
