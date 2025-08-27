@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import {
   Users, CalendarPlus, MapPinLine, Archive, ChatsCircle, Sparkle, ArrowArcRight, GearSix
 } from "phosphor-react";
+import { usePersona } from "@/contexts/PersonaContext";
+import { NextActionDrawer } from "@/components/NextActionDrawer";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -12,6 +14,7 @@ interface AppShellProps {
 export function AppShell({ children, onRoute }: AppShellProps) {
   const location = useLocation();
   const currentPath = location.pathname;
+  const { persona, setPersona } = usePersona();
   
   const getActiveSection = () => {
     if (currentPath.includes("/escapade")) return "escapade";
@@ -33,6 +36,26 @@ export function AppShell({ children, onRoute }: AppShellProps) {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+      {/* Context bar for mobile */}
+      <nav className="md:hidden fixed z-50 top-0 left-0 w-full bg-background/95 backdrop-blur-sm border-b border-border/20 flex items-center justify-center">
+        <button
+          className={`px-4 py-2 flex items-center gap-2 font-bold transition-colors ${
+            persona === "organizer" ? "text-primary" : "text-muted-foreground hover:text-foreground"
+          }`}
+          onClick={() => setPersona("organizer")}
+        >
+          <Users size={20}/> Event/Team
+        </button>
+        <button
+          className={`px-4 py-2 flex items-center gap-2 font-bold transition-colors ${
+            persona === "stash" ? "text-secondary" : "text-muted-foreground hover:text-foreground"
+          }`}
+          onClick={() => setPersona("stash")}
+        >
+          <Archive size={20}/> Personal Stash
+        </button>
+      </nav>
+
       {/* Top bar for desktop */}
       <header className="hidden md:flex items-center justify-between py-3 px-6 bg-background/95 backdrop-blur shadow z-50 border-b border-border/50">
         <div className="flex gap-6 items-center">
@@ -79,7 +102,10 @@ export function AppShell({ children, onRoute }: AppShellProps) {
       </header>
 
       {/* Main content area */}
-      <main className="flex-1 pb-20 md:pb-0 pt-1">{children}</main>
+      <main className="flex-1 pb-20 md:pb-0 pt-12 md:pt-1">{children}</main>
+      
+      {/* Next action drawer */}
+      <NextActionDrawer />
 
       {/* Bottom mobile nav */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full h-16 bg-background/90 border-t border-border/50 flex justify-evenly z-50 backdrop-blur">
