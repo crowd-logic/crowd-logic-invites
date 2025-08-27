@@ -1,86 +1,84 @@
-import { Link } from "react-router-dom";
-import { CaretDown } from "@phosphor-icons/react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-export function Navigation() {
-  const [showProducts, setShowProducts] = useState(false);
+const Navigation = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-black/95 backdrop-blur-xl border-b border-emerald-500/20">
-      <div className="mx-auto max-w-7xl px-6">
-        <nav className="flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-lg flex items-center justify-center font-bold text-black text-sm">
-              C
-            </div>
-            <span className="font-bold text-xl tracking-wide text-white group-hover:text-emerald-400 transition-colors">
-              CrowdLogic
-            </span>
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-sm">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/lovable-uploads/53bff6ea-6c8a-4d48-9921-3afdeb9300ef.png"
+              alt="CrowdLogic"
+              className="h-8 w-auto"
+            />
+            <span className="font-bold text-xl tracking-wide text-primary">CrowdLogic</span>
           </Link>
           
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/escapade" className="text-white/80 hover:text-emerald-400 font-medium transition-colors relative group">
-              For Teams
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+          <div className="hidden md:flex items-center gap-1">
+            <Link 
+              to="/marketing/organizer" 
+              className={`nav-link ${location.pathname === '/marketing/organizer' ? 'nav-link-active' : ''}`}
+            >
+              For Events/Teams
             </Link>
-            <Link to="/stash" className="text-white/80 hover:text-emerald-400 font-medium transition-colors relative group">
-              For Individuals  
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+            <Link 
+              to="/marketing/stash" 
+              className={`nav-link ${location.pathname === '/marketing/stash' ? 'nav-link-active' : ''}`}
+            >
+              For Individuals
             </Link>
-            <a href="#proof" className="text-white/80 hover:text-emerald-400 font-medium transition-colors relative group">
-              Proof & Stories
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <div className="relative">
-              <button
-                onMouseEnter={() => setShowProducts(true)}
-                onMouseLeave={() => setShowProducts(false)}
-                className="flex items-center gap-1 text-white/80 hover:text-emerald-400 font-medium transition-colors"
-              >
-                More <CaretDown size={14} />
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <button className="nav-link flex items-center gap-1">
+                Our Impact
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
-              {showProducts && (
-                <div
-                  onMouseEnter={() => setShowProducts(true)}
-                  onMouseLeave={() => setShowProducts(false)}
-                  className="absolute top-full right-0 mt-2 w-64 rounded-xl border border-emerald-500/20 bg-black/95 backdrop-blur-xl shadow-2xl"
-                >
-                  <div className="px-4 py-3 text-xs text-emerald-400 font-semibold border-b border-emerald-500/20">
-                    Marketing Pages
-                  </div>
-                  <Link to="/marketing/organizer" className="block px-4 py-3 text-sm text-white/80 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all">
-                    Escapade Overview
-                  </Link>
-                  <Link to="/marketing/stash" className="block px-4 py-3 text-sm text-white/80 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all">
-                    Stash Overview
-                  </Link>
-                  <Link to="/marketing/pricing" className="block px-4 py-3 text-sm text-white/80 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all">
-                    Pricing Plans
-                  </Link>
-                  <div className="px-4 py-3 text-xs text-emerald-400 font-semibold border-b border-emerald-500/20 border-t border-emerald-500/20">
+              
+              {isDropdownOpen && (
+                <div className="absolute top-full mt-2 right-0 w-56 bg-white/95 backdrop-blur-lg border border-slate-200 rounded-xl shadow-xl py-2 z-50">
+                  <Link to="/marketing/pricing" className="block px-4 py-2 text-slate-700 hover:text-primary hover:bg-primary/5 transition-colors rounded-lg mx-2">
                     Pricing Calculator
-                  </div>
-                  <Link to="/escapade/pricing" className="block px-4 py-3 text-sm text-white/80 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all rounded-b-xl">
-                    Escapade Pricing
+                  </Link>
+                  <Link to="/escapade" className="block px-4 py-2 text-slate-700 hover:text-primary hover:bg-primary/5 transition-colors rounded-lg mx-2">
+                    Escapade Demo
+                  </Link>
+                  <Link to="/escape-pricing" className="block px-4 py-2 text-slate-700 hover:text-primary hover:bg-primary/5 transition-colors rounded-lg mx-2">
+                    Live Pricing
                   </Link>
                 </div>
               )}
             </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <a href="#contact" className="hidden md:block text-white/80 hover:text-emerald-400 font-medium transition-colors">
+            
+            <a href="#contact" className="nav-link">
               Contact
             </a>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <select className="px-3 py-2 rounded-lg border border-primary/20 text-primary bg-primary/5 text-sm font-medium">
+              <option value="organizer">For Organizers</option>
+              <option value="personal">For Personal</option>
+            </select>
             <Link 
-              to="/escapade" 
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg hover:shadow-emerald-500/25 hover:scale-105"
+              to="/marketing/organizer" 
+              className="btn-cta"
             >
-              Get Started
+              Start Planning
             </Link>
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </nav>
   );
-}
+};
+
+export { Navigation };
