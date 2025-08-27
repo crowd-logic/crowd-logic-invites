@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { MotionBackground } from "@/components/MotionBackground";
 import { EmailCapture } from "@/components/EmailCapture";
+import { Link } from "react-router-dom";
+import { Users, Archive, Sparkle } from "phosphor-react";
 
 const Homepage = () => {
   useEffect(() => {
@@ -53,8 +55,12 @@ const Homepage = () => {
           y: 0
         }} transition={{
           duration: 0.8
-        }} className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">
-            We orchestrate unforgettable experiences with intelligence and heart
+        }} className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent leading-tight">
+            We orchestrate unforgettable{" "}
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              group experiences
+            </span>
+            —with intelligence and heart
           </motion.h1>
           <motion.p initial={{
           opacity: 0,
@@ -65,9 +71,12 @@ const Homepage = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.2
-        }} className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            An AI-native ecosystem unifying group planning, brand ambassadors, and attendee engagement—so your moments feel effortless, not chaotic
+        }} className="text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Unify every part of the moment—from plans and places to people and proof. Escapade{" "}
+            <span className="text-blue-400 font-semibold">brings order to group chaos</span>, and Stash It makes your lists finally usable.
           </motion.p>
+
+          {/* Dual Portal Section */}
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -77,13 +86,50 @@ const Homepage = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.4
-        }} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#proof" className="px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 transition-all transform hover:scale-105 font-medium">
-              See it in action
-            </a>
-            <a href="#contact" className="px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all font-medium">
-              Talk to us
-            </a>
+        }} className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto mb-12">
+            <div className="flex-1 bg-white/5 backdrop-blur rounded-xl px-7 py-8 border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <Users size={40} className="mb-3 text-blue-400" />
+              <h2 className="text-2xl font-bold mb-2">Running a team or event?</h2>
+              <p className="text-md text-white/70 mb-4">
+                Get all the tools you need for <strong className="text-white">group communication, logistics, check-ins, and partnerships</strong>—built for events of every shape and size.
+              </p>
+              <Link 
+                to="/escapade" 
+                className="block w-full bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow transition hover:bg-blue-600"
+              >
+                Try Escapade Free
+              </Link>
+            </div>
+            <div className="flex-1 bg-white/5 backdrop-blur rounded-xl px-7 py-8 border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <Archive size={40} className="mb-3 text-pink-400" />
+              <h2 className="text-2xl font-bold mb-2">Just want better lists?</h2>
+              <p className="text-md text-white/70 mb-4">
+                Upload your <strong className="text-white">screenshots and links</strong> from everywhere—get a curated, private list with <strong className="text-white">maps, hours, and addresses</strong>, instantly usable and shareable.
+              </p>
+              <Link 
+                to="/stash" 
+                className="block w-full bg-pink-500 text-white px-6 py-3 rounded-lg font-bold shadow transition hover:bg-pink-600"
+              >
+                Clean up my Stash
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.8,
+          delay: 0.6
+        }} className="text-center">
+            <Sparkle size={36} className="mx-auto text-purple-400 mb-2" />
+            <p className="text-lg font-semibold text-white/90">
+              Real tools. Real results.<br />
+              Thousands of users. No fluff. Try it for yourself now.
+            </p>
           </motion.div>
           
         </div>
