@@ -86,31 +86,33 @@ const Homepage = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.4
-        }} className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto mb-12">
-            <div className="flex-1 bg-white/5 backdrop-blur rounded-xl px-7 py-8 border border-white/10 hover:bg-white/10 transition-all duration-300">
-              <Users size={40} className="mb-3 text-blue-400" />
-              <h2 className="text-2xl font-bold mb-2">Running a team or event?</h2>
-              <p className="text-md text-white/70 mb-4">
-                Get all the tools you need for <strong className="text-white">group communication, logistics, check-ins, and partnerships</strong>—built for events of every shape and size.
+        }} className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto mb-12">
+            <div className="flex-1 group relative overflow-hidden bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 backdrop-blur-xl rounded-2xl p-8 border border-emerald-500/20 hover:border-emerald-400/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Users size={48} className="mb-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+              <h2 className="text-2xl font-bold mb-3 text-white group-hover:text-emerald-100 transition-colors">For Teams & Events</h2>
+              <p className="text-white/70 mb-6 leading-relaxed">
+                Unify <strong className="text-emerald-300">communication, logistics, check-ins, and partnerships</strong>—built for groups of every shape and size.
               </p>
               <Link 
                 to="/escapade" 
-                className="block w-full bg-blue-500 text-white px-6 py-3 rounded-lg font-bold shadow transition hover:bg-blue-600"
+                className="block w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white px-6 py-3.5 rounded-xl font-bold shadow-lg transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105"
               >
                 Try Escapade Free
               </Link>
             </div>
-            <div className="flex-1 bg-white/5 backdrop-blur rounded-xl px-7 py-8 border border-white/10 hover:bg-white/10 transition-all duration-300">
-              <Archive size={40} className="mb-3 text-pink-400" />
-              <h2 className="text-2xl font-bold mb-2">Just want better lists?</h2>
-              <p className="text-md text-white/70 mb-4">
-                Upload your <strong className="text-white">screenshots and links</strong> from everywhere—get a curated, private list with <strong className="text-white">maps, hours, and addresses</strong>, instantly usable and shareable.
+            <div className="flex-1 group relative overflow-hidden bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl p-8 border border-purple-500/20 hover:border-purple-400/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Archive size={48} className="mb-4 text-purple-400 group-hover:text-purple-300 transition-colors" />
+              <h2 className="text-2xl font-bold mb-3 text-white group-hover:text-purple-100 transition-colors">For Personal Lists</h2>
+              <p className="text-white/70 mb-6 leading-relaxed">
+                Upload <strong className="text-purple-300">screenshots and links</strong> from everywhere—get curated lists with <strong className="text-purple-300">maps, hours, and addresses</strong>.
               </p>
               <Link 
                 to="/stash" 
-                className="block w-full bg-pink-500 text-white px-6 py-3 rounded-lg font-bold shadow transition hover:bg-pink-600"
+                className="block w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-6 py-3.5 rounded-xl font-bold shadow-lg transition-all duration-300 hover:shadow-purple-500/30 hover:scale-105"
               >
-                Clean up my Stash
+                Clean Up My Stash
               </Link>
             </div>
           </motion.div>
@@ -125,10 +127,15 @@ const Homepage = () => {
           duration: 0.8,
           delay: 0.6
         }} className="text-center">
-            <Sparkle size={36} className="mx-auto text-purple-400 mb-2" />
-            <p className="text-lg font-semibold text-white/90">
-              Real tools. Real results.<br />
-              Thousands of users. No fluff. Try it for yourself now.
+            <div className="inline-flex items-center gap-3 bg-emerald-500/10 backdrop-blur-xl rounded-full px-6 py-3 border border-emerald-500/20">
+              <Sparkle size={24} className="text-emerald-400" />
+              <p className="text-lg font-semibold text-white">
+                Real tools. Real results. Thousands of users.
+              </p>
+              <Sparkle size={24} className="text-emerald-400" />
+            </div>
+            <p className="text-white/70 mt-4 text-lg">
+              No fluff. Try it for yourself now.
             </p>
           </motion.div>
           
