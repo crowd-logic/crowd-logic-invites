@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppShell } from "@/components/AppShell";
 import { PersonaProvider } from "@/contexts/PersonaContext";
 import Homepage from "./pages/Homepage";
+import { PersonaDoors } from "@/components/PersonaDoors";
 import AdminSignups from "./pages/AdminSignups";
 import StashLanding from "./pages/StashLanding";
 import EscapadeOrganizer from "./pages/EscapadeOrganizer";
@@ -27,6 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/start" element={<PersonaDoors />} />
             <Route path="/admin-secret-signups" element={<AppShell><AdminSignups /></AppShell>} />
             <Route path="/stash" element={<StashLanding />} />
             <Route path="/escapade" element={<EscapadeOrganizer />} />

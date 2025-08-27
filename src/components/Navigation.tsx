@@ -11,6 +11,9 @@ export function Navigation() {
         <nav className="mt-4 flex items-center justify-between rounded-full border border-white/10 bg-neutral-900/60 px-4 py-2.5 backdrop-blur-md">
           <Link to="/" className="font-semibold tracking-wide text-white">CrowdLogic</Link>
           <div className="flex items-center gap-1">
+            <Link to="/start" className="rounded-full px-3 py-1.5 text-sm text-white/80 hover:text-white hover:bg-white/10">
+              Get Started
+            </Link>
             <Link to="/escapade" className="rounded-full px-3 py-1.5 text-sm text-white/80 hover:text-white hover:bg-white/10">
               Escapade
             </Link>
