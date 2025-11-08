@@ -37,9 +37,9 @@ export default function EscapadeOrganizer() {
           </li>
         </ul>
         
-        <button className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg shadow-lg hover:bg-primary/90 transition-colors mb-3">
-          Try planner—no sign up needed
-        </button>
+        <div className="w-full py-4 rounded-xl bg-muted text-muted-foreground font-semibold text-lg text-center mb-3">
+          Coming Soon
+        </div>
         <div className="text-xs text-muted-foreground text-center mb-6">
           Only pay if your event runs. Upgrade your team anytime.
         </div>

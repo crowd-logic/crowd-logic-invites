@@ -33,11 +33,8 @@ export default function StashLanding() {
           </li>
         </ul>
         
-        <button className="w-full py-4 rounded-xl bg-secondary text-secondary-foreground font-bold text-lg shadow-lg hover:bg-secondary/90 transition-colors mb-3">
-          Import screenshots—get your real list
-        </button>
-        <div className="text-xs text-muted-foreground text-center mb-10">
-          First 10 scans are always free. No sign up until you want to save/share.
+        <div className="w-full py-4 rounded-xl bg-muted text-muted-foreground font-semibold text-lg text-center mb-10">
+          Coming Soon
         </div>
         
         <div className="mt-10">

@@ -25,12 +25,6 @@ const Navigation = () => {
             >
               For Events/Teams
             </Link>
-            <Link 
-              to="/marketing/stash" 
-              className={`nav-link ${location.pathname === '/marketing/stash' ? 'nav-link-active' : ''}`}
-            >
-              For Individuals
-            </Link>
             <div 
               className="relative"
               onMouseEnter={() => setIsDropdownOpen(true)}
@@ -64,10 +58,6 @@ const Navigation = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <select className="px-3 py-2 rounded-lg border border-primary/20 text-primary bg-primary/5 text-sm font-medium">
-              <option value="organizer">For Organizers</option>
-              <option value="personal">For Personal</option>
-            </select>
             <Link 
               to="/marketing/organizer" 
               className="btn-cta"

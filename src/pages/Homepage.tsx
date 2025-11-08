@@ -82,7 +82,7 @@ const Homepage = () => {
         }} transition={{
           duration: 0.8,
           delay: 0.4
-        }} className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto mb-12">
+        }} className="flex justify-center max-w-3xl mx-auto mb-12">
             <div className="flex-1 group relative overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:scale-105 hover:shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
@@ -94,30 +94,9 @@ const Homepage = () => {
               <p className="text-slate-600 mb-6 leading-relaxed">
                 Unify communication, logistics, check-ins, and partnerships—built for groups of every shape and size.
               </p>
-              <Link 
-                to="/escapade" 
-                className="btn-cta w-full justify-center"
-              >
-                Start Planning
-              </Link>
-            </div>
-            <div className="flex-1 group relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition-all duration-500 hover:scale-105 hover:shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="w-16 h-16 rounded-2xl bg-slate-200 flex items-center justify-center mb-6 group-hover:bg-slate-300 transition-colors">
-                <svg className="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
+              <div className="inline-block px-8 py-4 rounded-full bg-muted text-muted-foreground font-semibold text-lg w-full text-center">
+                Coming Soon
               </div>
-              <h2 className="text-2xl font-bold mb-3 text-slate-900">For Personal Lists</h2>
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                Turn screenshot chaos into organized, mapped places with addresses and hours.
-              </p>
-              <Link 
-                to="/stash" 
-                className="btn-cta-secondary w-full justify-center"
-              >
-                Organize My Lists
-              </Link>
             </div>
           </motion.div>
 
@@ -169,9 +148,6 @@ const Homepage = () => {
                 <a href="https://escapadeapp.accesscrowdlogic.com" target="_blank" rel="noopener noreferrer" className="btn-cta text-center">
                   Experience escapade
                 </a>
-                <a href="/marketing/organizer" className="btn-cta-secondary text-center">
-                  Organize Events
-                </a>
                 <a href="#vision" className="px-6 py-3 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-all text-center font-medium text-slate-700">
                   See Our Ecosystem
                 </a>
@@ -205,7 +181,7 @@ const Homepage = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <a href="/marketing/stash" className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20 section-fade hover:bg-primary/10 hover:scale-105 transform hover:border-primary/40 hover:shadow-lg transition-all duration-300 block">
               <div className="text-primary text-sm uppercase tracking-wide mb-2 font-semibold">Live Now</div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">escapade</h3>
@@ -213,14 +189,8 @@ const Homepage = () => {
               <div className="mt-4 text-primary text-sm font-medium">Learn more →</div>
             </a>
             
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border border-purple-200 section-fade hover:bg-purple-100 hover:scale-105 transform hover:border-purple-300 hover:shadow-lg transition-all duration-300">
-              <div className="text-purple-600 text-sm uppercase tracking-wide mb-2 font-semibold">Q3 2025</div>
-              <h3 className="text-2xl font-bold mb-4 text-slate-900">KITO Agency</h3>
-              <p className="text-slate-600 leading-relaxed">Educating and powering small businesses with elite brand ambassadors</p>
-            </div>
-            
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border border-blue-200 section-fade hover:bg-blue-100 hover:scale-105 transform hover:border-blue-300 hover:shadow-lg transition-all duration-300">
-              <div className="text-blue-600 text-sm uppercase tracking-wide mb-2 font-semibold">Q4 2025</div>
+              <div className="text-blue-600 text-sm uppercase tracking-wide mb-2 font-semibold">Q1 2026</div>
               <h3 className="text-2xl font-bold mb-4 text-slate-900">EventAxis</h3>
               <p className="text-slate-600 leading-relaxed">Enterprise command center for managing complex multi-track events</p>
             </div>
@@ -228,62 +198,6 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Service: KITO Agency */}
-      <section id="service" className="py-20 px-6 scroll-mt-24 bg-gradient-to-br from-purple-50 to-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 section-fade">
-              <div className="relative rounded-2xl border border-purple-200 bg-gradient-to-br from-purple-50 to-white p-8 shadow-lg">
-                <h3 className="text-lg font-semibold mb-4 text-purple-600">AI Campaign Architect</h3>
-                <p className="text-sm text-slate-600 mb-6 leading-relaxed">
-                  Answer 3 questions. Get a custom campaign playbook in 60 seconds.
-                </p>
-                <div className="space-y-4">
-                  <div className="p-3 rounded-lg bg-white border border-purple-100">
-                    <p className="text-sm text-slate-700">✓ Local market analysis</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-white border border-purple-100">
-                    <p className="text-sm text-slate-700">✓ Ambassador deployment strategy</p>
-                  </div>
-                  <div className="p-3 rounded-lg bg-white border border-purple-100">
-                    <p className="text-sm text-slate-700">✓ ROI projections</p>
-                  </div>
-                </div>
-                <button className="mt-6 w-full rounded-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 px-4 py-3 text-white font-medium shadow-lg hover:shadow-xl transition-all">
-                  Try It Now (Launching Q3 2025)
-                </button>
-              </div>
-            </div>
-            
-            <div className="order-1 md:order-2 section-fade">
-              <div className="text-purple-600 uppercase tracking-wide text-sm mb-4 font-semibold">Coming Q3 2025</div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900">
-                KITO Agency: On-street influence, engineered
-              </h2>
-              <p className="text-xl text-slate-600 mb-6 leading-relaxed">
-                We educate and empower small businesses and nonprofits with elite brand ambassadors and smart campaign playbooks tailored to their local market.
-              </p>
-              <ul className="space-y-3 text-slate-600 mb-8">
-                <li className="flex items-start gap-3">
-                  <span className="text-purple-500 mt-1 font-bold">→</span>
-                  <span>Discover your audience and articulate your goals</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-purple-500 mt-1 font-bold">→</span>
-                  <span>Design location-aware campaigns with AI-powered insights</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-purple-500 mt-1 font-bold">→</span>
-                  <span>Deploy trained ambassadors who embody your brand</span>
-                </li>
-              </ul>
-              <a href="#contact" className="btn-cta-secondary">
-                Request Early Access
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Founders */}
       <section className="py-20 px-6 bg-white">
@@ -348,7 +262,6 @@ const Homepage = () => {
               <h3 className="font-semibold text-slate-900 mb-4">Products</h3>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li><a href="/escapade" className="hover:text-primary transition">Escapade for Events</a></li>
-                <li><a href="/marketing/stash" className="hover:text-primary transition">Stash for Personal Use</a></li>
                 <li><a href="/marketing/pricing" className="hover:text-primary transition">Pricing</a></li>
               </ul>
             </div>
@@ -356,7 +269,6 @@ const Homepage = () => {
               <h3 className="font-semibold text-slate-900 mb-4">Company</h3>
               <ul className="space-y-2 text-sm text-slate-600">
                 <li><a href="#vision" className="hover:text-primary transition">Vision</a></li>
-                <li><a href="#service" className="hover:text-primary transition">Services</a></li>
                 <li><a href="#contact" className="hover:text-primary transition">Contact</a></li>
               </ul>
             </div>
